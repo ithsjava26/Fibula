@@ -28,5 +28,4 @@ public class Axe implements Weapon {
     public int getDamage() {
         return damage;
     }
-
 }
