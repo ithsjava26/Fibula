@@ -11,12 +11,11 @@ public interface Weapon {
 
     int getDamage();
 
-    public static Weapon createWeapon(WeaponType type) {
+    static Weapon createWeapon(WeaponType type) {
         return switch (type) {
             case AXE -> new Axe();
             case SWORD -> new Sword();
             case DAGGER -> new Dagger();
-            default -> throw new IllegalArgumentException("Invalid weapon type");
         };
     }
 }
