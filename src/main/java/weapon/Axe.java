@@ -15,4 +15,9 @@ public class Axe implements Weapon {
     public WeaponRange getRange() {
         return WeaponRange.MELEE;
     }
+
+    @Override
+    public StrengthLevel getStrengthLevel() {
+        return StrengthLevel.EASY;
+    }
 }

@@ -15,4 +15,9 @@ public class Dagger implements Weapon {
     public WeaponRange getRange() {
         return WeaponRange.DISTANCE;
     }
+
+    @Override
+    public StrengthLevel getStrengthLevel() {
+        return StrengthLevel.HARD;
+    }
 }
