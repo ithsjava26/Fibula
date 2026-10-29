@@ -1,5 +1,5 @@
 package com.fangdjupet.common;
 
 public enum Difficulty {
-    BEGINNER, EASY, MEDIUM, HARD
+    BEGINNER, EASY, MEDIUM, HARD, QUEST, BOSS
 }
