@@ -6,28 +6,37 @@ import java.util.List;
 
 public class BattleRoom implements Room {
     private final String message;
+    private final Difficulty difficulty;
     private List<Enemy> currentEnemies;
 
-    public BattleRoom(Difficulty roomDifficulty, String message) {
+    public BattleRoom(Difficulty difficulty, String message) {
         this.message = message;
-        switch (roomDifficulty) {
+        this.difficulty = difficulty;
+    }
+
+    @Override
+    public void enter() {
+        System.out.println(message);
+
+        switch (difficulty) {
             case BEGINNER:
                 currentEnemies = spawnBeginnerRoom();
+                break;
             case EASY:
                 currentEnemies = spawnEasyRoom();
                 break;
             case MEDIUM:
                 currentEnemies = spawnMediumRoom();
                 break;
-                case HARD:
-                    currentEnemies = spawnHardRoom();
-                    break;
+            case HARD:
+                currentEnemies = spawnHardRoom();
+                break;
         }
+
     }
 
-    @Override
-    public void enter() {
-        System.out.println(message);
+    public List<Enemy> getCurrentEnemies() {
+        return currentEnemies;
     }
 
     public List<Enemy> spawnBeginnerRoom() {
@@ -52,8 +61,6 @@ public class BattleRoom implements Room {
                 case 4, 5, 6, 7, 8, 9, 10:
                     enemies.addAll(spawnMediumEnemy(1));
                     break;
-                default:
-                    break;
             }
         }
         return enemies;
@@ -71,8 +78,6 @@ public class BattleRoom implements Room {
                     break;
                 case 4, 5, 6, 7, 8, 9, 10:
                     enemies.addAll(spawnHardEnemy(1));
-                    break;
-                default:
                     break;
             }
 
