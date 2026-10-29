@@ -1,4 +1,4 @@
-package room;
+package com.fangdjupet.room;
 
 import com.fangdjupet.common.Difficulty;
 import java.util.ArrayList;
