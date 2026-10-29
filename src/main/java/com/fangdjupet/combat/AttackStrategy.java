@@ -1,4 +1,4 @@
-package com.fangdjupet.attackstrategy;
+package com.fangdjupet.combat;
 
 public interface AttackStrategy {
     int attack();

@@ -1,4 +1,4 @@
-package com.fangdjupet.attackstrategy;
+package com.fangdjupet.combat;
 
 public class RangedAttack implements AttackStrategy{
     @Override

@@ -1,4 +1,4 @@
-package com.fangdjupet.attackstrategy;
+package com.fangdjupet.combat;
 
 public class MagicAttack implements AttackStrategy{
     @Override
