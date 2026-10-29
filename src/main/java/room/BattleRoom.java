@@ -14,7 +14,7 @@ public class BattleRoom implements Room {
         this.message = message;
         switch (roomDifficulty) {
             case EASY:
-                currentEnemies = summonMonstersEasy();
+                currentEnemies = spawnEnemiesEasy();
                 break;
         }
     }
@@ -24,7 +24,7 @@ public class BattleRoom implements Room {
         System.out.println(message);
     }
 
-    public ArrayList<Enemy> summonMonstersEasy() {
+    public ArrayList<Enemy> spawnEnemiesEasy() {
         int numberOfEnemies = (int) (Math.random() * 2) + 1;
         ArrayList<Enemy> enemies = new ArrayList<>();
 
