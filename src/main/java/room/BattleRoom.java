@@ -1,6 +1,6 @@
 package room;
 
-import com.fangdjupet.character.common.Difficulty;
+import com.fangdjupet.common.Difficulty;
 import java.util.ArrayList;
 import java.util.List;
 
