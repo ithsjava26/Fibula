@@ -18,6 +18,11 @@ public class Dagger implements Weapon {
 
     @Override
     public StrengthLevel getStrengthLevel() {
-        return StrengthLevel.HARD;
+        return StrengthLevel.MEDIUM;
+    }
+
+    @Override
+    public int getStrength() {
+        return 3;
     }
 }

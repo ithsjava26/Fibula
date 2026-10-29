@@ -4,8 +4,9 @@ public interface Weapon {
     String getName();
     WeaponType getType();
     WeaponRange getRange();
-
     StrengthLevel getStrengthLevel();
+
+    int getStrength();
 
     static Weapon createWeapon(WeaponType type) {
         return switch (type) {

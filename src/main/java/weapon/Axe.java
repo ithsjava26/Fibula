@@ -20,4 +20,9 @@ public class Axe implements Weapon {
     public StrengthLevel getStrengthLevel() {
         return StrengthLevel.EASY;
     }
+
+    @Override
+    public int getStrength() {
+        return 2;
+    }
 }

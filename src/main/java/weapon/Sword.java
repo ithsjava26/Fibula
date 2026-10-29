@@ -18,6 +18,11 @@ public class Sword implements Weapon {
 
     @Override
     public StrengthLevel getStrengthLevel() {
-        return StrengthLevel.MEDIUM;
+        return StrengthLevel.HARD;
+    }
+
+    @Override
+    public int getStrength() {
+        return 4;
     }
 }
