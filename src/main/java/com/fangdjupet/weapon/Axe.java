@@ -1,28 +1,28 @@
-package weapon;
+package com.fangdjupet.weapon;
 
 public class Axe implements Weapon {
     @Override
-    public String getName() {
+    public String getWeaponName() {
         return "Axe";
     }
 
     @Override
-    public WeaponType getType() {
+    public WeaponType getWeaponType() {
         return WeaponType.AXE;
     }
 
     @Override
-    public WeaponRange getRange() {
+    public WeaponRange getWeaponRange() {
         return WeaponRange.MELEE;
     }
 
     @Override
-    public StrengthLevel getStrengthLevel() {
+    public StrengthLevel getWeaponStrengthLevel() {
         return StrengthLevel.EASY;
     }
 
     @Override
-    public int getStrength() {
+    public int getWeaponStrength() {
         return 2;
     }
 }

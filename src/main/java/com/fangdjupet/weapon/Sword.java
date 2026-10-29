@@ -1,28 +1,28 @@
-package weapon;
+package com.fangdjupet.weapon;
 
 public class Sword implements Weapon {
     @Override
-    public String getName() {
+    public String getWeaponName() {
         return "Sword";
     }
 
     @Override
-    public WeaponType getType() {
+    public WeaponType getWeaponType() {
         return WeaponType.SWORD;
     }
 
     @Override
-    public WeaponRange getRange() {
+    public WeaponRange getWeaponRange() {
         return WeaponRange.MELEE;
     }
 
     @Override
-    public StrengthLevel getStrengthLevel() {
+    public StrengthLevel getWeaponStrengthLevel() {
         return StrengthLevel.HARD;
     }
 
     @Override
-    public int getStrength() {
+    public int getWeaponStrength() {
         return 4;
     }
 }

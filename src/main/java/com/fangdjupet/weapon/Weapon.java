@@ -1,11 +1,15 @@
-package weapon;
+package com.fangdjupet.weapon;
 
 public interface Weapon {
-    String getName();
-    WeaponType getType();
-    WeaponRange getRange();
-    StrengthLevel getStrengthLevel();
-    int getStrength();
+    String getWeaponName();
+
+    WeaponType getWeaponType();
+
+    WeaponRange getWeaponRange();
+
+    StrengthLevel getWeaponStrengthLevel();
+
+    int getWeaponStrength();
 
     static Weapon createWeapon(WeaponType type) {
         return switch (type) {

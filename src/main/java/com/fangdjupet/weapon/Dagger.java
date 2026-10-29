@@ -1,28 +1,28 @@
-package weapon;
+package com.fangdjupet.weapon;
 
 public class Dagger implements Weapon {
     @Override
-    public String getName() {
+    public String getWeaponName() {
         return "Dagger";
     }
 
     @Override
-    public WeaponType getType() {
+    public WeaponType getWeaponType() {
         return WeaponType.DAGGER;
     }
 
     @Override
-    public WeaponRange getRange() {
+    public WeaponRange getWeaponRange() {
         return WeaponRange.DISTANCE;
     }
 
     @Override
-    public StrengthLevel getStrengthLevel() {
+    public StrengthLevel getWeaponStrengthLevel() {
         return StrengthLevel.MEDIUM;
     }
 
     @Override
-    public int getStrength() {
+    public int getWeaponStrength() {
         return 3;
     }
 }
