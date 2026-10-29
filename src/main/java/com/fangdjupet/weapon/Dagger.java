@@ -1,5 +1,7 @@
 package com.fangdjupet.weapon;
 
+import com.fangdjupet.common.Difficulty;
+
 public class Dagger implements Weapon {
     @Override
     public String getWeaponName() {
@@ -17,8 +19,8 @@ public class Dagger implements Weapon {
     }
 
     @Override
-    public StrengthLevel getWeaponStrengthLevel() {
-        return StrengthLevel.MEDIUM;
+    public Difficulty getWeaponStrengthLevel() {
+        return Difficulty.MEDIUM;
     }
 
     @Override

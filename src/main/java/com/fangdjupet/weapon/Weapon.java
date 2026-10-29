@@ -1,10 +1,13 @@
 package com.fangdjupet.weapon;
 
+import com.fangdjupet.common.Difficulty;
+
 public interface Weapon {
     String getWeaponName();
     WeaponType getWeaponType();
     WeaponRange getWeaponRange();
-    StrengthLevel getWeaponStrengthLevel();
+
+    Difficulty getWeaponStrengthLevel();
     int getWeaponStrength();
     static Weapon createWeapon(WeaponType type) {
         return switch (type) {
