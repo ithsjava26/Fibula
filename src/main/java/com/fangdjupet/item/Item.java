@@ -6,5 +6,7 @@ public interface Item {
     String getItemName();
     ItemCategory getItemCategory();
 
-    Difficulty getItemDifficultyLevel();
+    Difficulty getItemStrengthLevel();
+
+    int getItemStrength();
 }
