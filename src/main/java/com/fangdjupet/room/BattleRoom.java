@@ -35,20 +35,21 @@ public class BattleRoom implements Room {
 
     }
 
-    public List<Enemy> getCurrentEnemies() {
+    private List<Enemy> getCurrentEnemies() {
         return currentEnemies;
     }
 
-    public List<Enemy> spawnBeginnerRoom() {
+
+    private List<Enemy> spawnBeginnerRoom() {
         return spawnEasyEnemy(1);
     }
 
-    public List<Enemy> spawnEasyRoom() {
+    private List<Enemy> spawnEasyRoom() {
         int numberOfEnemies = (int) (Math.random() * 2) + 1;
         return spawnEasyEnemy(numberOfEnemies);
     }
 
-    public List<Enemy> spawnMediumRoom() {
+    private List<Enemy> spawnMediumRoom() {
         ArrayList<Enemy> enemies = new ArrayList<>();
         int numberOfEnemies = (int) (Math.random() * 2) + 1;
 
@@ -66,7 +67,7 @@ public class BattleRoom implements Room {
         return enemies;
     }
 
-    public List<Enemy> spawnHardRoom() {
+    private List<Enemy> spawnHardRoom() {
         int numberOfEnemies = (int) (Math.random() * 2) + 1;
         ArrayList<Enemy> enemies = new ArrayList<>();
 
@@ -87,7 +88,7 @@ public class BattleRoom implements Room {
     }
 
 
-    public List<Enemy> spawnEasyEnemy (int numberOfEnemies) {
+    private List<Enemy> spawnEasyEnemy (int numberOfEnemies) {
         List<Enemy> enemies = new ArrayList<>();
         for (int i = 0; i < numberOfEnemies; i++) {
             enemies.add(new EasyEnemy());
@@ -95,7 +96,7 @@ public class BattleRoom implements Room {
         return enemies;
     }
 
-    public List<Enemy> spawnMediumEnemy (int numberOfEnemies) {
+    private List<Enemy> spawnMediumEnemy (int numberOfEnemies) {
         List<Enemy> enemies = new ArrayList<>();
         for (int i = 0; i < numberOfEnemies; i++) {
             enemies.add(new MediumEnemy());
@@ -103,7 +104,7 @@ public class BattleRoom implements Room {
         return enemies;
     }
 
-    public List<Enemy> spawnHardEnemy (int numberOfEnemies) {
+    private List<Enemy> spawnHardEnemy (int numberOfEnemies) {
         List<Enemy> enemies = new ArrayList<>();
         for (int i = 0; i < numberOfEnemies; i++) {
             enemies.add(new HardEnemy());
