@@ -4,9 +4,8 @@ import com.fangdjupet.common.Difficulty;
 
 public interface Item {
     String getItemName();
+
     ItemCategory getItemCategory();
 
-    Difficulty getItemStrengthLevel();
-
-    int getItemStrength();
+    Difficulty getItemDifficultyLevel();
 }
