@@ -1,16 +1,16 @@
-package com.fangdjupet.weapon;
+package com.fangdjupet.item.weapon;
 
 import com.fangdjupet.common.Difficulty;
 
-public class Sword implements Weapon {
+public class Axe implements Weapon {
     @Override
     public String getWeaponName() {
-        return "Sword";
+        return "Axe";
     }
 
     @Override
     public WeaponType getWeaponType() {
-        return WeaponType.SWORD;
+        return WeaponType.AXE;
     }
 
     @Override
@@ -20,11 +20,11 @@ public class Sword implements Weapon {
 
     @Override
     public Difficulty getWeaponStrengthLevel() {
-        return Difficulty.HARD;
+        return Difficulty.EASY;
     }
 
     @Override
     public int getWeaponStrength() {
-        return 4;
+        return 2;
     }
 }

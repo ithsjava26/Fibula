@@ -1,4 +1,4 @@
-package com.fangdjupet.weapon;
+package com.fangdjupet.item.weapon;
 
 import com.fangdjupet.common.Difficulty;
 

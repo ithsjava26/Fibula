@@ -1,4 +1,4 @@
-package com.fangdjupet.weapon;
+package com.fangdjupet.item.weapon;
 
 public enum WeaponRange {
     MELEE, DISTANCE
