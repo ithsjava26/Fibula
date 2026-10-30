@@ -1,7 +1,7 @@
 package com.fangdjupet.item;
 
 public interface ConsumableItem extends Item {
-    ConsumableItemCategory getConsumableItemType();
+    ConsumableItemCategory getConsumableItemCategory();
 
     void consumeItem();
 }
