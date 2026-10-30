@@ -6,40 +6,50 @@ import java.util.List;
 
 public class BattleRoom implements Room {
     private final String message;
+    private final Difficulty difficulty;
     private List<Enemy> currentEnemies;
 
-    public BattleRoom(Difficulty roomDifficulty, String message) {
+    public BattleRoom(Difficulty difficulty, String message) {
         this.message = message;
-        switch (roomDifficulty) {
+        this.difficulty = difficulty;
+    }
+
+    @Override
+    public void enter() {
+        System.out.println(message);
+
+        switch (difficulty) {
             case BEGINNER:
                 currentEnemies = spawnBeginnerRoom();
+                break;
             case EASY:
                 currentEnemies = spawnEasyRoom();
                 break;
             case MEDIUM:
                 currentEnemies = spawnMediumRoom();
                 break;
-                case HARD:
-                    currentEnemies = spawnHardRoom();
-                    break;
+            case HARD:
+                currentEnemies = spawnHardRoom();
+                break;
         }
+
     }
 
-    @Override
-    public void enter() {
-        System.out.println(message);
+    private List<Enemy> getCurrentEnemies() {
+        return currentEnemies;
     }
 
-    public List<Enemy> spawnBeginnerRoom() {
+
+    private List<Enemy> spawnBeginnerRoom() {
         return spawnEasyEnemy(1);
     }
 
-    public List<Enemy> spawnEasyRoom() {
+    private List<Enemy> spawnEasyRoom() {
         int numberOfEnemies = (int) (Math.random() * 2) + 1;
         return spawnEasyEnemy(numberOfEnemies);
     }
 
-    public List<Enemy> spawnMediumRoom() {
+    private List<Enemy> spawnMediumRoom() {
         ArrayList<Enemy> enemies = new ArrayList<>();
         int numberOfEnemies = (int) (Math.random() * 2) + 1;
 
@@ -52,14 +62,12 @@ public class BattleRoom implements Room {
                 case 4, 5, 6, 7, 8, 9, 10:
                     enemies.addAll(spawnMediumEnemy(1));
                     break;
-                default:
-                    break;
             }
         }
         return enemies;
     }
 
-    public List<Enemy> spawnHardRoom() {
+    private List<Enemy> spawnHardRoom() {
         int numberOfEnemies = (int) (Math.random() * 2) + 1;
         ArrayList<Enemy> enemies = new ArrayList<>();
 
@@ -72,8 +80,6 @@ public class BattleRoom implements Room {
                 case 4, 5, 6, 7, 8, 9, 10:
                     enemies.addAll(spawnHardEnemy(1));
                     break;
-                default:
-                    break;
             }
 
 
@@ -82,7 +88,7 @@ public class BattleRoom implements Room {
     }
 
 
-    public List<Enemy> spawnEasyEnemy (int numberOfEnemies) {
+    private List<Enemy> spawnEasyEnemy (int numberOfEnemies) {
         List<Enemy> enemies = new ArrayList<>();
         for (int i = 0; i < numberOfEnemies; i++) {
             enemies.add(new EasyEnemy());
@@ -90,7 +96,7 @@ public class BattleRoom implements Room {
         return enemies;
     }
 
-    public List<Enemy> spawnMediumEnemy (int numberOfEnemies) {
+    private List<Enemy> spawnMediumEnemy (int numberOfEnemies) {
         List<Enemy> enemies = new ArrayList<>();
         for (int i = 0; i < numberOfEnemies; i++) {
             enemies.add(new MediumEnemy());
@@ -98,7 +104,7 @@ public class BattleRoom implements Room {
         return enemies;
     }
 
-    public List<Enemy> spawnHardEnemy (int numberOfEnemies) {
+    private List<Enemy> spawnHardEnemy (int numberOfEnemies) {
         List<Enemy> enemies = new ArrayList<>();
         for (int i = 0; i < numberOfEnemies; i++) {
             enemies.add(new HardEnemy());
