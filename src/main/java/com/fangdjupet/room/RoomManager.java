@@ -5,6 +5,18 @@ import java.util.List;
 
 public class RoomManager {
 
+    private int currentIndex = 0;
+
+    public Room getCurrentRoom() {
+        return dungeon.get(currentIndex);
+    }
+
+    public void moveTo(int index) {
+        if (index >= 0 && index < dungeon.size()) {
+            currentIndex = index;
+        }
+    }
+
 
     public List<Room> getDungeon() {
         return dungeon;
