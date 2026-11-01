@@ -7,6 +7,10 @@ public class RoomManager {
 
     private int currentIndex = 0;
 
+    public int getCurrentIndex() {
+        return currentIndex;
+    }
+
     public Room getCurrentRoom() {
         return dungeon.get(currentIndex);
     }

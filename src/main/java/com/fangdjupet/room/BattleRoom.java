@@ -35,7 +35,7 @@ public class BattleRoom implements Room {
 
     }
 
-    private List<Enemy> getCurrentEnemies() {
+    public List<Enemy> getCurrentEnemies() {
         return currentEnemies;
     }
 
