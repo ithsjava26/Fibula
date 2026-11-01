@@ -6,6 +6,7 @@ import com.fangdjupet.room.RoomManager;
 public class GameEngine {
     private final RoomManager roomManager = new RoomManager();
     private final Character character = new GameCharacter();
+    private final GameMenu gameMenu = new GameMenu();
     private boolean isRunning = true;
 
     static void main() {
@@ -25,7 +26,8 @@ public class GameEngine {
                     enemies = currentRoom.getCurrentEnemies();
                     battle(enemies);
                     if (hasWonBattle) {
-                        choosePath();
+                        int choice = choosePath();
+                        roomManager.moveTo(choice);
                     } else {
                         defeat();
                         isRunning = false;
@@ -69,4 +71,7 @@ public class GameEngine {
 
         }
     }
+    private void defeat() {}
+    private void victory() {}
+    private int choosePath() {}
 }
