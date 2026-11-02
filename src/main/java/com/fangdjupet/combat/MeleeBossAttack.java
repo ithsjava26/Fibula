@@ -9,7 +9,7 @@ public class MeleeBossAttack implements AttackStrategy {
 
     @Override
     public String getName() {
-        return "a ice sword to slash that deals 10 damage!";
+        return "his massive claws that deals 10 damage!";
     }
 
     @Override
