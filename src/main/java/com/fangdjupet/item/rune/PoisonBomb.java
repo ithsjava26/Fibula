@@ -6,7 +6,7 @@ import com.fangdjupet.item.ItemCategory;
 
 public class PoisonBomb implements AttackRune {
     private static final AttackRuneType type = AttackRuneType.POISON_BOMB;
-    private static final int ATTACK_RUNE_STRENGTH = 15;
+    private static final int ATTACK_RUNE_STRENGTH = 23;
     private static final ConsumableItemCategory consumableItemCategory = ConsumableItemCategory.ATTACK_RUNE;
     private static final String ITEM_NAME = "Poison bomb rune";
     private static final ItemCategory itemCategory = ItemCategory.CONSUMABLE;
