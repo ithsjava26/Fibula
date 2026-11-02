@@ -9,6 +9,11 @@ public class MagicBossAttack implements AttackStrategy{
 
     @Override
     public String getName() {
-        return "Dark explosion";
+        return "a dark explosion that deals 30 damage.";
+    }
+
+    @Override
+    public String getEffect() {
+        return "The enemy is engulfed in darkness.";
     }
 }
