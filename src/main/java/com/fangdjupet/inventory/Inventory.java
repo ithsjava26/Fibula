@@ -4,6 +4,8 @@ import com.fangdjupet.common.Difficulty;
 import com.fangdjupet.item.Item;
 import com.fangdjupet.item.armor.Armor;
 import com.fangdjupet.item.armor.ArmorType;
+import com.fangdjupet.item.rune.AttackRune;
+import com.fangdjupet.item.rune.AttackRuneType;
 import com.fangdjupet.item.weapon.Weapon;
 import com.fangdjupet.item.weapon.WeaponType;
 
@@ -29,17 +31,20 @@ public class Inventory {
     }
 
     private Item getRandomEasyItem() {
-        int randomNumber = getRandomNumber(10);
+        Item item = null;
+        int randomNumber = getRandomNumber(2);
         if (randomNumber == 1)
-            return Armor.createArmor(ArmorType.HELMET);
-
+            item = Armor.createArmor(ArmorType.HELMET);
+        else if (randomNumber == 2)
+            item = AttackRune.createAttackRune(AttackRuneType.FIRE_BALL);
+        return item;
     }
 
     private int getRandomNumber(int numbers) {
         return (int) (Math.random() * numbers) + 1;
     }
 
-    public void printItemsInBackpack() {
+    public void printAllItemsInBackpack() {
         if (backpack.isEmpty())
             IO.println("Backpack is empty");
         else
