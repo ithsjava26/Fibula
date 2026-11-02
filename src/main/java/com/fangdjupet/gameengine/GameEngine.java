@@ -1,5 +1,6 @@
 package com.fangdjupet.gameengine;
 
+import com.fangdjupet.menu.GameMenu;
 import com.fangdjupet.room.Room;
 import com.fangdjupet.room.RoomManager;
 
@@ -11,10 +12,24 @@ public class GameEngine {
 
     static void main() {
         GameEngine session = new GameEngine();
-        session.start();
+
+        String choice = session.gameMenu.printMainMenu();
+
+        switch (choice) {
+            case "1":
+                session.start();
+                break;
+            case "2":
+                // Load savefile
+                break;
+            case "3":
+                session.gameMenu.printRed("Exiting current game session..");
+                break;
+        }
     }
 
     public void start() {
+
         while (isRunning) {
             Room currentRoom = roomManager.getCurrentRoom();
             int currentIndex = roomManager.getCurrentIndex();
@@ -26,8 +41,7 @@ public class GameEngine {
                     enemies = currentRoom.getCurrentEnemies();
                     battle(enemies);
                     if (hasWonBattle) {
-                        int choice = choosePath();
-                        roomManager.moveTo(choice);
+                        choosePath();
                     } else {
                         defeat();
                         isRunning = false;
@@ -71,7 +85,20 @@ public class GameEngine {
 
         }
     }
-    private void defeat() {}
-    private void victory() {}
-    private int choosePath() {}
+    private void defeat() {
+        gameMenu.printDefeat();
+        isRunning = false;
+    }
+    private void victory() {
+        gameMenu.printVictory();
+        isRunning = false;
+    }
+    private void choosePath() {
+        String choice = gameMenu.printPathChoice();
+
+        switch (choice) {
+            case "1" -> roomManager.moveTo(4);
+            case "2" -> roomManager.moveTo(7);
+        }
+    }
 }
