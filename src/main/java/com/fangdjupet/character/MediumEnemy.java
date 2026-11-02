@@ -9,7 +9,7 @@ public class MediumEnemy extends Enemy {
 
     //Constructor
     public MediumEnemy() {
-        super("Orc Warrior", 30, new MeleeAttack(), Difficulty.MEDIUM);
+        super("Orc Berserker", 30, new MeleeAttack(), Difficulty.MEDIUM);
         this.meleeAttack = new MeleeAttack();
     }
 
