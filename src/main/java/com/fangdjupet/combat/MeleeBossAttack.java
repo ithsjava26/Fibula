@@ -4,12 +4,12 @@ public class MeleeBossAttack implements AttackStrategy {
 
     @Override
     public int attack() {
-        return 10;
+        return 15;
     }
 
     @Override
     public String getName() {
-        return "his massive claws that deals 10 damage!";
+        return "his massive claws that deals 15 damage!";
     }
 
     @Override

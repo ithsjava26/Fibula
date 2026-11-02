@@ -4,12 +4,12 @@ public class RangedBossAttack implements AttackStrategy {
 
     @Override
     public int attack() {
-        return 20;
+        return 25;
     }
 
     @Override
     public String getName() {
-        return "a powerful fireball that deals 20 damage.!";
+        return "a powerful fireball that deals 25 damage.!";
     }
 
     @Override
