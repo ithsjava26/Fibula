@@ -13,6 +13,16 @@ public class Inventory {
     private final List<Item> enemyItems = new ArrayList<>();
 
     public void initializeHeroBackpack() {
-        backpack.add(Weapon.createWeapon(WeaponType.CLUB));
+        Weapon club = Weapon.createWeapon(WeaponType.CLUB);
+        backpack.add(club);
+    }
+
+    public void printItemsInBackpack() {
+        if (backpack.isEmpty())
+            IO.println("Backpack is empty");
+        else
+            for (Item item : backpack) {
+                IO.println(item.getItemName());
+            }
     }
 }
