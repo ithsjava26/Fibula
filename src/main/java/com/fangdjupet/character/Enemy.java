@@ -45,4 +45,8 @@ public class Enemy implements Character {
         return health > 0;
     }
 
+    public Difficulty getDifficulty() {
+        return difficulty;
+    }
+
 }
