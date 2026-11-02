@@ -14,6 +14,6 @@ public class MagicBossAttack implements AttackStrategy{
 
     @Override
     public String getEffect() {
-        return "The enemy is engulfed in darkness.";
+        return "The final boss is engulfed in darkness and enraged.";
     }
 }
