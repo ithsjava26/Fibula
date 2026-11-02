@@ -8,7 +8,7 @@ public class QuestBossEnemy extends Enemy {
         private final AttackStrategy rangedAttack;
 
         public QuestBossEnemy() {
-            super("Giant spider, Ungoliath the black", 100, new MeleeQuestBossAttack(), Difficulty.HARD);
+            super("Giant spider, Ungoliath the black", 100, new MeleeQuestBossAttack(), Difficulty.QUEST);
             this.meleeAttack = new MeleeQuestBossAttack();
             this.rangedAttack = new RangedQuestBossAttack();
         }
