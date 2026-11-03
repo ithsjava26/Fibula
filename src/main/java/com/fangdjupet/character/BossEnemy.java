@@ -19,15 +19,6 @@ public class BossEnemy extends Enemy {
     @Override
     public int attack() {
 
-        if(getHealth() < 100) {
-            System.out.println(
-                    getCharacterName() +
-                            " throws " +
-                            rangedAttack.getName()
-            );
-            return rangedAttack.attack();
-        }
-
         if(getHealth() < 50) {
             System.out.println(
                     getCharacterName() +
@@ -35,6 +26,15 @@ public class BossEnemy extends Enemy {
                             magicAttack.getName()
             );
             return magicAttack.attack();
+        }
+
+        if(getHealth() < 100) {
+            System.out.println(
+                    getCharacterName() +
+                            " throws " +
+                            rangedAttack.getName()
+            );
+            return rangedAttack.attack();
         }
 
         else {
