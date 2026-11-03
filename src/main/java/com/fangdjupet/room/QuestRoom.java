@@ -1,6 +1,7 @@
 package com.fangdjupet.room;
 
-import com.fangdjupet.common.Difficulty;
+import com.fangdjupet.character.Enemy;
+import com.fangdjupet.character.QuestBossEnemy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +22,7 @@ public class QuestRoom implements Room {
 
     private List<Enemy> spawnQuestEnemy () {
         List<Enemy> enemies = new ArrayList<>();
-            enemies.add(new QuestEnemy());
+            enemies.add(new QuestBossEnemy());
         return enemies;
     }
 }
