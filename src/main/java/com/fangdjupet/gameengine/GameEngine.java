@@ -1,5 +1,6 @@
 package com.fangdjupet.gameengine;
 
+import com.fangdjupet.character.Character;
 import com.fangdjupet.character.Enemy;
 import com.fangdjupet.character.Hero;
 import com.fangdjupet.menu.GameMenu;
@@ -44,7 +45,7 @@ public class GameEngine {
                     currentRoom.enter();
                     enemies = currentRoom.getCurrentEnemies();
                     battle(enemies);
-                    if (hasWonBattle) {
+                    if (hero.isAlive()) {
                         choosePath();
                     } else {
                         defeat();
@@ -55,7 +56,7 @@ public class GameEngine {
                     currentRoom.enter();
                     enemies = currentRoom.getCurrentEnemies();
                     battle(enemies);
-                    if (hasWonBattle) {
+                    if (hero.isAlive()) {
                         roomManager.moveTo(11);
                     } else {
                         defeat();
@@ -66,7 +67,7 @@ public class GameEngine {
                     currentRoom.enter();
                     enemies = currentRoom.getCurrentEnemies();
                     battle(enemies);
-                    if (hasWonBattle) {
+                    if (hero.isAlive()) {
                         victory();
                         isRunning = false;
                     } else {
@@ -78,7 +79,7 @@ public class GameEngine {
                         currentRoom.enter();
                         enemies = currentRoom.getCurrentEnemies();
                         battle(enemies);
-                    if (hasWonBattle) {
+                    if (hero.isAlive()) {
                         roomManager.moveTo(++currentIndex);
                     } else {
                         defeat();
