@@ -32,9 +32,13 @@ public class GameMenu {
 
     public String printMainMenu() {
     while (true) {
-        System.out.println("1. New game\n" +
-                "2. Load savefile\n" +
-                "3. Exit\n");
+        printBlue("""
+                Welcome to Fibula!
+                
+                1. New game
+                2. Load savefile
+                3. Exit
+                """);
 
         String choice = IO.readln();
 
@@ -61,7 +65,10 @@ public class GameMenu {
                 "Once you descend, there will be no turning back.\n" +
                 "There is a torn wooden sign that reads:\n");
         printRed("<-- DANGER\n");
-        printBlue("Make your choice:\n");
+        printBlue("""
+                Make your choice:
+                
+                """);
 
         while (true) {
             System.out.println("1. Head right. Follow the (potentially) safer path.\n" +
@@ -78,7 +85,27 @@ public class GameMenu {
         }
     }
 
-    public void printCamp() {
-        printBlue("");
+    public String printCamp() {
+        printBlue("""
+                You find a quiet spot to rest.
+                The fire crackles softly as you catch your breath.
+                
+                """);
+
+        while (true) {
+            printBlue("""
+                    1. Proceed
+                    2. Use items
+                    3. Swap equipment""");
+
+            String choice = IO.readln();
+
+            switch (choice) {
+                case "1", "2", "3" -> {
+                    return choice;
+                }
+                default -> printRed("Invalid choice");
+            }
+        }
     }
 }
