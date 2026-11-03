@@ -9,15 +9,22 @@ public class GameMenu {
     private static final String BLUE = "\u001B[34m";
 
 //_________________________COLOUR-METHODS____________________________________________________
+    // Warning/damage messages — taking damage, status condition inflicted, defeat, danger
     public void printRed(String message) {
     System.out.println(RED + message + RESET);
     }
+
+    // Success/heal messages — healing, victory, rewards
     public void printGreen(String message) {
         System.out.println(GREEN + message + RESET);
     }
+
+    //Item and interaction messages
     public void printYellow(String message) {
         System.out.println(YELLOW + message + RESET);
     }
+
+    // System messages — room changes, game status, progression
     public void printBlue(String message) {
         System.out.println(BLUE + message + RESET);
     }
@@ -45,16 +52,16 @@ public class GameMenu {
     }
 
     public void printVictory() {
-        printGreen("You have won!! Exiting game..");
+        printGreen("You are victorious!! Exiting game..");
     }
 
     public String printPathChoice() {
 
-        System.out.println("The path ahead forks into two steep passages.\n" +
+        printBlue("The path ahead forks into two steep passages.\n" +
                 "Once you descend, there will be no turning back.\n" +
                 "There is a torn wooden sign that reads:\n");
         printRed("<-- DANGER\n");
-        System.out.println("Make your choice:\n");
+        printBlue("Make your choice:\n");
 
         while (true) {
             System.out.println("1. Head right. Follow the (potentially) safer path.\n" +
@@ -69,5 +76,9 @@ public class GameMenu {
                 default -> printRed("Invalid choice");
             }
         }
+    }
+
+    public void printCamp() {
+        printBlue("");
     }
 }
