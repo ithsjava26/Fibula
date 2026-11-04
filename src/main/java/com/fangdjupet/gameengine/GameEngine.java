@@ -14,7 +14,7 @@ import java.util.List;
 public class GameEngine {
     private final RoomManager roomManager = new RoomManager();
     private final Character hero = new Hero();
-    private final Inventory inventory = new Inventory;
+    private final Inventory inventory = new Inventory();
     private final GameMenu gameMenu = new GameMenu();
     private boolean isRunning = true;
 
