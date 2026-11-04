@@ -27,6 +27,7 @@ public class FinalBossEnemy extends Enemy {
     public int attack() {
 
         if(getHealth() < 50) {
+            super.attackStrategy = magicAttack;
             System.out.println(
                     getCharacterName() +
                             " conjures " +
@@ -36,9 +37,10 @@ public class FinalBossEnemy extends Enemy {
         }
 
         if(getHealth() < 100) {
+            super.attackStrategy = rangedAttack;
             System.out.println(
                     getCharacterName() +
-                            " throws " +
+                            " creates " +
                             rangedAttack.getName()
             );
             return rangedAttack.attack();
