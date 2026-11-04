@@ -15,8 +15,8 @@ import com.fangdjupet.common.Effect;
 
 public class Enemy implements Character {
     private final String name;
+    protected AttackStrategy attackStrategy;
     private int health;
-    private final AttackStrategy attackStrategy;
     private final Difficulty difficulty;
 
     //Constructor
