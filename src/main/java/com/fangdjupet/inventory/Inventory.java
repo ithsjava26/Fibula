@@ -16,63 +16,60 @@ import java.util.List;
 public class Inventory {
     private final List<Item> backpack = new ArrayList<>();
     private final List<Item> currentlyEquipped = new ArrayList<>();
-    private final List<Item> enemyItems = new ArrayList<>();
 
     public void initializeInventory() {
         currentlyEquipped.add(Weapon.createWeapon(WeaponType.CLUB));
         // TODO: Add small healing potion to backpack
     }
 
-    private Item getRandomMediumWeapon(int randomNumber) {
-        Item item = null;
-        if (randomNumber == 1)
-            item = Weapon.createWeapon(WeaponType.AXE);
-        else if (randomNumber == 2)
-            item = Weapon.createWeapon(WeaponType.DAGGER);
-        return item;
-    }
-
-    private Item getRandomEasyItem(int randomNumber) {
-        Item item = null;
-        if (randomNumber == 1)
-            item = Armor.createArmor(ArmorType.HELMET);
-        else if (randomNumber == 2)
-            item = AttackRune.createAttackRune(AttackRuneType.FIRE_BALL);
-        return item;
-    }
-
-    private Item getRandomMediumItem(int randomNumber) {
-        Item item = null;
-        if (randomNumber == 1)
-            item = Armor.createArmor(ArmorType.CHESTPLATE);
-        else if (randomNumber == 2)
-            item = AttackRune.createAttackRune(AttackRuneType.STONE_SHOWER);
-        return item;
-    }
-
-    private Item getRandomHardItem(int randomNumber) {
-        Item item = null;
-        if (randomNumber == 1)
-            item = AttackRune.createAttackRune(AttackRuneType.POISON_BOMB);
-        return item;
-    }
-
-    private int getRandomNumber(int numbers) {
-        return (int) (Math.random() * numbers) + 1;
-    }
-
-    public void printAllItemsInBackpack() {
-        if (backpack.isEmpty())
-            IO.println("Backpack is empty");
-        else
-            for (Item item : backpack) {
-                IO.println(item.getItemName());
+    public List<Item> getItems(Difficulty level) {
+        List<Item> items = new ArrayList<>();
+        if (level == Difficulty.QUEST)
+            items.add(AttackRune.createAttackRune(AttackRuneType.PARALYSE));
+        else {
+            int NumberOfItemsDiceRoll = (int) (Math.random() * 2) + 1; // 1 or 2 items
+            for (int i = 1; i <= NumberOfItemsDiceRoll; i++) {
+                Item item = getRandomItem(level);
+                if (item != null)
+                    items.add(item);
             }
+        }
+        return items;
     }
 
-    public List<Item> dropEnemyItem(Difficulty level) {
-        if (enemyItems.isEmpty())
-            IO.println("There are no enemy items to drop");
+    private Item getRandomItem(Difficulty level) {
+        Item item = null;
+        int itemNumberToGet;
+        if (level == Difficulty.EASY) {
+            itemNumberToGet = (int) (Math.random() * 2) + 1; // 1 or 2
+            if (itemNumberToGet == 1)
+                item = Armor.createArmor(ArmorType.HELMET);
+            else if (itemNumberToGet == 2)
+                item = AttackRune.createAttackRune(AttackRuneType.FIRE_BALL);
+            // TODO: Add EASY level healing potions
+        } else if (level == Difficulty.MEDIUM) {
+            itemNumberToGet = (int) (Math.random() * 4) + 1; // 1, 2, 3, or 4
+            if (itemNumberToGet == 1)
+                item = Weapon.createWeapon(WeaponType.AXE);
+            else if (itemNumberToGet == 2)
+                item = Armor.createArmor(ArmorType.CHESTPLATE);
+            else if (itemNumberToGet == 3)
+                item = AttackRune.createAttackRune(AttackRuneType.STONE_SHOWER);
+            else if (itemNumberToGet == 4)
+                item = Weapon.createWeapon(WeaponType.DAGGER);
+            // TODO: Add MEDIUM level healing potions
+        } else if (level == Difficulty.HARD) {
+            itemNumberToGet = (int) (Math.random() * 1) + 1; // 1
+            if (itemNumberToGet == 1)
+                item = AttackRune.createAttackRune(AttackRuneType.POISON_BOMB);
+            // TODO: Add HARD level healing potions
+        }
+        return item;
+    }
+
+    public List<Item> dropItems(Difficulty level) {
+        List<Item> enemyItems = new ArrayList<>();
+
         else {
             int randomNumber = getRandomNumber(2);
             Item droppedItem = getEnemyItemFromIndexInList(randomNumber);
@@ -86,6 +83,16 @@ public class Inventory {
         }
     }
 
+    public void printAllItemsInBackpack() {
+        if (backpack.isEmpty())
+            IO.println("Backpack is empty");
+        else
+            for (Item item : backpack) {
+                IO.println(item.getItemName());
+            }
+    }
+
+
     public void dropQuestItem() {
         if (enemyItems.isEmpty())
             IO.println("There are no enemy items to drop");
@@ -97,9 +104,6 @@ public class Inventory {
         }
     }
 
-    private Item getEnemyItemFromIndexInList(int randomNumber) {
-        return enemyItems.get(randomNumber);
-    }
 
     public void clearList(List<Item> list) {
         list.clear();
