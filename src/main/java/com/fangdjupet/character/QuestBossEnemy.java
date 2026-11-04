@@ -25,6 +25,7 @@ public class QuestBossEnemy extends Enemy {
         public int attack() {
 
             if(getHealth() < 50) {
+                super.attackStrategy = rangedAttack;
                 System.out.println(
                         getCharacterName() +
                                 " spits " +
