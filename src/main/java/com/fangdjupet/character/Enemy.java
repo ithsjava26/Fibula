@@ -2,6 +2,7 @@ package com.fangdjupet.character;
 
 import com.fangdjupet.combat.AttackStrategy;
 import com.fangdjupet.common.Difficulty;
+import com.fangdjupet.common.Effect;
 
 /**
  * Represents an enemy character in the game that implements the character interface. Is used as a Super class
@@ -55,6 +56,10 @@ public class Enemy implements Character {
 
     public Difficulty getDifficulty() {
         return difficulty;
+    }
+
+    public Effect getEffect() {
+        return attackStrategy.getEffect();
     }
 
 }
