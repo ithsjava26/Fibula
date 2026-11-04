@@ -1,19 +1,27 @@
 package com.fangdjupet.combat;
 
+import com.fangdjupet.common.Effect;
+
+/**
+ * Represents a magic attack strategy that deals 40 damage and has no additional effect.
+ * It is used by the FinalBossEnemy class, the Ancient Magical Dragon.
+ */
+
 public class MagicBossAttack implements AttackStrategy{
 
     @Override
     public int attack() {
-        return 35;
+        return 40;
     }
 
     @Override
     public String getName() {
-        return "a dark explosion that deals 35 damage.";
+        return "a dark explosion that deals 40 damage, with no additional effects.";
     }
 
     @Override
-    public String getEffect() {
-        return "The final boss is engulfed in darkness and enraged.";
+    public Effect getEffect() {
+        return Effect.NEUTRAL;
     }
+
 }

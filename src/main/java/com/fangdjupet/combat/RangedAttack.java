@@ -1,5 +1,12 @@
 package com.fangdjupet.combat;
 
+import com.fangdjupet.common.Effect;
+
+/**
+ * Represents a ranged attack strategy that deals 8 damage and has no additional effects.
+ * It is used by the EasyEnemy class, Goblin.
+ */
+
 public class RangedAttack implements AttackStrategy{
     @Override
     public int attack() {
@@ -8,11 +15,12 @@ public class RangedAttack implements AttackStrategy{
 
     @Override
     public String getName() {
-        return "a weak arrow that deals 8 damage";
+        return "a weak arrow that deals 8 damage, with no additional effects.";
     }
 
     @Override
-    public String getEffect() {
-        return "No additional effects";
+    public Effect getEffect() {
+        return Effect.NEUTRAL;
     }
+
 }
