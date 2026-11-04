@@ -8,6 +8,7 @@ import com.fangdjupet.common.Effect;
  */
 
 public class MagicAttack implements AttackStrategy{
+
     @Override
     public int attack() {
         return 20;
@@ -15,7 +16,7 @@ public class MagicAttack implements AttackStrategy{
 
     @Override
     public String getName() {
-        return "a fireball that deals 20 damage, Additional-effect: Burning";
+        return "a fireball that deals 20 damage, Additional-effect: Burning!";
     }
 
     @Override
