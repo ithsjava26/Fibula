@@ -3,6 +3,12 @@ package com.fangdjupet.character;
 import com.fangdjupet.combat.AttackStrategy;
 import com.fangdjupet.common.Difficulty;
 
+/**
+ * Represents an enemy character in the game that implements the character interface. Is used as a Super class
+ * for other types of enemy characters, depending on difficulty, designed to provide a foundation for creating various enemy types.
+ * Polymorphism allows different enemy types to be created and used interchangeably in the same list,
+ * enabling flexibility and extensibility in the game's combat system.
+ */
 
 public class Enemy implements Character {
     private final String name;
