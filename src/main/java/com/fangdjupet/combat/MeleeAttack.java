@@ -1,5 +1,12 @@
 package com.fangdjupet.combat;
 
+import com.fangdjupet.common.Effect;
+
+/**
+ * Represents a mêlée attack strategy that deals 15 damage and has the additional effect of causing bleeding.
+ * It is used by the MediumEnemy class, Orc Berserker.
+ */
+
 public class MeleeAttack implements AttackStrategy{
     @Override
     public int attack() {
@@ -8,11 +15,12 @@ public class MeleeAttack implements AttackStrategy{
 
     @Override
     public String getName() {
-        return "a sword and slashes that deals 15 damage." ;
+        return "a sword and slashes that deals 15 damage, Additional-effect: Bleeding" ;
     }
 
     @Override
-    public String getEffect() {
-        return "No additional effects.";
+    public Effect getEffect() {
+        return Effect.BLEEDING;
     }
+    
 }
