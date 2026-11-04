@@ -12,6 +12,9 @@ import com.fangdjupet.item.weapon.WeaponType;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.groupingBy;
 
 public class Inventory {
     private final List<Item> backpack = new ArrayList<>();
@@ -35,6 +38,66 @@ public class Inventory {
             }
         }
         return items;
+    }
+
+    public void dropItems(List<Item> items) {
+        List<Item> droppedItems = new ArrayList<>();
+        List<Item> alreadyEquippedItems = new ArrayList<>();
+
+        if (items.isEmpty()) {
+            IO.println("No enemy items were dropped");
+            return;
+        } else {
+            for (Item item : items) {
+                if (isEquipableItemAndExistsInBackpack(item) || isCurrentlyEquippedWithItem(item))
+                    alreadyEquippedItems.add(item);
+                else
+                    droppedItems.add(item);
+            }
+        }
+        if (droppedItems.isEmpty()) {
+            IO.println("Only equipable items were dropped, but you already have them");
+        } else {
+            for (Item droppedItem : droppedItems)
+                addToBackpack(droppedItem);
+            IO.print("The enemy/enemies dropped ");
+            IO.print(formattedItems(droppedItems));
+            IO.print(", and have been added to your backpack\n");
+
+            if (!alreadyEquippedItems.isEmpty())
+                IO.print("The enemy/enemies also dropped " + formattedItems(alreadyEquippedItems) +
+                        ", but you already have that equipment\n");
+        }
+    }
+
+    private String formattedItems(List<Item> items) {
+        return items.stream()
+                .collect(groupingBy(Item::getItemName))
+                .entrySet().stream()
+                .map(entry -> entry.getValue().size() + " " + entry.getKey())
+                .collect(Collectors.joining(", "));
+    }
+
+    private boolean isEquipableItemAndExistsInBackpack(Item inputItem) {
+        if (inputItem.getItemCategory().equals(ItemCategory.EQUIPABLE)) {
+            for (Item item : backpack)
+                if (item.getItemName().equals(inputItem.getItemName()))
+                    return true;
+        }
+        return false;
+    }
+
+    private boolean isCurrentlyEquippedWithItem(Item inputItem) {
+        for (Item item : currentlyEquipped) {
+            if (item.getItemName().equals(inputItem.getItemName()))
+                return true;
+        }
+        return false;
+    }
+
+
+    private void addToBackpack(Item item) {
+        backpack.add(item);
     }
 
     private Item getRandomItem(Difficulty level) {
@@ -67,22 +130,6 @@ public class Inventory {
         return item;
     }
 
-    public List<Item> dropItems(Difficulty level) {
-        List<Item> enemyItems = new ArrayList<>();
-
-        else {
-            int randomNumber = getRandomNumber(2);
-            Item droppedItem = getEnemyItemFromIndexInList(randomNumber);
-            clearList(enemyItems);
-            if (isEquipableItemAndExistsInBackpack(droppedItem))
-                IO.println("The enemy dropped 1 " + droppedItem.getItemName() + ", but you already have one");
-            else {
-                addToBackpack(droppedItem);
-                IO.println("The enemy dropped 1 " + droppedItem.getItemName() + ". It has been added to your backpack");
-            }
-        }
-    }
-
     public void printAllItemsInBackpack() {
         if (backpack.isEmpty())
             IO.println("Backpack is empty");
@@ -93,33 +140,8 @@ public class Inventory {
     }
 
 
-    public void dropQuestItem() {
-        if (enemyItems.isEmpty())
-            IO.println("There are no enemy items to drop");
-        else {
-            Item droppedItem = enemyItems.get(1);
-            clearList(enemyItems);
-            addToBackpack(droppedItem);
-            IO.println("The enemy dropped 1 " + droppedItem.getItemName() + ". It has been added to your backpack");
-        }
-    }
-
-
     public void clearList(List<Item> list) {
         list.clear();
-    }
-
-    private boolean isEquipableItemAndExistsInBackpack(Item inputItem) {
-        if (inputItem.getItemCategory().equals(ItemCategory.EQUIPABLE)) {
-            for (Item item : backpack)
-                if (item.getItemName().equals(inputItem.getItemName()))
-                    return true;
-        }
-        return false;
-    }
-
-    private void addToBackpack(Item item) {
-        backpack.add(item);
     }
 
     private void removeFromBackpack(Item item) {
