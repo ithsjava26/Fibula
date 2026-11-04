@@ -98,7 +98,7 @@ public class Inventory {
             IO.println("There are no enemy items to drop");
         else {
             int randomNumber = getRandomNumber(2);
-            Item droppedItem = getEnemyItem(randomNumber);
+            Item droppedItem = getEnemyItemFromIndexInList(randomNumber);
             clearList(enemyItems);
             if (isEquipableItemAndExistsInBackpack(droppedItem))
                 IO.println("The enemy dropped 1 " + droppedItem.getItemName() + ", but you already have one");
@@ -120,7 +120,7 @@ public class Inventory {
         }
     }
 
-    private Item getEnemyItem(int randomNumber) {
+    private Item getEnemyItemFromIndexInList(int randomNumber) {
         return enemyItems.get(randomNumber);
     }
 
