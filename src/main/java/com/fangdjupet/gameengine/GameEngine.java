@@ -134,7 +134,7 @@ public class GameEngine {
     private List<Item> generateLoot(List<Enemy> enemies) {
         ArrayList<Item> items = new ArrayList<>();
         for (Enemy enemy : enemies) {
-            enemies.addAll(getItems(enemy.getDifficulty()));
+            items.addAll(getItems(enemy.getDifficulty()));
         }
         return items;
     }
