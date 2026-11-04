@@ -16,7 +16,7 @@ public class MeleeQuestBossAttack implements AttackStrategy {
 
     @Override
     public String getName() {
-        return "with it's massive venomous teeth that deals 20 damage, Additional-effect: Poisoning";
+        return "with it's massive venomous teeth that deals 20 damage, Additional-effect: Poisoning!";
     }
 
     @Override
