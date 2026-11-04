@@ -18,32 +18,9 @@ public class Inventory {
     private final List<Item> currentlyEquipped = new ArrayList<>();
     private final List<Item> enemyItems = new ArrayList<>();
 
-    public void initializeHeroBackpack() {
-        backpack.add(Weapon.createWeapon(WeaponType.CLUB));
-    }
-
-    public List<Item> getEnemyItems(Difficulty level) {
-        int randomNumber;
-        if (level == Difficulty.EASY) {
-            enemyItems.add(Weapon.createWeapon(WeaponType.CLUB));
-            randomNumber = getRandomNumber(2);
-            enemyItems.add(getRandomEasyItem(randomNumber));
-        } else if (level == Difficulty.MEDIUM) {
-            randomNumber = getRandomNumber(2);
-            enemyItems.add(getRandomMediumWeapon(randomNumber));
-            randomNumber = getRandomNumber(2);
-            enemyItems.add(getRandomMediumItem(randomNumber));
-        } else if (level == Difficulty.HARD) {
-            enemyItems.add(Weapon.createWeapon(WeaponType.SWORD));
-            randomNumber = getRandomNumber(1);
-            enemyItems.add(getRandomHardItem(randomNumber));
-        } else if (level == Difficulty.QUEST) {
-            enemyItems.add(Weapon.createWeapon(WeaponType.SWORD));
-            enemyItems.add(AttackRune.createAttackRune(AttackRuneType.PARALYSE));
-        } else // BOSS
-            enemyItems.add(Weapon.createWeapon(WeaponType.SWORD));
-
-        return enemyItems;
+    public void initializeInventory() {
+        currentlyEquipped.add(Weapon.createWeapon(WeaponType.CLUB));
+        // TODO: Add small healing potion to backpack
     }
 
     private Item getRandomMediumWeapon(int randomNumber) {
@@ -93,7 +70,7 @@ public class Inventory {
             }
     }
 
-    public void dropEnemyItem() {
+    public List<Item> dropEnemyItem(Difficulty level) {
         if (enemyItems.isEmpty())
             IO.println("There are no enemy items to drop");
         else {
