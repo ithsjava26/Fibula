@@ -1,5 +1,12 @@
 package com.fangdjupet.combat;
 
+import com.fangdjupet.common.Effect;
+
+/**
+ * Represents a ranged attack strategy that deals 25 damage and has the additional effect of causing burning.
+ * It is used by the FinalBossEnemy class, the Ancient Magical Dragon.
+ */
+
 public class RangedBossAttack implements AttackStrategy {
 
     @Override
@@ -9,11 +16,12 @@ public class RangedBossAttack implements AttackStrategy {
 
     @Override
     public String getName() {
-        return "a powerful fireball that deals 25 damage.!";
+        return "a swirling fire tornado that deals 25 damage, Additional-effect: Burning!";
     }
 
     @Override
-    public String getEffect() {
-        return "You are engulfed in flames.";
+    public Effect getEffect() {
+        return Effect.BURNING;
     }
+
 }
