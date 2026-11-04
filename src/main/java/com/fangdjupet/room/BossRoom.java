@@ -2,6 +2,7 @@ package com.fangdjupet.room;
 
 import com.fangdjupet.character.BossEnemy;
 import com.fangdjupet.character.Enemy;
+import com.fangdjupet.character.FinalBossEnemy;
 
 
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ public class BossRoom implements Room {
 
     private List<Enemy> spawnBossEnemy () {
         List<Enemy> enemies = new ArrayList<>();
-        enemies.add(new BossEnemy());
+        enemies.add(new FinalBossEnemy());
         return enemies;
     }
 }
