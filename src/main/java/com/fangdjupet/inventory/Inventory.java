@@ -70,6 +70,44 @@ public class Inventory {
         }
     }
 
+    // TODO: Fix this method so it prints all items in backpack in nice format
+    public void printAllItemsInBackpack() {
+        if (backpack.isEmpty())
+            IO.println("Backpack is empty");
+        else
+            for (Item item : backpack) {
+                IO.println(item.getItemName());
+            }
+    }
+
+    public void equip() {
+        String itemName = IO.readln("Enter the name of the item you want to equip: ");
+        for (Item item : backpack) {
+            if (item.getItemName().equals(itemName)) {
+                if (isEquipableItemAndExistsInBackpack(item)) {
+                    addToCurrentlyEquippedList(item);
+                    removeFromBackpack(item);
+                    IO.println("You equipped " + item.getItemName());
+                } else {
+                    IO.println("The item is not equipable");
+                }
+                return;
+            }
+        }
+        for (Item item : currentlyEquipped) {
+            if (item.getItemName().equals(itemName)) {
+                IO.println("You are already equipped with " + item.getItemName());
+                return;
+            }
+        }
+        IO.println("You do not have this item in your backpack");
+    }
+
+    public void clearInventory() {
+        backpack.clear();
+        currentlyEquipped.clear();
+    }
+
     private String formattedItems(List<Item> items) {
         return items.stream()
                 .collect(groupingBy(Item::getItemName))
@@ -94,7 +132,6 @@ public class Inventory {
         }
         return false;
     }
-
 
     private void addToBackpack(Item item) {
         backpack.add(item);
@@ -130,44 +167,8 @@ public class Inventory {
         return item;
     }
 
-    public void printAllItemsInBackpack() {
-        if (backpack.isEmpty())
-            IO.println("Backpack is empty");
-        else
-            for (Item item : backpack) {
-                IO.println(item.getItemName());
-            }
-    }
-
-
-    public void clearList(List<Item> list) {
-        list.clear();
-    }
-
     private void removeFromBackpack(Item item) {
         backpack.remove(item);
-    }
-
-    public void equip(String itemName) {
-        for (Item item : backpack) {
-            if (item.getItemName().equals(itemName)) {
-                if (isEquipableItemAndExistsInBackpack(item)) {
-                    addToCurrentlyEquippedList(item);
-                    removeFromBackpack(item);
-                    IO.println("You equipped " + item.getItemName());
-                } else {
-                    IO.println("The item is not equipable");
-                }
-                return;
-            }
-        }
-        for (Item item : currentlyEquipped) {
-            if (item.getItemName().equals(itemName)) {
-                IO.println("You are already equipped with " + item.getItemName());
-                return;
-            }
-        }
-        IO.println("You do not have this item in your backpack");
     }
 
     private void addToCurrentlyEquippedList(Item item) {
