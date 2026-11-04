@@ -1,6 +1,8 @@
 package com.fangdjupet.room;
 
-import com.fangdjupet.common.Difficulty;
+import com.fangdjupet.character.Enemy;
+import com.fangdjupet.character.FinalBossEnemy;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,14 +15,14 @@ public class BossRoom implements Room {
         System.out.println("");
         currentEnemies = (spawnBossEnemy());
     }
-
+    @Override
     public List<Enemy> getCurrentEnemies(){
         return this.currentEnemies;
     }
 
     private List<Enemy> spawnBossEnemy () {
         List<Enemy> enemies = new ArrayList<>();
-        enemies.add(new BossEnemy());
+        enemies.add(new FinalBossEnemy());
         return enemies;
     }
 }

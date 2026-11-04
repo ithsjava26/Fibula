@@ -1,12 +1,20 @@
 package com.fangdjupet.gameengine;
 
+import com.fangdjupet.character.Character;
+import com.fangdjupet.character.Enemy;
+import com.fangdjupet.character.Hero;
+import com.fangdjupet.item.Item;
 import com.fangdjupet.menu.GameMenu;
 import com.fangdjupet.room.Room;
 import com.fangdjupet.room.RoomManager;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GameEngine {
     private final RoomManager roomManager = new RoomManager();
-    private final Character character = new GameCharacter();
+    private final Character hero = new Hero();
+    private final Inventory inventory = new Inventory();
     private final GameMenu gameMenu = new GameMenu();
     private boolean isRunning = true;
 
@@ -36,53 +44,59 @@ public class GameEngine {
             List<Enemy> enemies;
 
             switch (currentIndex) {
+
                 case 3:
                     currentRoom.enter();
                     enemies = currentRoom.getCurrentEnemies();
                     battle(enemies);
-                    if (hasWonBattle) {
+
+                    if (hero.isAlive()) {
+                        dropItems(generateLoot(enemies), inventory);
+                        camp();
                         choosePath();
                     } else {
                         defeat();
-                        isRunning = false;
                     }
                     break;
+
                 case 6:
                     currentRoom.enter();
                     enemies = currentRoom.getCurrentEnemies();
                     battle(enemies);
-                    if (hasWonBattle) {
+
+                    if (hero.isAlive()) {
+                        camp();
                         roomManager.moveTo(11);
                     } else {
                         defeat();
-                        isRunning = false;
                     }
                     break;
+
                 case 14:
                     currentRoom.enter();
                     enemies = currentRoom.getCurrentEnemies();
                     battle(enemies);
-                    if (hasWonBattle) {
+
+                    if (hero.isAlive()) {
                         victory();
-                        isRunning = false;
                     } else {
                         defeat();
-                        isRunning = false;
                     }
                     break;
+
                 default:
-                        currentRoom.enter();
-                        enemies = currentRoom.getCurrentEnemies();
-                        battle(enemies);
-                    if (hasWonBattle) {
+                    currentRoom.enter();
+                    enemies = currentRoom.getCurrentEnemies();
+                    battle(enemies);
+
+                    if (hero.isAlive()) {
+                        camp();
                         roomManager.moveTo(++currentIndex);
                     } else {
                         defeat();
-                        isRunning = false;
                     }
                     break;
             }
-
         }
     }
     private void defeat() {
@@ -101,5 +115,27 @@ public class GameEngine {
             case "2" -> roomManager.moveTo(7);
         }
     }
+    private void camp() {
+        String choice = gameMenu.printCamp();
 
+        switch (choice) {
+            // TODO:
+            //  - Implement handler for case 2. Use items
+            //    Handler should include a do-while loop
+            //    that stops once the user is finished
+            //      - Implement method in GameMenu that asks
+            //        the player if they want to use another item
+            //  - Insert method call for case 2. Swap equipment
+            case "2" -> ;
+            case "3" -> ;
+        }
+    }
+
+    private List<Item> generateLoot(List<Enemy> enemies) {
+        ArrayList<Item> items = new ArrayList<>();
+        for (Enemy enemy : enemies) {
+            items.addAll(getItems(enemy.getDifficulty()));
+        }
+        return items;
+    }
 }
