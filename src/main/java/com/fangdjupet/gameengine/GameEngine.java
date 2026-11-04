@@ -14,6 +14,7 @@ import java.util.List;
 public class GameEngine {
     private final RoomManager roomManager = new RoomManager();
     private final Character hero = new Hero();
+    private final Inventory inventory = new Inventory;
     private final GameMenu gameMenu = new GameMenu();
     private boolean isRunning = true;
 
@@ -50,7 +51,7 @@ public class GameEngine {
                     battle(enemies);
 
                     if (hero.isAlive()) {
-                        addLootToInventory(generateLoot(enemies));
+                        dropItems(generateLoot(enemies), inventory);
                         camp();
                         choosePath();
                     } else {
@@ -133,14 +134,8 @@ public class GameEngine {
     private List<Item> generateLoot(List<Enemy> enemies) {
         ArrayList<Item> items = new ArrayList<>();
         for (Enemy enemy : enemies) {
-            enemies.addAll(dropItems(enemy.getDifficulty()));
+            enemies.addAll(getItems(enemy.getDifficulty()));
         }
         return items;
     }
-    private void addLootToInventory(List<Item> items) {
-        for (Item item : items) {
-            backpack.add(item);
-        }
-    }
-
 }
