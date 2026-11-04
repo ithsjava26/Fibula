@@ -1,6 +1,5 @@
 package com.fangdjupet.room;
 
-import com.fangdjupet.character.BossEnemy;
 import com.fangdjupet.character.Enemy;
 import com.fangdjupet.character.FinalBossEnemy;
 
