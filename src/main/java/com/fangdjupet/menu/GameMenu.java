@@ -61,9 +61,11 @@ public class GameMenu {
 
     public String printPathChoice() {
 
-        printBlue("The path ahead forks into two steep passages.\n" +
-                "Once you descend, there will be no turning back.\n" +
-                "There is a torn wooden sign that reads:\n");
+        printBlue("""
+                The path ahead forks into two steep passages.
+                Once you descend, there will be no turning back.
+                There is a torn wooden sign that reads:
+                """);
         printRed("<-- DANGER\n");
         printBlue("""
                 Make your choice:

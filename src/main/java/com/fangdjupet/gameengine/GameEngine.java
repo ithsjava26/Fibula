@@ -3,10 +3,12 @@ package com.fangdjupet.gameengine;
 import com.fangdjupet.character.Character;
 import com.fangdjupet.character.Enemy;
 import com.fangdjupet.character.Hero;
+import com.fangdjupet.item.Item;
 import com.fangdjupet.menu.GameMenu;
 import com.fangdjupet.room.Room;
 import com.fangdjupet.room.RoomManager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GameEngine {
@@ -48,6 +50,7 @@ public class GameEngine {
                     battle(enemies);
 
                     if (hero.isAlive()) {
+                        addLootToInventory(generateLoot(enemies));
                         camp();
                         choosePath();
                     } else {
@@ -126,4 +129,18 @@ public class GameEngine {
             case "3" -> ;
         }
     }
+
+    private List<Item> generateLoot(List<Enemy> enemies) {
+        ArrayList<Item> items = new ArrayList<>();
+        for (Enemy enemy : enemies) {
+            enemies.addAll(dropItems(enemy.getDifficulty()));
+        }
+        return items;
+    }
+    private void addLootToInventory(List<Item> items) {
+        for (Item item : items) {
+            backpack.add(item);
+        }
+    }
+
 }
