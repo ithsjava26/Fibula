@@ -6,6 +6,7 @@ import com.fangdjupet.item.ConsumableItemCategory;
 import com.fangdjupet.item.ItemCategory;
 
 public class SmallCutInjuryHealingPotion implements HealingPotion {
+    private final HealingPotionType healingPotionType;
     private int healingAmount;
     private final ConsumableItemCategory consumableItemCategory;
     private final String itemName;
@@ -13,11 +14,17 @@ public class SmallCutInjuryHealingPotion implements HealingPotion {
     private final Difficulty itemDifficultyLevel;
 
     public SmallCutInjuryHealingPotion() {
+        this.healingPotionType = HealingPotionType.SMALL_CUT_INJURY_HEALING_POTION;
         this.healingAmount = 5;
         this.consumableItemCategory = ConsumableItemCategory.HEALING_POTION;
         this.itemName = "Small Cut Injury Healing Potion";
         this.itemCategory = ItemCategory.CONSUMABLE;
         this.itemDifficultyLevel = Difficulty.EASY;
+    }
+
+    @Override
+    public HealingPotionType getHealingPotionType() {
+        return healingPotionType;
     }
 
     @Override
