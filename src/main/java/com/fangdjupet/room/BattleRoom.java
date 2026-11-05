@@ -49,7 +49,7 @@ public class BattleRoom implements Room {
     }
 
     private List<Enemy> spawnEasyRoom() {
-        ArrayList<Enemy> enemies = new ArrayList<>();
+        List<Enemy> enemies = new ArrayList<>();
         int numberOfEnemies = (int) (Math.random() * 2) + 1;
         for (int i = 0; i < numberOfEnemies; i++) {
             enemies.addAll(spawnEasyEnemy());
@@ -58,7 +58,7 @@ public class BattleRoom implements Room {
     }
 
     private List<Enemy> spawnMediumRoom() {
-        ArrayList<Enemy> enemies = new ArrayList<>();
+        List<Enemy> enemies = new ArrayList<>();
         int numberOfEnemies = (int) (Math.random() * 2) + 1;
 
         for (int i = 0; i < numberOfEnemies; i++) {
@@ -77,7 +77,7 @@ public class BattleRoom implements Room {
 
     private List<Enemy> spawnHardRoom() {
         int numberOfEnemies = (int) (Math.random() * 2) + 1;
-        ArrayList<Enemy> enemies = new ArrayList<>();
+        List<Enemy> enemies = new ArrayList<>();
 
         for (int i = 0; i < numberOfEnemies; i++) {
             int enemyDifficultyRoll = (int) (Math.random() * 10) + 1;
