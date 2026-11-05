@@ -80,29 +80,6 @@ public class Inventory {
             }
     }
 
-    public void equip() {
-        String itemName = IO.readln("Enter the name of the item you want to equip: ");
-        for (Item item : backpack) {
-            if (item.getItemName().equals(itemName)) {
-                if (isEquipableItemAndExistsInBackpack(item)) {
-                    addToCurrentlyEquippedList(item);
-                    removeFromBackpack(item);
-                    IO.println("You equipped " + item.getItemName());
-                } else {
-                    IO.println("The item is not equipable");
-                }
-                return;
-            }
-        }
-        for (Item item : currentlyEquipped) {
-            if (item.getItemName().equals(itemName)) {
-                IO.println("You are already equipped with " + item.getItemName());
-                return;
-            }
-        }
-        IO.println("You do not have this item in your backpack");
-    }
-
     public void clearInventory() {
         backpack.clear();
         currentlyEquipped.clear();
