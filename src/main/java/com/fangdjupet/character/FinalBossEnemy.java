@@ -17,7 +17,7 @@ public class FinalBossEnemy extends Enemy {
     private final AttackStrategy magicAttack;
 
     public FinalBossEnemy() {
-        super("Ancient Magical Dragon", 150, new MeleeBossAttack(), Difficulty.HARD);
+        super("Ancient Dragon, Malakai the Dread", 150, new MeleeBossAttack(), Difficulty.HARD);
         this.meleeAttack = new MeleeBossAttack();
         this.rangedAttack = new RangedBossAttack();
         this.magicAttack = new MagicBossAttack();
@@ -26,7 +26,7 @@ public class FinalBossEnemy extends Enemy {
     @Override
     public int attack() {
 
-        if(getHealth() < 50) {
+        if(getCurrentHealth() < 50) {
             super.attackStrategy = magicAttack;
             System.out.println(
                     getCharacterName() +
@@ -36,7 +36,7 @@ public class FinalBossEnemy extends Enemy {
             return magicAttack.attack();
         }
 
-        if(getHealth() < 100) {
+        if(getCurrentHealth() < 100) {
             super.attackStrategy = rangedAttack;
             System.out.println(
                     getCharacterName() +

@@ -8,7 +8,7 @@ package com.fangdjupet.character;
 
 public interface Character {
     String getCharacterName();
-    int getHealth();
+    int getCurrentHealth();
     void takeDamage(int damage);
     boolean isAlive();
 }
