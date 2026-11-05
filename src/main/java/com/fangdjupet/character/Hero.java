@@ -54,10 +54,12 @@ public class Hero implements Character {
     }
 
     public int meleeAttack() {
+        System.out.println(meleeAttack.getName());
         return meleeAttack.attack();
     }
 
     public int magicAttack() {
+        System.out.println(magicAttack.getName());
         return magicAttack.attack();
     }
 
