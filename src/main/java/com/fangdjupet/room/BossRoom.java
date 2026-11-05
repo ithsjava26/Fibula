@@ -12,7 +12,9 @@ public class BossRoom implements Room {
 
     @Override
     public void enter() {
-        System.out.println("");
+        System.out.println("The air reeks of smoke and sulphur." +
+                " A deep, thunderous growl rolls through the dungeon," +
+                " and the heat ahead warns you that a dragon awaits.");
         currentEnemies = (spawnBossEnemy());
     }
     @Override
