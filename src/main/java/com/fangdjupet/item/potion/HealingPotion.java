@@ -1,7 +1,12 @@
 package com.fangdjupet.item.potion;
 
-public interface HealingPotion {
-    int usePotion();
+import com.fangdjupet.character.Hero;
+import com.fangdjupet.item.ConsumableItem;
+
+public interface HealingPotion extends ConsumableItem {
+    void setHealingAmount(int healingAmount);
+
+    void usePotion(Hero hero);
 
     static HealingPotion createHealingPotion(HealingPotionType type) {
         return switch (type) {
