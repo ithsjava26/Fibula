@@ -3,6 +3,7 @@ package com.fangdjupet.gameengine;
 import com.fangdjupet.character.Character;
 import com.fangdjupet.character.Enemy;
 import com.fangdjupet.character.Hero;
+import com.fangdjupet.combat.BattleSystem;
 import com.fangdjupet.item.Item;
 import com.fangdjupet.menu.GameMenu;
 import com.fangdjupet.room.Room;
@@ -13,7 +14,8 @@ import java.util.List;
 
 public class Demo {
     private final RoomManager roomManager = new RoomManager();
-    private final Character hero = new Hero();
+    BattleSystem battleSystem = new BattleSystem();
+    private final Hero hero = new Hero();
     private final GameMenu gameMenu = new GameMenu();
     private boolean isRunning = true;
 
@@ -47,7 +49,7 @@ public class Demo {
                 case 3:
                     currentRoom.enter();
                     enemies = currentRoom.getCurrentEnemies();
-                    battle(enemies);
+                    battleSystem.startBattle(hero, enemies);
 
                     if (hero.isAlive()) {
                         choosePath();
@@ -59,7 +61,7 @@ public class Demo {
                 case 6:
                     currentRoom.enter();
                     enemies = currentRoom.getCurrentEnemies();
-                    battle(enemies);
+                    battleSystem.startBattle(hero, enemies);
 
                     if (hero.isAlive()) {
                         roomManager.moveTo(11);
@@ -71,7 +73,7 @@ public class Demo {
                 case 14:
                     currentRoom.enter();
                     enemies = currentRoom.getCurrentEnemies();
-                    battle(enemies);
+                    battleSystem.startBattle(hero, enemies);
 
                     if (hero.isAlive()) {
                         victory();
@@ -83,7 +85,7 @@ public class Demo {
                 default:
                     currentRoom.enter();
                     enemies = currentRoom.getCurrentEnemies();
-                    battle(enemies);
+                    battleSystem.startBattle(hero, enemies);
 
                     if (hero.isAlive()) {
                         roomManager.moveTo(++currentIndex);
