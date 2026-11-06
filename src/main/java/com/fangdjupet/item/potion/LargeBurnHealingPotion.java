@@ -10,6 +10,7 @@ public class LargeBurnHealingPotion implements HealingPotion {
     private final HealingPotionType healingPotionType;
     private final Effect potionEffect;
     private final Effect healCondition;
+    private int healingAmount;
     private final ConsumableItemCategory consumableItemCategory;
     private final String itemName;
     private final ItemCategory itemCategory;
@@ -19,6 +20,7 @@ public class LargeBurnHealingPotion implements HealingPotion {
         this.healingPotionType = HealingPotionType.LARGE_BURN_HEALING_POTION;
         this.potionEffect = Effect.BURNING;
         this.healCondition = Effect.NEUTRAL;
+        this.healingAmount = 15;
         this.consumableItemCategory = ConsumableItemCategory.HEALING_POTION;
         this.itemName = "Large Burn Healing Potion";
         this.itemCategory = ItemCategory.CONSUMABLE;
@@ -30,6 +32,16 @@ public class LargeBurnHealingPotion implements HealingPotion {
         return healingPotionType;
     }
 
+    @Override
+    public void setHealingAmount(int healingAmount) {
+        this.healingAmount = healingAmount;
+    }
+
+    @Override
+    public int getHealingAmount() {
+        return healingAmount;
+    }
+
     public Effect getPotionEffect() {
         return potionEffect;
     }
@@ -37,6 +49,7 @@ public class LargeBurnHealingPotion implements HealingPotion {
     @Override
     public void usePotion(Hero hero) {
         hero.setStatus(healCondition);
+        hero.setHealth(hero.getCurrentHealth() + healingAmount);
         IO.println("You drink the large burn healing potion and heal your burn injury. You now feel better.");
     }
 
