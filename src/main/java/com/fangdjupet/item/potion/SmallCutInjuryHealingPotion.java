@@ -15,7 +15,7 @@ public class SmallCutInjuryHealingPotion implements HealingPotion {
 
     public SmallCutInjuryHealingPotion() {
         this.healingPotionType = HealingPotionType.SMALL_CUT_INJURY_HEALING_POTION;
-        this.healingAmount = 5;
+        this.healingAmount = 2;
         this.consumableItemCategory = ConsumableItemCategory.HEALING_POTION;
         this.itemName = "Small Cut Injury Healing Potion";
         this.itemCategory = ItemCategory.CONSUMABLE;
@@ -27,7 +27,6 @@ public class SmallCutInjuryHealingPotion implements HealingPotion {
         return healingPotionType;
     }
 
-    @Override
     public void setHealingAmount(int healingAmount) {
         this.healingAmount = healingAmount;
     }
@@ -35,7 +34,7 @@ public class SmallCutInjuryHealingPotion implements HealingPotion {
     @Override
     public void usePotion(Hero hero) {
         hero.setHealth(hero.getCurrentHealth() + healingAmount);
-        IO.println("You have healed " + healingAmount + " HP.");
+        IO.println("You drink the small cut injury healing potion and heal " + healingAmount + " HP.");
     }
 
     @Override
