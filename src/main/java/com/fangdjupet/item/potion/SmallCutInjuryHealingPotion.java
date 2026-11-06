@@ -34,7 +34,7 @@ public class SmallCutInjuryHealingPotion implements HealingPotion {
 
     @Override
     public void usePotion(Hero hero) {
-        hero.setHealth(hero.getHealth() + healingAmount);
+        hero.setHealth(hero.getCurrentHealth() + healingAmount);
         IO.println("You have healed " + healingAmount + " HP.");
     }
 
