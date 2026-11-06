@@ -10,6 +10,7 @@ public class LargePoisonHealingPotion implements HealingPotion {
     private final HealingPotionType healingPotionType;
     private final Effect potionEffect;
     private final Effect healCondition;
+    private int healingAmount;
     private final ConsumableItemCategory consumableItemCategory;
     private final String itemName;
     private final ItemCategory itemCategory;
@@ -19,6 +20,7 @@ public class LargePoisonHealingPotion implements HealingPotion {
         this.healingPotionType = HealingPotionType.LARGE_POISON_HEALING_POTION;
         this.potionEffect = Effect.POISONED;
         this.healCondition = Effect.NEUTRAL;
+        this.healingAmount = 10;
         this.consumableItemCategory = ConsumableItemCategory.HEALING_POTION;
         this.itemName = "Large Poison Healing Potion";
         this.itemCategory = ItemCategory.CONSUMABLE;
@@ -35,8 +37,19 @@ public class LargePoisonHealingPotion implements HealingPotion {
     }
 
     @Override
+    public void setHealingAmount(int healingAmount) {
+        this.healingAmount = healingAmount;
+    }
+
+    @Override
+    public int getHealingAmount() {
+        return healingAmount;
+    }
+
+    @Override
     public void usePotion(Hero hero) {
         hero.setStatus(healCondition);
+        hero.setHealth(hero.getCurrentHealth() + healingAmount);
         IO.println("You drink the large poison healing potion and remove the poison from your body. " +
                 "You now feel better.");
     }
