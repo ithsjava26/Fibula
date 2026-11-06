@@ -20,7 +20,7 @@ public class Demo {
     private boolean isRunning = true;
 
     static void main() {
-        GameEngine session = new GameEngine();
+        Demo session = new Demo();
 
         String choice = session.gameMenu.printMainMenu();
 
