@@ -5,6 +5,8 @@ import com.fangdjupet.item.Item;
 import com.fangdjupet.item.ItemCategory;
 import com.fangdjupet.item.armor.Armor;
 import com.fangdjupet.item.armor.ArmorType;
+import com.fangdjupet.item.potion.HealingPotion;
+import com.fangdjupet.item.potion.HealingPotionType;
 import com.fangdjupet.item.rune.AttackRune;
 import com.fangdjupet.item.rune.AttackRuneType;
 import com.fangdjupet.item.weapon.Weapon;
@@ -21,8 +23,9 @@ public class Inventory {
     private final List<Item> currentlyEquipped = new ArrayList<>();
 
     public void initializeInventory() {
+        // TODO: Change weapon (
         currentlyEquipped.add(Weapon.createWeapon(WeaponType.CLUB));
-        // TODO: Add small healing potion to backpack
+        backpack.add(HealingPotion.createHealingPotion(HealingPotionType.SMALL_CUT_INJURY_HEALING_POTION));
     }
 
     public List<Item> getItems(Difficulty level) {
