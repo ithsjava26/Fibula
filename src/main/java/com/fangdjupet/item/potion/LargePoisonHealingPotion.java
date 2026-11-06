@@ -2,12 +2,14 @@ package com.fangdjupet.item.potion;
 
 import com.fangdjupet.character.Hero;
 import com.fangdjupet.common.Difficulty;
+import com.fangdjupet.common.Effect;
 import com.fangdjupet.item.ConsumableItemCategory;
 import com.fangdjupet.item.ItemCategory;
 
 public class LargePoisonHealingPotion implements HealingPotion {
     private final HealingPotionType healingPotionType;
-    private int healingAmount;
+    private final Effect potionEffect;
+    private final Effect healCondition;
     private final ConsumableItemCategory consumableItemCategory;
     private final String itemName;
     private final ItemCategory itemCategory;
@@ -15,7 +17,8 @@ public class LargePoisonHealingPotion implements HealingPotion {
 
     public LargePoisonHealingPotion() {
         this.healingPotionType = HealingPotionType.LARGE_POISON_HEALING_POTION;
-        this.healingAmount = 10;
+        this.potionEffect = Effect.POISONED;
+        this.healCondition = Effect.NEUTRAL;
         this.consumableItemCategory = ConsumableItemCategory.HEALING_POTION;
         this.itemName = "Large Poison Healing Potion";
         this.itemCategory = ItemCategory.CONSUMABLE;
@@ -27,15 +30,15 @@ public class LargePoisonHealingPotion implements HealingPotion {
         return healingPotionType;
     }
 
-    @Override
-    public void setHealingAmount(int healingAmount) {
-        this.healingAmount = healingAmount;
+    public Effect getPotionEffect() {
+        return potionEffect;
     }
 
     @Override
     public void usePotion(Hero hero) {
-        hero.setHealth(hero.getCurrentHealth() + healingAmount);
-        IO.println("You have healed " + healingAmount + " HP.");
+        hero.setStatus(healCondition);
+        IO.println("You drink the large poison healing potion and remove the poison from your body. " +
+                "You now feel better.");
     }
 
     @Override
