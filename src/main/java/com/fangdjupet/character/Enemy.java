@@ -19,7 +19,7 @@ public class Enemy implements Character {
     private int health;
     private final Difficulty difficulty;
 
-    //Constructor
+    //Constructor used by subclasses
     public Enemy(String name, int health, AttackStrategy attackStrategy, Difficulty difficulty) {
         this.name = name;
         this.health = health;
@@ -37,7 +37,7 @@ public class Enemy implements Character {
     }
 
     @Override
-    public int getHealth() {
+    public int getCurrentHealth() {
         return health;
     }
 
