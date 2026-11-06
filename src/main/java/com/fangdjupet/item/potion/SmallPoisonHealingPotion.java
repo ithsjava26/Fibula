@@ -2,11 +2,13 @@ package com.fangdjupet.item.potion;
 
 import com.fangdjupet.character.Hero;
 import com.fangdjupet.common.Difficulty;
+import com.fangdjupet.common.Effect;
 import com.fangdjupet.item.ConsumableItemCategory;
 import com.fangdjupet.item.ItemCategory;
 
 public class SmallPoisonHealingPotion implements HealingPotion {
     private final HealingPotionType healingPotionType;
+    private final Effect potionEffect;
     private int healingAmount;
     private final ConsumableItemCategory consumableItemCategory;
     private final String itemName;
@@ -15,6 +17,7 @@ public class SmallPoisonHealingPotion implements HealingPotion {
 
     public SmallPoisonHealingPotion() {
         this.healingPotionType = HealingPotionType.SMALL_POISON_HEALING_POTION;
+        this.potionEffect = Effect.POISONED;
         this.healingAmount = 5;
         this.consumableItemCategory = ConsumableItemCategory.HEALING_POTION;
         this.itemName = "Small Poison Healing Potion";
@@ -27,8 +30,18 @@ public class SmallPoisonHealingPotion implements HealingPotion {
         return healingPotionType;
     }
 
+    @Override
+    public Effect getPotionEffect() {
+        return potionEffect;
+    }
+
     public void setHealingAmount(int healingAmount) {
         this.healingAmount = healingAmount;
+    }
+
+    @Override
+    public int getHealingAmount() {
+        return healingAmount;
     }
 
     @Override
