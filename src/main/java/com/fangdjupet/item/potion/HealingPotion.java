@@ -7,10 +7,6 @@ import com.fangdjupet.item.ConsumableItem;
 public interface HealingPotion extends ConsumableItem {
     HealingPotionType getHealingPotionType();
 
-    Effect getPotionEffect();
-
-    void setHealingAmount(int healingAmount);
-
     void usePotion(Hero hero);
 
     static HealingPotion createHealingPotion(HealingPotionType type) {
