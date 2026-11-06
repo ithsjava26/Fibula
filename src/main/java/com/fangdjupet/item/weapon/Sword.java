@@ -5,21 +5,35 @@ import com.fangdjupet.item.EquipableItemCategory;
 import com.fangdjupet.item.ItemCategory;
 
 public class Sword implements Weapon {
-    private static final WeaponType type = WeaponType.SWORD;
-    private int strength = 4;
-    private static final EquipableItemCategory equipableItemCategory = EquipableItemCategory.WEAPON;
-    private static final String ITEM_NAME = "Sword";
-    private static final ItemCategory itemCategory = ItemCategory.EQUIPABLE;
-    private static final Difficulty difficultyLevel = Difficulty.HARD;
+    private final WeaponType weaponType;
+    private int weaponStrength;
+    private final EquipableItemCategory equipableItemCategory;
+    private final String itemName;
+    private final ItemCategory itemCategory;
+    private final Difficulty difficultyLevel;
+
+    public Sword() {
+        this.weaponType = WeaponType.SWORD;
+        this.weaponStrength = 15;
+        this.equipableItemCategory = EquipableItemCategory.WEAPON;
+        this.itemName = "Sword";
+        this.itemCategory = ItemCategory.EQUIPABLE;
+        this.difficultyLevel = Difficulty.MEDIUM;
+    }
 
     @Override
     public WeaponType getWeaponType() {
-        return type;
+        return weaponType;
     }
 
     @Override
     public int getWeaponStrength() {
-        return strength;
+        return weaponStrength;
+    }
+
+    @Override
+    public void setWeaponStrength(int strength) {
+        this.weaponStrength = strength;
     }
 
     @Override
@@ -29,7 +43,7 @@ public class Sword implements Weapon {
 
     @Override
     public String getItemName() {
-        return ITEM_NAME;
+        return itemName;
     }
 
     @Override
@@ -40,9 +54,5 @@ public class Sword implements Weapon {
     @Override
     public Difficulty getItemDifficultyLevel() {
         return difficultyLevel;
-    }
-
-    public void setStrength(int newStrength) {
-        this.strength = newStrength;
     }
 }
