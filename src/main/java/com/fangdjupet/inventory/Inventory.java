@@ -62,13 +62,16 @@ public class Inventory {
         } else {
             for (Item droppedItem : droppedItems)
                 addToBackpack(droppedItem);
-            IO.print("The enemy/enemies dropped ");
-            IO.print(formattedItems(droppedItems));
-            IO.print(", and have been added to your backpack\n");
+            IO.println("The enemy/enemies dropped:");
+            IO.println(formattedItems(droppedItems));
+            IO.println("These items have been added to your backpack");
 
-            if (!alreadyEquippedItems.isEmpty())
-                IO.print("The enemy/enemies also dropped " + formattedItems(alreadyEquippedItems) +
-                        ", but you already have that equipment\n");
+            if (!alreadyEquippedItems.isEmpty()) {
+                IO.println();
+                IO.print("The enemy/enemies also dropped:");
+                IO.println(formattedItems(alreadyEquippedItems));
+                IO.println("These items are ignored because you already have that equipment");
+            }
         }
     }
 
@@ -91,7 +94,7 @@ public class Inventory {
         return items.stream()
                 .collect(groupingBy(Item::getItemName))
                 .entrySet().stream()
-                .map(entry -> entry.getValue().size() + " " + entry.getKey())
+                .map(entry -> entry.getValue().size() + " " + entry.getKey().toLowerCase())
                 .collect(Collectors.joining(", "));
     }
 
