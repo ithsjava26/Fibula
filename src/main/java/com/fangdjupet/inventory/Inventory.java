@@ -23,8 +23,7 @@ public class Inventory {
     private final List<Item> currentlyEquipped = new ArrayList<>();
 
     public void initializeInventory() {
-        // TODO: Change weapon (
-        currentlyEquipped.add(Weapon.createWeapon(WeaponType.CLUB));
+        currentlyEquipped.add(Weapon.createWeapon(WeaponType.LONGBOW));
         backpack.add(HealingPotion.createHealingPotion(HealingPotionType.SMALL_CUT_INJURY_HEALING_POTION));
     }
 
