@@ -165,6 +165,17 @@ public class Inventory {
                 .collect(Collectors.joining(System.lineSeparator()));
     }
 
+    private String formatHealingPotions() {
+        return backpack.stream()
+                .filter(HealingPotion.class::isInstance)
+                .map(HealingPotion.class::cast)
+                .collect(Collectors.groupingBy(HealingPotion::getItemName))
+                .entrySet().stream()
+                .map(entry -> entry.getValue().size() + " x " + entry.getKey() +
+                        ", healing: " + entry.getValue().getFirst().getHealingAmount())
+                .collect(Collectors.joining(System.lineSeparator()));
+    }
+
     private String formatItemsForDropping(List<Item> items) {
         return items.stream()
                 .collect(groupingBy(Item::getItemName))
