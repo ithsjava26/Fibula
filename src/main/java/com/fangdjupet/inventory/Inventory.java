@@ -16,6 +16,7 @@ import com.fangdjupet.menu.GameMenu;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.groupingBy;
@@ -122,7 +123,7 @@ public class Inventory {
 
     public void useItems(Hero hero) {
         IO.println();
-        IO.println("""
+        game.printYellow("""
                 1. Drink healing potion
                 2. Use attack rune
                 """);
@@ -130,10 +131,56 @@ public class Inventory {
         String choice = IO.readln();
 
         switch (choice) {
-            case "1" -> HealingPotionMenu(hero);
-            case "2" -> AttackRuneMenu(hero);
-            default -> IO.println("Invalid choice");
+            case "1" -> healingPotionMenu(hero);
+            case "2" -> attackRuneMenu(hero);
+            default -> game.printRed("Invalid choice");
+        }
+    }
+
+    private void healingPotionMenu(Hero hero) {
+        IO.println();
+        game.printYellow("""
+                1. Drink SMALL Cut injury healing potion
+                2. Drink LARGE Cut injury healing potion
+                3. Drink SMALL Burn healing potion
+                4. Drink LARGE Burn healing potion
+                5. Drink SMALL Poison healing potion
+                6. Drink LARGE Poison healing potion
+                """);
+
+        String choice = IO.readln();
+
+        HealingPotionType potionType = switch (choice) {
+            case "1" -> HealingPotionType.SMALL_CUT_INJURY_HEALING_POTION;
+            case "2" -> HealingPotionType.LARGE_CUT_INJURY_HEALING_POTION;
+            case "3" -> HealingPotionType.SMALL_BURN_HEALING_POTION;
+            case "4" -> HealingPotionType.LARGE_BURN_HEALING_POTION;
+            case "5" -> HealingPotionType.SMALL_POISON_HEALING_POTION;
+            case "6" -> HealingPotionType.LARGE_POISON_HEALING_POTION;
+            default -> null;
         };
+
+        if (potionType == null) {
+            game.printRed("Invalid choice");
+            return;
+        }
+
+        Optional<HealingPotion> healingPotion = getHealingPotionFromBackpack(potionType);
+        if (healingPotion.isPresent()) {
+            HealingPotion potion = healingPotion.get();
+            potion.usePotion(hero);
+            backpack.remove(potion);
+        } else {
+            game.printRed("You do not have that healing potion in your backpack.");
+        }
+    }
+
+    private Optional<HealingPotion> getHealingPotionFromBackpack(HealingPotionType type) {
+        return backpack.stream()
+                .filter(HealingPotion.class::isInstance)
+                .map(HealingPotion.class::cast)
+                .filter(potion -> potion.getHealingPotionType() == type)
+                .findFirst();
     }
 
     private String formatWeapons() {
@@ -257,13 +304,5 @@ public class Inventory {
             // TODO: Add HARD level healing potions
         }
         return item;
-    }
-
-    private void removeFromBackpack(Item item) {
-        backpack.remove(item);
-    }
-
-    private void addToCurrentlyEquippedList(Item item) {
-        currentlyEquipped.add(item);
     }
 }
