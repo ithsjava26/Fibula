@@ -5,13 +5,10 @@ import com.fangdjupet.item.Item;
 import com.fangdjupet.item.ItemCategory;
 import com.fangdjupet.item.armor.Armor;
 import com.fangdjupet.item.armor.ArmorType;
-import com.fangdjupet.item.armor.Chestplate;
-import com.fangdjupet.item.armor.Helmet;
 import com.fangdjupet.item.potion.HealingPotion;
 import com.fangdjupet.item.potion.HealingPotionType;
 import com.fangdjupet.item.rune.AttackRune;
 import com.fangdjupet.item.rune.AttackRuneType;
-import com.fangdjupet.item.weapon.Club;
 import com.fangdjupet.item.weapon.Weapon;
 import com.fangdjupet.item.weapon.WeaponType;
 
@@ -80,7 +77,7 @@ public class Inventory {
 
     public void printAllItemsInInventory() {
         IO.println();
-        IO.println("            Inventory");
+        IO.println("             Inventory");
         IO.println("======================================");
         if (backpack.isEmpty() && currentlyEquipped.isEmpty()) {
             IO.println("Inventory is empty");
@@ -114,6 +111,26 @@ public class Inventory {
     public void clearInventory() {
         backpack.clear();
         currentlyEquipped.clear();
+    }
+
+    private String formatWeapons() {
+        List<String> formattedWeapons = new ArrayList<>();
+
+        // Add all equipped weapons to list
+        for (Item item : currentlyEquipped) {
+            if (item instanceof Weapon weapon) {
+                formattedWeapons.add(weapon.getItemName() + ", strength: " + weapon.getWeaponStrength() +
+                        " (Currently equipped)");
+            }
+        }
+        // Add all weapons in backpack to list
+        for (Item item : backpack) {
+            if (item instanceof Weapon weapon) {
+                formattedWeapons.add(weapon.getItemName() + ", strength: " + weapon.getWeaponStrength() +
+                        " (In backpack)");
+            }
+        }
+        return String.join(System.lineSeparator(), formattedWeapons);
     }
 
     private String formatItemsForDropping(List<Item> items) {
