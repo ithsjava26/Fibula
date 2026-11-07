@@ -5,21 +5,35 @@ import com.fangdjupet.item.EquipableItemCategory;
 import com.fangdjupet.item.ItemCategory;
 
 public class Dagger implements Weapon {
-    private static final WeaponType type = WeaponType.DAGGER;
-    private static final int STRENGTH = 3;
-    private static final EquipableItemCategory equipableItemCategory = EquipableItemCategory.WEAPON;
-    private static final String ITEM_NAME = "Dagger";
-    private static final ItemCategory itemCategory = ItemCategory.EQUIPABLE;
-    private static final Difficulty difficultyLevel = Difficulty.MEDIUM;
+    private final WeaponType weaponType;
+    private int weaponStrength;
+    private final EquipableItemCategory equipableItemCategory;
+    private final String itemName;
+    private final ItemCategory itemCategory;
+    private final Difficulty difficultyLevel;
+
+    public Dagger() {
+        this.weaponType = WeaponType.DAGGER;
+        this.weaponStrength = 19;
+        this.equipableItemCategory = EquipableItemCategory.WEAPON;
+        this.itemName = "Dagger";
+        this.itemCategory = ItemCategory.EQUIPABLE;
+        this.difficultyLevel = Difficulty.HARD;
+    }
 
     @Override
     public WeaponType getWeaponType() {
-        return type;
+        return weaponType;
     }
 
     @Override
     public int getWeaponStrength() {
-        return STRENGTH;
+        return weaponStrength;
+    }
+
+    @Override
+    public void setWeaponStrength(int strength) {
+        this.weaponStrength = strength;
     }
 
     @Override
@@ -29,7 +43,7 @@ public class Dagger implements Weapon {
 
     @Override
     public String getItemName() {
-        return ITEM_NAME;
+        return itemName;
     }
 
     @Override
