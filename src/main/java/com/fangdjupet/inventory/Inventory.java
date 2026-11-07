@@ -14,7 +14,6 @@ import com.fangdjupet.item.weapon.WeaponType;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.groupingBy;
@@ -26,6 +25,10 @@ public class Inventory {
     public void initializeInventory() {
         currentlyEquipped.add(Weapon.createWeapon(WeaponType.LONGBOW));
         backpack.add(HealingPotion.createHealingPotion(HealingPotionType.SMALL_CUT_INJURY_HEALING_POTION));
+    }
+
+    public List<Item> getCurrentlyEquipped() {
+        return currentlyEquipped;
     }
 
     public List<Item> getItems(Difficulty level) {
