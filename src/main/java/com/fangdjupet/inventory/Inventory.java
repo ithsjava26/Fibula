@@ -1,5 +1,6 @@
 package com.fangdjupet.inventory;
 
+import com.fangdjupet.character.Hero;
 import com.fangdjupet.common.Difficulty;
 import com.fangdjupet.item.Item;
 import com.fangdjupet.item.ItemCategory;
@@ -29,6 +30,11 @@ public class Inventory {
 
     public List<Item> getCurrentlyEquipped() {
         return currentlyEquipped;
+    }
+
+    public void clearInventory() {
+        backpack.clear();
+        currentlyEquipped.clear();
     }
 
     public List<Item> getItems(Difficulty level) {
@@ -112,9 +118,20 @@ public class Inventory {
         }
     }
 
-    public void clearInventory() {
-        backpack.clear();
-        currentlyEquipped.clear();
+    public void useItems(Hero hero) {
+        IO.println();
+        IO.println("""
+                1. Drink healing potion
+                2. Use attack rune
+                """);
+
+        String choice = IO.readln();
+
+        return switch (choice) {
+            case "1" -> HealingPotionMenu(hero);
+            case "2" -> AttackRuneMenu(hero);
+            default -> IO.println("Invalid choice");
+        };
     }
 
     private String formatWeapons() {
