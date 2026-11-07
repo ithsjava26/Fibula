@@ -5,10 +5,13 @@ import com.fangdjupet.item.Item;
 import com.fangdjupet.item.ItemCategory;
 import com.fangdjupet.item.armor.Armor;
 import com.fangdjupet.item.armor.ArmorType;
+import com.fangdjupet.item.armor.Chestplate;
+import com.fangdjupet.item.armor.Helmet;
 import com.fangdjupet.item.potion.HealingPotion;
 import com.fangdjupet.item.potion.HealingPotionType;
 import com.fangdjupet.item.rune.AttackRune;
 import com.fangdjupet.item.rune.AttackRuneType;
+import com.fangdjupet.item.weapon.Club;
 import com.fangdjupet.item.weapon.Weapon;
 import com.fangdjupet.item.weapon.WeaponType;
 
@@ -63,26 +66,49 @@ public class Inventory {
             for (Item droppedItem : droppedItems)
                 addToBackpack(droppedItem);
             IO.println("The enemy/enemies dropped:");
-            IO.println(formattedItems(droppedItems));
+            IO.println(formatItemsForDropping(droppedItems));
             IO.println("These items have been added to your backpack");
 
             if (!alreadyEquippedItems.isEmpty()) {
                 IO.println();
                 IO.print("The enemy/enemies also dropped:");
-                IO.println(formattedItems(alreadyEquippedItems));
+                IO.println(formatItemsForDropping(alreadyEquippedItems));
                 IO.println("These items are ignored because you already have that equipment");
             }
         }
     }
 
-    // TODO: Fix this method so it prints all items in backpack in nice format
-    public void printAllItemsInBackpack() {
-        if (backpack.isEmpty())
-            IO.println("Backpack is empty");
-        else
-            for (Item item : backpack) {
-                IO.println(item.getItemName());
-            }
+    public void printAllItemsInInventory() {
+        IO.println();
+        IO.println("            Inventory");
+        IO.println("======================================");
+        if (backpack.isEmpty() && currentlyEquipped.isEmpty()) {
+            IO.println("Inventory is empty");
+            return;
+        }
+        String weaponsInInventory = formatWeapons();
+        if (!weaponsInInventory.isEmpty()) {
+            IO.println("Weapons:");
+            IO.println(weaponsInInventory);
+            IO.println();
+        }
+        String armorsInInventory = formatArmors();
+        if (!armorsInInventory.isEmpty()) {
+            IO.println("Armors:");
+            IO.println(armorsInInventory);
+            IO.println();
+        }
+        String attackRunesInInventory = formatAttackRunes();
+        if (!attackRunesInInventory.isEmpty()) {
+            IO.println("Attack runes:");
+            IO.println(attackRunesInInventory);
+            IO.println();
+        }
+        String healingPotionsInInventory = formatHealingPotions();
+        if (!healingPotionsInInventory.isEmpty()) {
+            IO.println("Healing potions:");
+            IO.println(healingPotionsInInventory);
+        }
     }
 
     public void clearInventory() {
@@ -90,7 +116,7 @@ public class Inventory {
         currentlyEquipped.clear();
     }
 
-    private String formattedItems(List<Item> items) {
+    private String formatItemsForDropping(List<Item> items) {
         return items.stream()
                 .collect(groupingBy(Item::getItemName))
                 .entrySet().stream()
