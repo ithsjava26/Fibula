@@ -48,9 +48,17 @@ public class LargeBurnHealingPotion implements HealingPotion {
 
     @Override
     public void usePotion(Hero hero) {
-        hero.setStatus(healCondition);
+        boolean matchingStatus = hero.getStatus() == getPotionEffect();
+        if (matchingStatus) {
+            hero.setStatus(healCondition);
+        }
         hero.setHealth(hero.getCurrentHealth() + healingAmount);
-        IO.println("You drink the large burn healing potion and heal your burn injury. You now feel better.");
+        IO.println("You drink the large burn healing potion and heal " + healingAmount + " HP.");
+        if (matchingStatus) {
+            IO.println("You heal your burn injury. You now feel better.");
+        } else {
+            IO.println("You have no burn injury to heal.");
+        }
     }
 
     @Override
