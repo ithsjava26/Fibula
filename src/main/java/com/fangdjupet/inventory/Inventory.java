@@ -133,6 +133,26 @@ public class Inventory {
         return String.join(System.lineSeparator(), formattedWeapons);
     }
 
+    private String formatArmors() {
+        List<String> formattedArmors = new ArrayList<>();
+
+        // Add all equipped armors to list
+        for (Item item : currentlyEquipped) {
+            if (item instanceof Armor armor) {
+                formattedArmors.add(armor.getItemName() + ", strength: " + armor.getArmorValue() +
+                        " (Currently equipped)");
+            }
+        }
+        // Add all armors in backpack to list
+        for (Item item : backpack) {
+            if (item instanceof Armor armor) {
+                formattedArmors.add(armor.getItemName() + ", strength: " + armor.getArmorValue() +
+                        " (In backpack)");
+            }
+        }
+        return String.join(System.lineSeparator(), formattedArmors);
+    }
+
     private String formatItemsForDropping(List<Item> items) {
         return items.stream()
                 .collect(groupingBy(Item::getItemName))
