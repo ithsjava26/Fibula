@@ -138,12 +138,14 @@ public class Inventory {
             else if (itemNumberToGet == 3)
                 item = AttackRune.createAttackRune(AttackRuneType.STONE_SHOWER);
             else if (itemNumberToGet == 4)
-                item = Weapon.createWeapon(WeaponType.DAGGER);
+                item = Weapon.createWeapon(WeaponType.SWORD);
             // TODO: Add MEDIUM level healing potions
         } else if (level == Difficulty.HARD) {
-            itemNumberToGet = (int) (Math.random() * 1) + 1; // 1
+            itemNumberToGet = (int) (Math.random() * 2) + 1; // 1 or 2
             if (itemNumberToGet == 1)
                 item = AttackRune.createAttackRune(AttackRuneType.POISON_BOMB);
+            else if (itemNumberToGet == 2)
+                item = Weapon.createWeapon(WeaponType.DAGGER);
             // TODO: Add HARD level healing potions
         }
         return item;
