@@ -14,6 +14,7 @@ import com.fangdjupet.item.weapon.WeaponType;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.groupingBy;
@@ -151,6 +152,17 @@ public class Inventory {
             }
         }
         return String.join(System.lineSeparator(), formattedArmors);
+    }
+
+    private String formatAttackRunes() {
+        return backpack.stream()
+                .filter(AttackRune.class::isInstance)
+                .map(AttackRune.class::cast)
+                .collect(Collectors.groupingBy(AttackRune::getItemName))
+                .entrySet().stream()
+                .map(entry -> entry.getValue().size() + " x " + entry.getKey() +
+                        ", strength: " + entry.getValue().getFirst().getAttackRuneStrength())
+                .collect(Collectors.joining(System.lineSeparator()));
     }
 
     private String formatItemsForDropping(List<Item> items) {
