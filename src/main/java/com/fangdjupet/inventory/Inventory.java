@@ -12,6 +12,7 @@ import com.fangdjupet.item.rune.AttackRune;
 import com.fangdjupet.item.rune.AttackRuneType;
 import com.fangdjupet.item.weapon.Weapon;
 import com.fangdjupet.item.weapon.WeaponType;
+import com.fangdjupet.menu.GameMenu;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,7 @@ import java.util.stream.Collectors;
 import static java.util.stream.Collectors.groupingBy;
 
 public class Inventory {
+    private final GameMenu game = new GameMenu();
     private final List<Item> backpack = new ArrayList<>();
     private final List<Item> currentlyEquipped = new ArrayList<>();
 
@@ -57,7 +59,7 @@ public class Inventory {
         List<Item> alreadyEquippedItems = new ArrayList<>();
 
         if (items.isEmpty()) {
-            IO.println("No enemy items were dropped");
+            game.printYellow("No enemy items were dropped");
             return;
         } else {
             for (Item item : items) {
@@ -68,53 +70,53 @@ public class Inventory {
             }
         }
         if (droppedItems.isEmpty()) {
-            IO.println("Only equipable items were dropped, but you already have them");
+            game.printYellow("Only equipable items were dropped, but you already have them");
         } else {
             for (Item droppedItem : droppedItems)
                 addToBackpack(droppedItem);
-            IO.println("The enemy/enemies dropped:");
-            IO.println(formatItemsForDropping(droppedItems));
-            IO.println("These items have been added to your backpack");
+            game.printYellow("The enemy/enemies dropped:");
+            game.printYellow(formatItemsForDropping(droppedItems));
+            game.printYellow("These items have been added to your backpack");
 
             if (!alreadyEquippedItems.isEmpty()) {
                 IO.println();
-                IO.print("The enemy/enemies also dropped:");
-                IO.println(formatItemsForDropping(alreadyEquippedItems));
-                IO.println("These items are ignored because you already have that equipment");
+                game.printYellow("The enemy/enemies also dropped:");
+                game.printYellow(formatItemsForDropping(alreadyEquippedItems));
+                game.printYellow("These items are ignored because you already have that equipment");
             }
         }
     }
 
     public void printAllItemsInInventory() {
         IO.println();
-        IO.println("             Inventory");
-        IO.println("======================================");
+        game.printYellow("             Inventory");
+        game.printYellow("======================================");
         if (backpack.isEmpty() && currentlyEquipped.isEmpty()) {
-            IO.println("Inventory is empty");
+            game.printYellow("Inventory is empty");
             return;
         }
         String weaponsInInventory = formatWeapons();
         if (!weaponsInInventory.isEmpty()) {
-            IO.println("Weapons:");
-            IO.println(weaponsInInventory);
+            game.printYellow("Weapons:");
+            game.printYellow(weaponsInInventory);
             IO.println();
         }
         String armorsInInventory = formatArmors();
         if (!armorsInInventory.isEmpty()) {
-            IO.println("Armors:");
-            IO.println(armorsInInventory);
+            game.printYellow("Armors:");
+            game.printYellow(armorsInInventory);
             IO.println();
         }
         String attackRunesInInventory = formatAttackRunes();
         if (!attackRunesInInventory.isEmpty()) {
-            IO.println("Attack runes:");
-            IO.println(attackRunesInInventory);
+            game.printYellow("Attack runes:");
+            game.printYellow(attackRunesInInventory);
             IO.println();
         }
         String healingPotionsInInventory = formatHealingPotions();
         if (!healingPotionsInInventory.isEmpty()) {
-            IO.println("Healing potions:");
-            IO.println(healingPotionsInInventory);
+            game.printYellow("Healing potions:");
+            game.printYellow(healingPotionsInInventory);
         }
     }
 
@@ -127,7 +129,7 @@ public class Inventory {
 
         String choice = IO.readln();
 
-        return switch (choice) {
+        switch (choice) {
             case "1" -> HealingPotionMenu(hero);
             case "2" -> AttackRuneMenu(hero);
             default -> IO.println("Invalid choice");
