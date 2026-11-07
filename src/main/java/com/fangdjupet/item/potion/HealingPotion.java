@@ -1,12 +1,17 @@
 package com.fangdjupet.item.potion;
 
 import com.fangdjupet.character.Hero;
+import com.fangdjupet.common.Effect;
 import com.fangdjupet.item.ConsumableItem;
 
 public interface HealingPotion extends ConsumableItem {
     HealingPotionType getHealingPotionType();
 
+    Effect getPotionEffect();
+
     void setHealingAmount(int healingAmount);
+
+    int getHealingAmount();
 
     void usePotion(Hero hero);
 

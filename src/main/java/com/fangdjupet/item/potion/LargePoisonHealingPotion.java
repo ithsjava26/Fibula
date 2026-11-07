@@ -2,11 +2,14 @@ package com.fangdjupet.item.potion;
 
 import com.fangdjupet.character.Hero;
 import com.fangdjupet.common.Difficulty;
+import com.fangdjupet.common.Effect;
 import com.fangdjupet.item.ConsumableItemCategory;
 import com.fangdjupet.item.ItemCategory;
 
 public class LargePoisonHealingPotion implements HealingPotion {
     private final HealingPotionType healingPotionType;
+    private final Effect potionEffect;
+    private final Effect healCondition;
     private int healingAmount;
     private final ConsumableItemCategory consumableItemCategory;
     private final String itemName;
@@ -15,6 +18,8 @@ public class LargePoisonHealingPotion implements HealingPotion {
 
     public LargePoisonHealingPotion() {
         this.healingPotionType = HealingPotionType.LARGE_POISON_HEALING_POTION;
+        this.potionEffect = Effect.POISONED;
+        this.healCondition = Effect.NEUTRAL;
         this.healingAmount = 10;
         this.consumableItemCategory = ConsumableItemCategory.HEALING_POTION;
         this.itemName = "Large Poison Healing Potion";
@@ -27,15 +32,33 @@ public class LargePoisonHealingPotion implements HealingPotion {
         return healingPotionType;
     }
 
+    public Effect getPotionEffect() {
+        return potionEffect;
+    }
+
     @Override
     public void setHealingAmount(int healingAmount) {
         this.healingAmount = healingAmount;
     }
 
     @Override
+    public int getHealingAmount() {
+        return healingAmount;
+    }
+
+    @Override
     public void usePotion(Hero hero) {
+        boolean matchingStatus = hero.getStatus() == getPotionEffect();
+        if (matchingStatus) {
+            hero.setStatus(healCondition);
+        }
         hero.setHealth(hero.getCurrentHealth() + healingAmount);
-        IO.println("You have healed " + healingAmount + " HP.");
+        IO.println("You drink the large poison healing potion and heal " + healingAmount + " HP.");
+        if (matchingStatus) {
+            IO.println("You remove the poison from your body. You now feel better.");
+        } else {
+            IO.println("You have no poison to heal.");
+        }
     }
 
     @Override
