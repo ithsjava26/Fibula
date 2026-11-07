@@ -2,11 +2,14 @@ package com.fangdjupet.item.potion;
 
 import com.fangdjupet.character.Hero;
 import com.fangdjupet.common.Difficulty;
+import com.fangdjupet.common.Effect;
 import com.fangdjupet.item.ConsumableItemCategory;
 import com.fangdjupet.item.ItemCategory;
 
 public class LargeBurnHealingPotion implements HealingPotion {
     private final HealingPotionType healingPotionType;
+    private final Effect potionEffect;
+    private final Effect healCondition;
     private int healingAmount;
     private final ConsumableItemCategory consumableItemCategory;
     private final String itemName;
@@ -15,7 +18,9 @@ public class LargeBurnHealingPotion implements HealingPotion {
 
     public LargeBurnHealingPotion() {
         this.healingPotionType = HealingPotionType.LARGE_BURN_HEALING_POTION;
-        this.healingAmount = 10;
+        this.potionEffect = Effect.BURNING;
+        this.healCondition = Effect.NEUTRAL;
+        this.healingAmount = 15;
         this.consumableItemCategory = ConsumableItemCategory.HEALING_POTION;
         this.itemName = "Large Burn Healing Potion";
         this.itemCategory = ItemCategory.CONSUMABLE;
@@ -33,9 +38,27 @@ public class LargeBurnHealingPotion implements HealingPotion {
     }
 
     @Override
+    public int getHealingAmount() {
+        return healingAmount;
+    }
+
+    public Effect getPotionEffect() {
+        return potionEffect;
+    }
+
+    @Override
     public void usePotion(Hero hero) {
+        boolean matchingStatus = hero.getStatus() == getPotionEffect();
+        if (matchingStatus) {
+            hero.setStatus(healCondition);
+        }
         hero.setHealth(hero.getCurrentHealth() + healingAmount);
-        IO.println("You have healed " + healingAmount + " HP.");
+        IO.println("You drink the large burn healing potion and heal " + healingAmount + " HP.");
+        if (matchingStatus) {
+            IO.println("You heal your burn injury. You now feel better.");
+        } else {
+            IO.println("You have no burn injury to heal.");
+        }
     }
 
     @Override
