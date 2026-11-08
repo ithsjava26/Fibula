@@ -285,14 +285,7 @@ public class Inventory {
             item = getRandomMediumItem(itemNumberToGet);
         } else if (level == Difficulty.HARD) {
             itemNumberToGet = (int) (Math.random() * 4) + 1; // 1, 2, 3, or 4
-            if (itemNumberToGet == 1)
-                item = AttackRune.createAttackRune(AttackRuneType.POISON_BOMB);
-            else if (itemNumberToGet == 2)
-                item = Weapon.createWeapon(WeaponType.DAGGER);
-            else if (itemNumberToGet == 3)
-                item = HealingPotion.createHealingPotion(HealingPotionType.LARGE_POISON_HEALING_POTION);
-            else if (itemNumberToGet == 4)
-                item = HealingPotion.createHealingPotion(HealingPotionType.SMALL_BURN_HEALING_POTION);
+            item = getRandomHardItem(itemNumberToGet);
         }
         return item;
     }
@@ -319,6 +312,17 @@ public class Inventory {
             case 5 -> item = HealingPotion.createHealingPotion(HealingPotionType.LARGE_POISON_HEALING_POTION);
             case 6 -> item = HealingPotion.createHealingPotion(HealingPotionType.LARGE_CUT_INJURY_HEALING_POTION);
             default -> item = HealingPotion.createHealingPotion(HealingPotionType.LARGE_BURN_HEALING_POTION);
+        }
+        return item;
+    }
+
+    private Item getRandomHardItem(int itemNumberToGet) {
+        Item item;
+        switch (itemNumberToGet) {
+            case 1 -> item = AttackRune.createAttackRune(AttackRuneType.POISON_BOMB);
+            case 2 -> item = Weapon.createWeapon(WeaponType.DAGGER);
+            case 3 -> item = HealingPotion.createHealingPotion(HealingPotionType.LARGE_POISON_HEALING_POTION);
+            default -> item = HealingPotion.createHealingPotion(HealingPotionType.SMALL_BURN_HEALING_POTION);
         }
         return item;
     }
