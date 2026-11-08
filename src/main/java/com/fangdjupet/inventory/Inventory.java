@@ -282,20 +282,7 @@ public class Inventory {
             item = getRandomEasyItem(itemNumberToGet);
         } else if (level == Difficulty.MEDIUM) {
             itemNumberToGet = (int) (Math.random() * 7) + 1; // 1, 2, 3, 4, 5, 6, or 7
-            if (itemNumberToGet == 1)
-                item = Weapon.createWeapon(WeaponType.AXE);
-            else if (itemNumberToGet == 2)
-                item = Armor.createArmor(ArmorType.CHESTPLATE);
-            else if (itemNumberToGet == 3)
-                item = AttackRune.createAttackRune(AttackRuneType.STONE_SHOWER);
-            else if (itemNumberToGet == 4)
-                item = Weapon.createWeapon(WeaponType.SWORD);
-            else if (itemNumberToGet == 5)
-                item = HealingPotion.createHealingPotion(HealingPotionType.LARGE_POISON_HEALING_POTION);
-            else if (itemNumberToGet == 6)
-                item = HealingPotion.createHealingPotion(HealingPotionType.LARGE_CUT_INJURY_HEALING_POTION);
-            else if (itemNumberToGet == 7)
-                item = HealingPotion.createHealingPotion(HealingPotionType.LARGE_BURN_HEALING_POTION);
+            item = getRandomMediumItem(itemNumberToGet);
         } else if (level == Difficulty.HARD) {
             itemNumberToGet = (int) (Math.random() * 4) + 1; // 1, 2, 3, or 4
             if (itemNumberToGet == 1)
@@ -318,6 +305,20 @@ public class Inventory {
             case 3 -> item = HealingPotion.createHealingPotion(HealingPotionType.SMALL_POISON_HEALING_POTION);
             case 4 -> item = HealingPotion.createHealingPotion(HealingPotionType.SMALL_CUT_INJURY_HEALING_POTION);
             default -> item = HealingPotion.createHealingPotion(HealingPotionType.SMALL_BURN_HEALING_POTION);
+        }
+        return item;
+    }
+
+    private Item getRandomMediumItem(int itemNumberToGet) {
+        Item item;
+        switch (itemNumberToGet) {
+            case 1 -> item = Weapon.createWeapon(WeaponType.AXE);
+            case 2 -> item = Armor.createArmor(ArmorType.CHESTPLATE);
+            case 3 -> item = AttackRune.createAttackRune(AttackRuneType.STONE_SHOWER);
+            case 4 -> item = Weapon.createWeapon(WeaponType.SWORD);
+            case 5 -> item = HealingPotion.createHealingPotion(HealingPotionType.LARGE_POISON_HEALING_POTION);
+            case 6 -> item = HealingPotion.createHealingPotion(HealingPotionType.LARGE_CUT_INJURY_HEALING_POTION);
+            default -> item = HealingPotion.createHealingPotion(HealingPotionType.LARGE_BURN_HEALING_POTION);
         }
         return item;
     }
