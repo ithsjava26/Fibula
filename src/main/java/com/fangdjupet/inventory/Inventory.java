@@ -2,6 +2,7 @@ package com.fangdjupet.inventory;
 
 import com.fangdjupet.character.Hero;
 import com.fangdjupet.common.Difficulty;
+import com.fangdjupet.item.EquipableItem;
 import com.fangdjupet.item.Item;
 import com.fangdjupet.item.ItemCategory;
 import com.fangdjupet.item.armor.Armor;
@@ -73,8 +74,7 @@ public class Inventory {
         if (droppedItems.isEmpty()) {
             game.printYellow("Only equipable items were dropped, but you already have them");
         } else {
-            for (Item droppedItem : droppedItems)
-                addToBackpack(droppedItem);
+            backpack.addAll(droppedItems);
             game.printYellow("The enemy/enemies dropped:");
             game.printYellow(formatItemsForDropping(droppedItems));
             game.printYellow("These items have been added to your backpack");
@@ -119,6 +119,82 @@ public class Inventory {
             game.printYellow("Healing potions:");
             game.printYellow(healingPotionsInInventory);
         }
+    }
+
+    public void equip() {
+        IO.println();
+        game.printYellow("""
+                Enter the number of the equipment you want to equip:
+                1. Helmet
+                2. Chestplate
+                3. Longbow
+                4. Sword
+                5. Axe
+                6. Dagger
+                """);
+
+        String choice = IO.readln();
+
+        switch (choice) {
+            case "1" -> equipItem("Helmet");
+            case "2" -> equipItem("Chestplate");
+            case "3" -> equipItem("Longbow");
+            case "4" -> equipItem("Sword");
+            case "5" -> equipItem("Axe");
+            case "6" -> equipItem("Dagger");
+            default -> game.printRed("Invalid choice");
+        }
+    }
+
+    private void equipItem(String itemName) {
+        // Check if the hero is already wearing this exact equipment
+        for (Item equippedItem : currentlyEquipped) {
+            if (equippedItem.getItemName().equalsIgnoreCase(itemName)) {
+                game.printYellow("You are already equipped with " + itemName.toLowerCase());
+                return;
+            }
+        }
+
+        // Check if the item exists in the backpack and ensure it is equipable
+        EquipableItem itemToEquip = null;
+        for (Item itemInBackpack : backpack) {
+            if (itemInBackpack.getItemName().equalsIgnoreCase(itemName) &&
+                    itemInBackpack instanceof EquipableItem equipable) {
+                itemToEquip = equipable;
+                break;
+            }
+        }
+
+        // Print error message if item is not found in backpack
+        if (itemToEquip == null) {
+            game.printRed("You do not have any " + itemName.toLowerCase() + " in your backpack");
+            return;
+        }
+
+        // Check if the item is a weapon and if so, swap it with currently equipped weapon if it exists
+        if (itemToEquip instanceof Weapon) {
+            Weapon weaponCurrentlyEquipped = null;
+            for (Item equippedItem : currentlyEquipped) {
+                if (equippedItem instanceof Weapon) {
+                    weaponCurrentlyEquipped = (Weapon) equippedItem;
+                    break;
+                }
+            }
+            if (weaponCurrentlyEquipped != null) {
+                backpack.add(weaponCurrentlyEquipped);
+                currentlyEquipped.remove(weaponCurrentlyEquipped);
+                currentlyEquipped.add(itemToEquip);
+                backpack.remove(itemToEquip);
+                game.printYellow("You are only allowed to be equipped with one weapon at a time. Swapping "
+                        + weaponCurrentlyEquipped.getItemName() + " with " + itemToEquip.getItemName());
+                return;
+            }
+        }
+
+        // Equip the item
+        currentlyEquipped.add(itemToEquip);
+        backpack.remove(itemToEquip);
+        game.printYellow("Equipping " + itemToEquip.getItemName());
     }
 
     public void useItems(Hero hero) {
@@ -270,10 +346,6 @@ public class Inventory {
                 return true;
         }
         return false;
-    }
-
-    private void addToBackpack(Item item) {
-        backpack.add(item);
     }
 
     private Item getRandomItem(Difficulty level) {
