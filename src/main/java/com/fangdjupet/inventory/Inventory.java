@@ -278,14 +278,19 @@ public class Inventory {
         Item item = null;
         int itemNumberToGet;
         if (level == Difficulty.EASY) {
-            itemNumberToGet = (int) (Math.random() * 2) + 1; // 1 or 2
+            itemNumberToGet = (int) (Math.random() * 5) + 1; // 1, 2, 3, 4, or 5
             if (itemNumberToGet == 1)
                 item = Armor.createArmor(ArmorType.HELMET);
             else if (itemNumberToGet == 2)
                 item = AttackRune.createAttackRune(AttackRuneType.FIRE_BALL);
-            // TODO: Add EASY level healing potions
+            else if (itemNumberToGet == 3)
+                item = HealingPotion.createHealingPotion(HealingPotionType.SMALL_POISON_HEALING_POTION);
+            else if (itemNumberToGet == 4)
+                item = HealingPotion.createHealingPotion(HealingPotionType.SMALL_CUT_INJURY_HEALING_POTION);
+            else if (itemNumberToGet == 5)
+                item = HealingPotion.createHealingPotion(HealingPotionType.SMALL_BURN_HEALING_POTION);
         } else if (level == Difficulty.MEDIUM) {
-            itemNumberToGet = (int) (Math.random() * 4) + 1; // 1, 2, 3, or 4
+            itemNumberToGet = (int) (Math.random() * 7) + 1; // 1, 2, 3, 4, 5, 6, or 7
             if (itemNumberToGet == 1)
                 item = Weapon.createWeapon(WeaponType.AXE);
             else if (itemNumberToGet == 2)
@@ -294,14 +299,22 @@ public class Inventory {
                 item = AttackRune.createAttackRune(AttackRuneType.STONE_SHOWER);
             else if (itemNumberToGet == 4)
                 item = Weapon.createWeapon(WeaponType.SWORD);
-            // TODO: Add MEDIUM level healing potions
+            else if (itemNumberToGet == 5)
+                item = HealingPotion.createHealingPotion(HealingPotionType.LARGE_POISON_HEALING_POTION);
+            else if (itemNumberToGet == 6)
+                item = HealingPotion.createHealingPotion(HealingPotionType.LARGE_CUT_INJURY_HEALING_POTION);
+            else if (itemNumberToGet == 7)
+                item = HealingPotion.createHealingPotion(HealingPotionType.LARGE_BURN_HEALING_POTION);
         } else if (level == Difficulty.HARD) {
-            itemNumberToGet = (int) (Math.random() * 2) + 1; // 1 or 2
+            itemNumberToGet = (int) (Math.random() * 4) + 1; // 1, 2, 3, or 4
             if (itemNumberToGet == 1)
                 item = AttackRune.createAttackRune(AttackRuneType.POISON_BOMB);
             else if (itemNumberToGet == 2)
                 item = Weapon.createWeapon(WeaponType.DAGGER);
-            // TODO: Add HARD level healing potions
+            else if (itemNumberToGet == 3)
+                item = HealingPotion.createHealingPotion(HealingPotionType.LARGE_POISON_HEALING_POTION);
+            else if (itemNumberToGet == 4)
+                item = HealingPotion.createHealingPotion(HealingPotionType.SMALL_BURN_HEALING_POTION);
         }
         return item;
     }
