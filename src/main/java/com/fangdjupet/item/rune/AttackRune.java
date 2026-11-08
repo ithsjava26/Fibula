@@ -8,6 +8,8 @@ public interface AttackRune extends ConsumableItem {
 
     int getAttackRuneStrength();
 
+    void setAttackRuneStrength(int attackRuneStrength);
+
     void useAttackRune(Enemy enemy);
 
     static AttackRune createAttackRune(AttackRuneType type) {
