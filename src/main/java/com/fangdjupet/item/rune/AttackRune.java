@@ -17,7 +17,7 @@ public interface AttackRune extends ConsumableItem {
             case POISON_BOMB -> new PoisonBomb();
             case FIRE_BALL -> new FireBall();
             case STONE_SHOWER -> new StoneShower();
-            case PARALYSE -> new Paralyse();
+            case PARALYZE -> new Paralyze();
         };
     }
 }
