@@ -279,16 +279,7 @@ public class Inventory {
         int itemNumberToGet;
         if (level == Difficulty.EASY) {
             itemNumberToGet = (int) (Math.random() * 5) + 1; // 1, 2, 3, 4, or 5
-            if (itemNumberToGet == 1)
-                item = Armor.createArmor(ArmorType.HELMET);
-            else if (itemNumberToGet == 2)
-                item = AttackRune.createAttackRune(AttackRuneType.FIRE_BALL);
-            else if (itemNumberToGet == 3)
-                item = HealingPotion.createHealingPotion(HealingPotionType.SMALL_POISON_HEALING_POTION);
-            else if (itemNumberToGet == 4)
-                item = HealingPotion.createHealingPotion(HealingPotionType.SMALL_CUT_INJURY_HEALING_POTION);
-            else if (itemNumberToGet == 5)
-                item = HealingPotion.createHealingPotion(HealingPotionType.SMALL_BURN_HEALING_POTION);
+            item = getRandomEasyItem(itemNumberToGet);
         } else if (level == Difficulty.MEDIUM) {
             itemNumberToGet = (int) (Math.random() * 7) + 1; // 1, 2, 3, 4, 5, 6, or 7
             if (itemNumberToGet == 1)
@@ -315,6 +306,18 @@ public class Inventory {
                 item = HealingPotion.createHealingPotion(HealingPotionType.LARGE_POISON_HEALING_POTION);
             else if (itemNumberToGet == 4)
                 item = HealingPotion.createHealingPotion(HealingPotionType.SMALL_BURN_HEALING_POTION);
+        }
+        return item;
+    }
+
+    private Item getRandomEasyItem(int itemNumberToGet) {
+        Item item;
+        switch (itemNumberToGet) {
+            case 1 -> item = Armor.createArmor(ArmorType.HELMET);
+            case 2 -> item = AttackRune.createAttackRune(AttackRuneType.FIRE_BALL);
+            case 3 -> item = HealingPotion.createHealingPotion(HealingPotionType.SMALL_POISON_HEALING_POTION);
+            case 4 -> item = HealingPotion.createHealingPotion(HealingPotionType.SMALL_CUT_INJURY_HEALING_POTION);
+            default -> item = HealingPotion.createHealingPotion(HealingPotionType.SMALL_BURN_HEALING_POTION);
         }
         return item;
     }
