@@ -5,21 +5,35 @@ import com.fangdjupet.item.EquipableItemCategory;
 import com.fangdjupet.item.ItemCategory;
 
 public class Helmet implements Armor {
-    private static final ArmorType type = ArmorType.HELMET;
-    private static final int ARMOR_VALUE = 1;
-    private static final EquipableItemCategory equipableItemCategory = EquipableItemCategory.ARMOR;
-    private static final String ITEM_NAME = "Helmet";
-    private static final ItemCategory itemCategory = ItemCategory.EQUIPABLE;
-    private static final Difficulty difficultyLevel = Difficulty.EASY;
+    private final ArmorType armorType;
+    private int armorStrength;
+    private final EquipableItemCategory equipableItemCategory;
+    private final String itemName;
+    private final ItemCategory itemCategory;
+    private final Difficulty difficultyLevel;
 
-    @Override
-    public ArmorType getArmorType() {
-        return type;
+    public Helmet() {
+        this.armorType = ArmorType.HELMET;
+        this.armorStrength = 1;
+        this.equipableItemCategory = EquipableItemCategory.ARMOR;
+        this.itemName = "Helmet";
+        this.itemCategory = ItemCategory.EQUIPABLE;
+        this.difficultyLevel = Difficulty.EASY;
     }
 
     @Override
-    public int getArmorValue() {
-        return ARMOR_VALUE;
+    public ArmorType getArmorType() {
+        return armorType;
+    }
+
+    @Override
+    public int getArmorStrength() {
+        return armorStrength;
+    }
+
+    @Override
+    public void setArmorStrength(int armorStrength) {
+        this.armorStrength = armorStrength;
     }
 
     @Override
@@ -29,7 +43,7 @@ public class Helmet implements Armor {
 
     @Override
     public String getItemName() {
-        return ITEM_NAME;
+        return itemName;
     }
 
     @Override
