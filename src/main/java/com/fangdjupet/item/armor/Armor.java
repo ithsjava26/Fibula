@@ -5,7 +5,9 @@ import com.fangdjupet.item.EquipableItem;
 public interface Armor extends EquipableItem {
     ArmorType getArmorType();
 
-    int getArmorValue();
+    int getArmorStrength();
+
+    void setArmorStrength(int armorStrength);
 
     static Armor createArmor(ArmorType type) {
         return switch (type) {
