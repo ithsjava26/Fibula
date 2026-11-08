@@ -291,19 +291,19 @@ public class Inventory {
     }
 
     private Item getRandomEasyItem(int itemNumberToGet) {
-        Item item;
+        Item item = null;
         switch (itemNumberToGet) {
             case 1 -> item = Armor.createArmor(ArmorType.HELMET);
             case 2 -> item = AttackRune.createAttackRune(AttackRuneType.FIRE_BALL);
             case 3 -> item = HealingPotion.createHealingPotion(HealingPotionType.SMALL_POISON_HEALING_POTION);
             case 4 -> item = HealingPotion.createHealingPotion(HealingPotionType.SMALL_CUT_INJURY_HEALING_POTION);
-            default -> item = HealingPotion.createHealingPotion(HealingPotionType.SMALL_BURN_HEALING_POTION);
+            case 5 -> item = HealingPotion.createHealingPotion(HealingPotionType.SMALL_BURN_HEALING_POTION);
         }
         return item;
     }
 
     private Item getRandomMediumItem(int itemNumberToGet) {
-        Item item;
+        Item item = null;
         switch (itemNumberToGet) {
             case 1 -> item = Weapon.createWeapon(WeaponType.AXE);
             case 2 -> item = Armor.createArmor(ArmorType.CHESTPLATE);
@@ -311,18 +311,18 @@ public class Inventory {
             case 4 -> item = Weapon.createWeapon(WeaponType.SWORD);
             case 5 -> item = HealingPotion.createHealingPotion(HealingPotionType.LARGE_POISON_HEALING_POTION);
             case 6 -> item = HealingPotion.createHealingPotion(HealingPotionType.LARGE_CUT_INJURY_HEALING_POTION);
-            default -> item = HealingPotion.createHealingPotion(HealingPotionType.LARGE_BURN_HEALING_POTION);
+            case 7 -> item = HealingPotion.createHealingPotion(HealingPotionType.LARGE_BURN_HEALING_POTION);
         }
         return item;
     }
 
     private Item getRandomHardItem(int itemNumberToGet) {
-        Item item;
+        Item item = null;
         switch (itemNumberToGet) {
             case 1 -> item = AttackRune.createAttackRune(AttackRuneType.POISON_BOMB);
             case 2 -> item = Weapon.createWeapon(WeaponType.DAGGER);
             case 3 -> item = HealingPotion.createHealingPotion(HealingPotionType.LARGE_POISON_HEALING_POTION);
-            default -> item = HealingPotion.createHealingPotion(HealingPotionType.SMALL_BURN_HEALING_POTION);
+            case 4 -> item = HealingPotion.createHealingPotion(HealingPotionType.SMALL_BURN_HEALING_POTION);
         }
         return item;
     }
