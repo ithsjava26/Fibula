@@ -230,7 +230,8 @@ public class Inventory {
                 .collect(Collectors.groupingBy(AttackRune::getItemName))
                 .entrySet().stream()
                 .map(entry -> entry.getValue().size() + " x " + entry.getKey() +
-                        ", strength: " + entry.getValue().getFirst().getAttackRuneStrength())
+                        ", strength: " + entry.getValue().getFirst().getAttackRuneStrength() +
+                        " (In backpack)")
                 .collect(Collectors.joining(System.lineSeparator()));
     }
 
@@ -241,7 +242,8 @@ public class Inventory {
                 .collect(Collectors.groupingBy(HealingPotion::getItemName))
                 .entrySet().stream()
                 .map(entry -> entry.getValue().size() + " x " + entry.getKey() +
-                        ", healing: " + entry.getValue().getFirst().getHealingAmount())
+                        ", healing: " + entry.getValue().getFirst().getHealingAmount() +
+                        " (In backpack)")
                 .collect(Collectors.joining(System.lineSeparator()));
     }
 
