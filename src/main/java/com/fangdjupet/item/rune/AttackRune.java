@@ -1,11 +1,14 @@
 package com.fangdjupet.item.rune;
 
+import com.fangdjupet.character.Enemy;
 import com.fangdjupet.item.ConsumableItem;
 
 public interface AttackRune extends ConsumableItem {
     AttackRuneType getAttackRuneType();
 
     int getAttackRuneStrength();
+
+    void useAttackRune(Enemy enemy);
 
     static AttackRune createAttackRune(AttackRuneType type) {
         return switch (type) {
