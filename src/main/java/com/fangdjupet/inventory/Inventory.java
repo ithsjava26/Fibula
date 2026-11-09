@@ -132,6 +132,7 @@ public class Inventory {
                 4. Sword
                 5. Axe
                 6. Dagger
+                7. Back/Cancel
                 """);
 
         String choice = IO.readln();
@@ -143,6 +144,9 @@ public class Inventory {
             case "4" -> equipItem("Sword");
             case "5" -> equipItem("Axe");
             case "6" -> equipItem("Dagger");
+            case "7" -> {
+                return;
+            }
             default -> game.printRed("Invalid choice");
         }
     }
@@ -203,6 +207,7 @@ public class Inventory {
         game.printYellow("""
                 1. Drink healing potion
                 2. Use attack rune
+                3. Back/Cancel
                 """);
 
         String choice = IO.readln();
@@ -210,6 +215,9 @@ public class Inventory {
         switch (choice) {
             case "1" -> healingPotionMenu(hero);
             case "2" -> attackRuneMenu(enemy);
+            case "3" -> {
+                return;
+            }
             default -> game.printRed("Invalid choice");
         }
     }
@@ -221,6 +229,7 @@ public class Inventory {
                 2. Use Stone shower rune
                 3. Use Poison bomb rune
                 4. Use Paralyze rune
+                5. Back/Cancel
                 """);
 
         String choice = IO.readln();
@@ -232,6 +241,9 @@ public class Inventory {
             case "4" -> AttackRuneType.PARALYZE;
             default -> null;
         };
+
+        if (choice.equals("5"))
+            return;
 
         if (runeType == null) {
             game.printRed("Invalid choice");
@@ -265,6 +277,7 @@ public class Inventory {
                 4. Drink LARGE Burn healing potion
                 5. Drink SMALL Poison healing potion
                 6. Drink LARGE Poison healing potion
+                7. Back/Cancel
                 """);
 
         String choice = IO.readln();
@@ -278,6 +291,9 @@ public class Inventory {
             case "6" -> HealingPotionType.LARGE_POISON_HEALING_POTION;
             default -> null;
         };
+
+        if (choice.equals("7"))
+            return;
 
         if (potionType == null) {
             game.printRed("Invalid choice");
