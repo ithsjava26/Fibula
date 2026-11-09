@@ -7,8 +7,6 @@ import com.fangdjupet.item.Item;
 import com.fangdjupet.menu.GameMenu;
 import com.fangdjupet.room.Room;
 import com.fangdjupet.room.RoomManager;
-import com.fangdjupet.save.FileHandler;
-import com.fangdjupet.save.GameState;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +15,6 @@ public class GameEngine {
     private final RoomManager roomManager = new RoomManager();
     private final Hero hero = new Hero();
     protected final GameMenu gameMenu = new GameMenu();
-    private final FileHandler fileHandler = new FileHandler();
     private final BattleSystem battleSystem = new BattleSystem();
     private boolean isRunning = true;
 
@@ -77,7 +74,6 @@ public class GameEngine {
                     break;
 
                 case 14:
-                    saveGame();
                     currentRoom.enter();
                     enemies = currentRoom.getCurrentEnemies();
                     battleSystem.startBattle(hero, enemies);
@@ -91,7 +87,6 @@ public class GameEngine {
 
                 default:
                     if (currentIndex == 10) {
-                        saveGame();
                     }
                     currentRoom.enter();
                     enemies = currentRoom.getCurrentEnemies();
@@ -147,16 +142,4 @@ public class GameEngine {
         }
         return items;
     }
-
-    private GameState createGameState() {
-        return new GameState(
-                roomManager.getCurrentIndex(),
-                hero
-        );
-    }
-
-    private void saveGame() {
-        fileHandler.save(createGameState());
-    }
-
 }
