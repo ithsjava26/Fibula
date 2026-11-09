@@ -3,10 +3,13 @@ package com.fangdjupet.gameengine;
 import com.fangdjupet.character.Character;
 import com.fangdjupet.character.Enemy;
 import com.fangdjupet.character.Hero;
+import com.fangdjupet.combat.BattleSystem;
+import com.fangdjupet.inventory.Inventory;
 import com.fangdjupet.item.Item;
 import com.fangdjupet.menu.GameMenu;
 import com.fangdjupet.room.Room;
 import com.fangdjupet.room.RoomManager;
+import com.fangdjupet.save.FileHandler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,8 +17,10 @@ import java.util.List;
 public class GameEngine {
     private final RoomManager roomManager = new RoomManager();
     private final Inventory inventory = new Inventory();
-    private final Character hero = new Hero(inventory);
+    private final Hero hero = new Hero(inventory);
     protected final GameMenu gameMenu = new GameMenu();
+    private final FileHandler fileHandler = new FileHandler();
+    private final BattleSystem battleSystem = new BattleSystem();
     private boolean isRunning = true;
 
     static void main() {
@@ -48,7 +53,7 @@ public class GameEngine {
                 case 3:
                     currentRoom.enter();
                     enemies = currentRoom.getCurrentEnemies();
-                    battle(enemies);
+                    battleSystem.startBattle(hero, enemies);
 
                     if (hero.isAlive()) {
                         dropItems(generateLoot(enemies), inventory);
@@ -62,7 +67,7 @@ public class GameEngine {
                 case 6:
                     currentRoom.enter();
                     enemies = currentRoom.getCurrentEnemies();
-                    battle(enemies);
+                    battleSystem.startBattle(hero, enemies);
 
                     if (hero.isAlive()) {
                         camp();
@@ -75,7 +80,7 @@ public class GameEngine {
                 case 14:
                     currentRoom.enter();
                     enemies = currentRoom.getCurrentEnemies();
-                    battle(enemies);
+                    battleSystem.startBattle(hero, enemies);
 
                     if (hero.isAlive()) {
                         victory();
@@ -87,7 +92,7 @@ public class GameEngine {
                 default:
                     currentRoom.enter();
                     enemies = currentRoom.getCurrentEnemies();
-                    battle(enemies);
+                    battleSystem.startBattle(hero, enemies);
 
                     if (hero.isAlive()) {
                         camp();
