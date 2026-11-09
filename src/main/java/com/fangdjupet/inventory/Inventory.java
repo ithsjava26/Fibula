@@ -1,5 +1,6 @@
 package com.fangdjupet.inventory;
 
+import com.fangdjupet.character.Enemy;
 import com.fangdjupet.character.Hero;
 import com.fangdjupet.common.Difficulty;
 import com.fangdjupet.item.EquipableItem;
@@ -44,7 +45,7 @@ public class Inventory {
     public List<Item> getItems(Difficulty level) {
         List<Item> items = new ArrayList<>();
         if (level == Difficulty.QUEST)
-            items.add(AttackRune.createAttackRune(AttackRuneType.PARALYSE));
+            items.add(AttackRune.createAttackRune(AttackRuneType.PARALYZE));
         else {
             int NumberOfItemsDiceRoll = (int) (Math.random() * 2) + 1; // 1 or 2 items
             for (int i = 1; i <= NumberOfItemsDiceRoll; i++) {
@@ -197,7 +198,7 @@ public class Inventory {
         game.printYellow("Equipping " + itemToEquip.getItemName());
     }
 
-    public void useItems(Hero hero) {
+    public void useItems(Hero hero, Enemy enemy) {
         IO.println();
         game.printYellow("""
                 1. Drink healing potion
@@ -208,9 +209,51 @@ public class Inventory {
 
         switch (choice) {
             case "1" -> healingPotionMenu(hero);
-            case "2" -> attackRuneMenu(hero);
+            case "2" -> attackRuneMenu(enemy);
             default -> game.printRed("Invalid choice");
         }
+    }
+
+    private void attackRuneMenu(Enemy enemy) {
+        IO.println();
+        game.printYellow("""
+                1. Use Fire ball rune
+                2. Use Stone shower rune
+                3. Use Poison bomb rune
+                4. Use Paralyze rune
+                """);
+
+        String choice = IO.readln();
+
+        AttackRuneType runeType = switch (choice) {
+            case "1" -> AttackRuneType.FIRE_BALL;
+            case "2" -> AttackRuneType.STONE_SHOWER;
+            case "3" -> AttackRuneType.POISON_BOMB;
+            case "4" -> AttackRuneType.PARALYZE;
+            default -> null;
+        };
+
+        if (runeType == null) {
+            game.printRed("Invalid choice");
+            return;
+        }
+
+        Optional<AttackRune> attackRune = getAttackRuneFromBackpack(runeType);
+        if (attackRune.isPresent()) {
+            AttackRune rune = attackRune.get();
+            rune.useAttackRune(enemy);
+            backpack.remove(rune);
+        } else {
+            game.printRed("You do not have that attack rune in your backpack.");
+        }
+    }
+
+    private Optional<AttackRune> getAttackRuneFromBackpack(AttackRuneType type) {
+        return backpack.stream()
+                .filter(AttackRune.class::isInstance)
+                .map(AttackRune.class::cast)
+                .filter(rune -> rune.getAttackRuneType() == type)
+                .findFirst();
     }
 
     private void healingPotionMenu(Hero hero) {
@@ -285,14 +328,14 @@ public class Inventory {
         // Add all equipped armors to list
         for (Item item : currentlyEquipped) {
             if (item instanceof Armor armor) {
-                formattedArmors.add(armor.getItemName() + ", strength: " + armor.getArmorValue() +
+                formattedArmors.add(armor.getItemName() + ", strength: " + armor.getArmorStrength() +
                         " (Currently equipped)");
             }
         }
         // Add all armors in backpack to list
         for (Item item : backpack) {
             if (item instanceof Armor armor) {
-                formattedArmors.add(armor.getItemName() + ", strength: " + armor.getArmorValue() +
+                formattedArmors.add(armor.getItemName() + ", strength: " + armor.getArmorStrength() +
                         " (In backpack)");
             }
         }
