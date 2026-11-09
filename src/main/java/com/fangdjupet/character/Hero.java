@@ -36,7 +36,7 @@ public class Hero implements Character {
 
     //Default constructor
     public Hero() {
-        this.name = "Arthur LightBringer, Palladin Knight";
+        this.name = "Arthur LightBringer";
         this.health = 100;
         this.meleeAttack = new HeroMeleeAttack();
         this.magicAttack = new HeroMagicAttack();
@@ -91,6 +91,11 @@ public class Hero implements Character {
 
     public Inventory getInventory() {
         return inventory;
+    }
+
+    public String getDescription() {
+        return "Arthur LightBringer, a palladin knight who wields mighty weapons and magical runes." +
+                "He is known for his unwavering bravery and commitment to vanquishing evil!";
     }
 
 }
