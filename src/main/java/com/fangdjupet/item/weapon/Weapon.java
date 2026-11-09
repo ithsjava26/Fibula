@@ -7,12 +7,14 @@ public interface Weapon extends EquipableItem {
 
     int getWeaponStrength();
 
+    void setWeaponStrength(int strength);
+
     static Weapon createWeapon(WeaponType type) {
         return switch (type) {
             case AXE -> new Axe();
             case SWORD -> new Sword();
             case DAGGER -> new Dagger();
-            case CLUB -> new Club();
+            case LONGBOW -> new Longbow();
         };
     }
 }

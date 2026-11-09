@@ -1,25 +1,49 @@
 package com.fangdjupet.item.rune;
 
+import com.fangdjupet.character.Enemy;
 import com.fangdjupet.common.Difficulty;
 import com.fangdjupet.item.ConsumableItemCategory;
 import com.fangdjupet.item.ItemCategory;
+import com.fangdjupet.menu.GameMenu;
 
 public class FireBall implements AttackRune {
-    private static final AttackRuneType type = AttackRuneType.FIRE_BALL;
-    private static final int ATTACK_RUNE_STRENGTH = 8;
-    private static final ConsumableItemCategory consumableItemCategory = ConsumableItemCategory.ATTACK_RUNE;
-    private static final String ITEM_NAME = "Fire ball rune";
-    private static final ItemCategory itemCategory = ItemCategory.CONSUMABLE;
-    private static final Difficulty difficultyLevel = Difficulty.EASY;
+    GameMenu game = new GameMenu();
+
+    private final AttackRuneType attackRuneType;
+    private int attackRuneStrength;
+    private final ConsumableItemCategory consumableItemCategory;
+    private final String itemName;
+    private final ItemCategory itemCategory;
+    private final Difficulty difficultyLevel;
+
+    public FireBall() {
+        this.attackRuneType = AttackRuneType.FIRE_BALL;
+        this.attackRuneStrength = 10;
+        this.consumableItemCategory = ConsumableItemCategory.ATTACK_RUNE;
+        this.itemName = "Fire ball rune";
+        this.itemCategory = ItemCategory.CONSUMABLE;
+        this.difficultyLevel = Difficulty.EASY;
+    }
 
     @Override
     public AttackRuneType getAttackRuneType() {
-        return type;
+        return attackRuneType;
     }
 
     @Override
     public int getAttackRuneStrength() {
-        return ATTACK_RUNE_STRENGTH;
+        return attackRuneStrength;
+    }
+
+    @Override
+    public void setAttackRuneStrength(int attackRuneStrength) {
+        this.attackRuneStrength = attackRuneStrength;
+    }
+
+    @Override
+    public void useAttackRune(Enemy enemy) {
+        enemy.takeDamage(attackRuneStrength);
+        game.printRed("You use the " + itemName + ", dealing " + attackRuneStrength + " damage!");
     }
 
     @Override
@@ -29,7 +53,7 @@ public class FireBall implements AttackRune {
 
     @Override
     public String getItemName() {
-        return ITEM_NAME;
+        return itemName;
     }
 
     @Override

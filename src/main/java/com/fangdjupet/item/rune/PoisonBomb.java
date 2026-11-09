@@ -1,25 +1,49 @@
 package com.fangdjupet.item.rune;
 
+import com.fangdjupet.character.Enemy;
 import com.fangdjupet.common.Difficulty;
 import com.fangdjupet.item.ConsumableItemCategory;
 import com.fangdjupet.item.ItemCategory;
+import com.fangdjupet.menu.GameMenu;
 
 public class PoisonBomb implements AttackRune {
-    private static final AttackRuneType type = AttackRuneType.POISON_BOMB;
-    private static final int ATTACK_RUNE_STRENGTH = 23;
-    private static final ConsumableItemCategory consumableItemCategory = ConsumableItemCategory.ATTACK_RUNE;
-    private static final String ITEM_NAME = "Poison bomb rune";
-    private static final ItemCategory itemCategory = ItemCategory.CONSUMABLE;
-    private static final Difficulty difficultyLevel = Difficulty.HARD;
+    GameMenu game = new GameMenu();
+
+    private final AttackRuneType attackRuneType;
+    private int attackRuneStrength;
+    private final ConsumableItemCategory consumableItemCategory;
+    private final String itemName;
+    private final ItemCategory itemCategory;
+    private final Difficulty difficultyLevel;
+
+    public PoisonBomb() {
+        this.attackRuneType = AttackRuneType.POISON_BOMB;
+        this.attackRuneStrength = 19;
+        this.consumableItemCategory = ConsumableItemCategory.ATTACK_RUNE;
+        this.itemName = "Poison bomb rune";
+        this.itemCategory = ItemCategory.CONSUMABLE;
+        this.difficultyLevel = Difficulty.HARD;
+    }
 
     @Override
     public AttackRuneType getAttackRuneType() {
-        return type;
+        return attackRuneType;
     }
 
     @Override
     public int getAttackRuneStrength() {
-        return ATTACK_RUNE_STRENGTH;
+        return attackRuneStrength;
+    }
+
+    @Override
+    public void setAttackRuneStrength(int attackRuneStrength) {
+        this.attackRuneStrength = attackRuneStrength;
+    }
+
+    @Override
+    public void useAttackRune(Enemy enemy) {
+        enemy.takeDamage(attackRuneStrength);
+        game.printRed("You use the " + itemName + ", dealing " + attackRuneStrength + " damage!");
     }
 
     @Override
@@ -29,7 +53,7 @@ public class PoisonBomb implements AttackRune {
 
     @Override
     public String getItemName() {
-        return ITEM_NAME;
+        return itemName;
     }
 
     @Override
