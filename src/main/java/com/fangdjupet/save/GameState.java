@@ -20,4 +20,8 @@ public class GameState {
     public int getHeroHealth() {
         return heroHealth;
     }
+
+    public Inventory getInventory() {
+        return inventory;
+    }
 }
