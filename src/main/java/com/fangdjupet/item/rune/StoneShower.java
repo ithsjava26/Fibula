@@ -1,25 +1,49 @@
 package com.fangdjupet.item.rune;
 
+import com.fangdjupet.character.Enemy;
 import com.fangdjupet.common.Difficulty;
 import com.fangdjupet.item.ConsumableItemCategory;
 import com.fangdjupet.item.ItemCategory;
+import com.fangdjupet.menu.GameMenu;
 
 public class StoneShower implements AttackRune {
-    private static final AttackRuneType type = AttackRuneType.STONE_SHOWER;
-    private static final int ATTACK_RUNE_STRENGTH = 14;
-    private static final ConsumableItemCategory consumableItemCategory = ConsumableItemCategory.ATTACK_RUNE;
-    private static final String ITEM_NAME = "Stone shower rune";
-    private static final ItemCategory itemCategory = ItemCategory.CONSUMABLE;
-    private static final Difficulty difficultyLevel = Difficulty.MEDIUM;
+    GameMenu game = new GameMenu();
+
+    private final AttackRuneType attackRuneType;
+    private int attackRuneStrength;
+    private final ConsumableItemCategory consumableItemCategory;
+    private final String itemName;
+    private final ItemCategory itemCategory;
+    private final Difficulty difficultyLevel;
+
+    public StoneShower() {
+        this.attackRuneType = AttackRuneType.STONE_SHOWER;
+        this.attackRuneStrength = 14;
+        this.consumableItemCategory = ConsumableItemCategory.ATTACK_RUNE;
+        this.itemName = "Stone shower rune";
+        this.itemCategory = ItemCategory.CONSUMABLE;
+        this.difficultyLevel = Difficulty.MEDIUM;
+    }
 
     @Override
     public AttackRuneType getAttackRuneType() {
-        return type;
+        return attackRuneType;
     }
 
     @Override
     public int getAttackRuneStrength() {
-        return ATTACK_RUNE_STRENGTH;
+        return attackRuneStrength;
+    }
+
+    @Override
+    public void setAttackRuneStrength(int attackRuneStrength) {
+        this.attackRuneStrength = attackRuneStrength;
+    }
+
+    @Override
+    public void useAttackRune(Enemy enemy) {
+        enemy.takeDamage(attackRuneStrength);
+        game.printRed("You use the " + itemName + ", dealing " + attackRuneStrength + " damage!");
     }
 
     @Override
@@ -29,7 +53,7 @@ public class StoneShower implements AttackRune {
 
     @Override
     public String getItemName() {
-        return ITEM_NAME;
+        return itemName;
     }
 
     @Override
