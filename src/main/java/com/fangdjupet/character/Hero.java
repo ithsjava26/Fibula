@@ -19,10 +19,10 @@ import com.fangdjupet.inventory.Inventory;
 public class Hero implements Character {
     private final String name;
     private int health;
-    private AttackStrategy meleeAttack;
-    private AttackStrategy magicAttack;
+    private final AttackStrategy meleeAttack;
+    private final AttackStrategy magicAttack;
     private Effect status;
-    private Inventory inventory;
+    private final Inventory inventory;
 
     //Overloaded constructor. Alt: To set another hero name and health.
     public Hero(String name, int health) {
@@ -40,8 +40,8 @@ public class Hero implements Character {
         this.health = 100;
         this.meleeAttack = new HeroMeleeAttack();
         this.magicAttack = new HeroMagicAttack();
-        this.inventory = new Inventory();
         this.status = Effect.NEUTRAL;
+        this.inventory = new Inventory();
     }
 
     public int meleeAttack() {
