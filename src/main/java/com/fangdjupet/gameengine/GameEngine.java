@@ -151,8 +151,7 @@ public class GameEngine {
     private GameState createGameState() {
         return new GameState(
                 roomManager.getCurrentIndex(),
-                hero.getCurrentHealth(),
-                hero.getInventory()
+                hero
         );
     }
 

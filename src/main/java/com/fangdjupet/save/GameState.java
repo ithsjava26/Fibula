@@ -1,28 +1,22 @@
 package com.fangdjupet.save;
 
-import com.fangdjupet.inventory.Inventory;
+import com.fangdjupet.character.Hero;
 
 public class GameState {
 
+    private final Hero hero;
     private final int currentRoomIndex;
-    private final int heroHealth;
-    private final Inventory inventory;
 
-    public GameState(int currentRoomIndex, int heroHealth, Inventory inventory) {
+    public GameState(int currentRoomIndex, Hero hero) {
         this.currentRoomIndex = currentRoomIndex;
-        this.heroHealth = heroHealth;
-        this.inventory = inventory;
+        this.hero = hero;
     }
 
     public int getCurrentRoomIndex() {
         return currentRoomIndex;
     }
 
-    public int getHeroHealth() {
-        return heroHealth;
-    }
-
-    public Inventory getInventory() {
-        return inventory;
+    public Hero getHero() {
+        return hero;
     }
 }
