@@ -1,8 +1,8 @@
 package com.fangdjupet.gameengine;
 
-import com.fangdjupet.character.Character;
 import com.fangdjupet.character.Enemy;
 import com.fangdjupet.character.Hero;
+import com.fangdjupet.combat.BattleSystem;
 import com.fangdjupet.item.Item;
 import com.fangdjupet.menu.GameMenu;
 import com.fangdjupet.room.Room;
@@ -13,9 +13,9 @@ import java.util.List;
 
 public class GameEngine {
     private final RoomManager roomManager = new RoomManager();
-    private final Inventory inventory = new Inventory();
-    private final Character hero = new Hero(inventory);
+    private final Hero hero = new Hero();
     protected final GameMenu gameMenu = new GameMenu();
+    private final BattleSystem battleSystem = new BattleSystem();
     private boolean isRunning = true;
 
     static void main() {
@@ -48,10 +48,10 @@ public class GameEngine {
                 case 3:
                     currentRoom.enter();
                     enemies = currentRoom.getCurrentEnemies();
-                    battle(enemies);
+                    battleSystem.startBattle(hero, enemies);
 
                     if (hero.isAlive()) {
-                        dropItems(generateLoot(enemies), inventory);
+                        hero.getInventory().dropItems(generateLoot(enemies));
                         camp();
                         choosePath();
                     } else {
@@ -62,9 +62,10 @@ public class GameEngine {
                 case 6:
                     currentRoom.enter();
                     enemies = currentRoom.getCurrentEnemies();
-                    battle(enemies);
+                    battleSystem.startBattle(hero, enemies);
 
                     if (hero.isAlive()) {
+                        hero.getInventory().dropItems(generateLoot(enemies));
                         camp();
                         roomManager.moveTo(11);
                     } else {
@@ -75,7 +76,7 @@ public class GameEngine {
                 case 14:
                     currentRoom.enter();
                     enemies = currentRoom.getCurrentEnemies();
-                    battle(enemies);
+                    battleSystem.startBattle(hero, enemies);
 
                     if (hero.isAlive()) {
                         victory();
@@ -85,11 +86,14 @@ public class GameEngine {
                     break;
 
                 default:
+                    if (currentIndex == 10) {
+                    }
                     currentRoom.enter();
                     enemies = currentRoom.getCurrentEnemies();
-                    battle(enemies);
+                    battleSystem.startBattle(hero, enemies);
 
                     if (hero.isAlive()) {
+                        hero.getInventory().dropItems(generateLoot(enemies));
                         camp();
                         roomManager.moveTo(++currentIndex);
                     } else {
@@ -127,14 +131,14 @@ public class GameEngine {
             //        the player if they want to use another item
             //  - Insert method call for case 2. Swap equipment
             case "2" -> ;
-            case "3" -> ;
+            case "3" -> hero.getInventory().equip;
         }
     }
 
     private List<Item> generateLoot(List<Enemy> enemies) {
         List<Item> items = new ArrayList<>();
         for (Enemy enemy : enemies) {
-            items.addAll(getItems(enemy.getDifficulty()));
+            items.addAll(hero.getInventory().getItems(enemy.getDifficulty()));
         }
         return items;
     }
