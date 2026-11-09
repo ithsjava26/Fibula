@@ -5,21 +5,35 @@ import com.fangdjupet.item.EquipableItemCategory;
 import com.fangdjupet.item.ItemCategory;
 
 public class Chestplate implements Armor {
-    private static final ArmorType type = ArmorType.CHESTPLATE;
-    private static final int ARMOR_VALUE = 2;
-    private static final EquipableItemCategory equipableItemCategory = EquipableItemCategory.ARMOR;
-    private static final String ITEM_NAME = "Chestplate";
-    private static final ItemCategory itemCategory = ItemCategory.EQUIPABLE;
-    private static final Difficulty difficultyLevel = Difficulty.MEDIUM;
+    private final ArmorType armorType;
+    private int armorStrength;
+    private final EquipableItemCategory equipableItemCategory;
+    private final String itemName;
+    private final ItemCategory itemCategory;
+    private final Difficulty difficultyLevel;
 
-    @Override
-    public ArmorType getArmorType() {
-        return type;
+    public Chestplate() {
+        this.armorType = ArmorType.CHESTPLATE;
+        this.armorStrength = 3;
+        this.equipableItemCategory = EquipableItemCategory.ARMOR;
+        this.itemName = "Chestplate";
+        this.itemCategory = ItemCategory.EQUIPABLE;
+        this.difficultyLevel = Difficulty.MEDIUM;
     }
 
     @Override
-    public int getArmorValue() {
-        return ARMOR_VALUE;
+    public ArmorType getArmorType() {
+        return armorType;
+    }
+
+    @Override
+    public int getArmorStrength() {
+        return armorStrength;
+    }
+
+    @Override
+    public void setArmorStrength(int armorStrength) {
+        this.armorStrength = armorStrength;
     }
 
     @Override
@@ -29,7 +43,7 @@ public class Chestplate implements Armor {
 
     @Override
     public String getItemName() {
-        return ITEM_NAME;
+        return itemName;
     }
 
     @Override

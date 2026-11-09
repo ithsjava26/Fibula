@@ -11,8 +11,9 @@ public class QuestRoom implements Room {
 
     @Override
     public void enter() {
-        System.out.println("You have reached the final room of your quest!\n" +
-                "You encounter a ------!");
+        System.out.println("The chamber is draped in thick webs." +
+                " Something enormous stirs in the darkness," +
+                " eight eyes glinting as a giant spider emerges.");
         currentEnemies = spawnQuestEnemy();
     }
 
