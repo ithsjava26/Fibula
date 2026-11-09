@@ -13,9 +13,9 @@ import java.util.List;
 
 public class GameEngine {
     private final RoomManager roomManager = new RoomManager();
-    private final Character hero = new Hero();
     private final Inventory inventory = new Inventory();
-    private final GameMenu gameMenu = new GameMenu();
+    private final Character hero = new Hero(inventory);
+    protected final GameMenu gameMenu = new GameMenu();
     private boolean isRunning = true;
 
     static void main() {
@@ -132,7 +132,7 @@ public class GameEngine {
     }
 
     private List<Item> generateLoot(List<Enemy> enemies) {
-        ArrayList<Item> items = new ArrayList<>();
+        List<Item> items = new ArrayList<>();
         for (Enemy enemy : enemies) {
             items.addAll(getItems(enemy.getDifficulty()));
         }
