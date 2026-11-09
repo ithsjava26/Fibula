@@ -136,7 +136,7 @@ public class GameEngine {
             //        the player if they want to use another item
             //  - Insert method call for case 2. Swap equipment
             case "2" -> ;
-            case "3" -> ;
+            case "3" -> hero.getInventory().equip;
         }
     }
 
