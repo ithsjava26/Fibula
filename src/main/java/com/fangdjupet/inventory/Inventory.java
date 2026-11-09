@@ -37,6 +37,10 @@ public class Inventory {
         return currentlyEquipped;
     }
 
+    public List<Item> getBackpack() {
+        return backpack;
+    }
+
     public void clearInventory() {
         backpack.clear();
         currentlyEquipped.clear();
