@@ -28,9 +28,13 @@ public class Inventory {
     private final List<Item> backpack = new ArrayList<>();
     private final List<Item> currentlyEquipped = new ArrayList<>();
 
-    public void initializeInventory() {
+
+
+    public Inventory() {
         currentlyEquipped.add(Weapon.createWeapon(WeaponType.LONGBOW));
-        backpack.add(HealingPotion.createHealingPotion(HealingPotionType.SMALL_CUT_INJURY_HEALING_POTION));
+        backpack.add(HealingPotion.createHealingPotion(
+                HealingPotionType.SMALL_CUT_INJURY_HEALING_POTION
+        ));
     }
 
     public List<Item> getCurrentlyEquipped() {
@@ -220,6 +224,24 @@ public class Inventory {
             case "1" -> healingPotionMenu(hero);
             case "2" -> attackRuneMenu(enemy);
             case "3" -> {
+                return;
+            }
+            default -> game.printRed("Invalid choice");
+        }
+    }
+
+    public void useItems(Hero hero) {
+        IO.println();
+        game.printYellow("""
+                1. Drink healing potion
+                2. Back/Cancel
+                """);
+
+        String choice = IO.readln();
+
+        switch (choice) {
+            case "1" -> healingPotionMenu(hero);
+            case "2" -> {
                 return;
             }
             default -> game.printRed("Invalid choice");
