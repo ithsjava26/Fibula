@@ -28,8 +28,7 @@ public class Inventory {
     private final List<Item> backpack = new ArrayList<>();
     private final List<Item> currentlyEquipped = new ArrayList<>();
 
-
-
+    //Default constructor
     public Inventory() {
         currentlyEquipped.add(Weapon.createWeapon(WeaponType.LONGBOW));
         backpack.add(HealingPotion.createHealingPotion(

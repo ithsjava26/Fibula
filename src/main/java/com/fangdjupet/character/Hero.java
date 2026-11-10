@@ -4,8 +4,7 @@ import com.fangdjupet.combat.AttackStrategy;
 import com.fangdjupet.combat.HeroMagicAttack;
 import com.fangdjupet.combat.HeroMeleeAttack;
 import com.fangdjupet.common.Effect;
-import com.fangdjupet.item.Item;
-import java.util.List;
+import com.fangdjupet.inventory.Inventory;
 
 /**
  * Represents a hero in the game that implements the character interface. It does not have a superclass, like
@@ -20,37 +19,29 @@ import java.util.List;
 public class Hero implements Character {
     private final String name;
     private int health;
-    private AttackStrategy meleeAttack;
-    private AttackStrategy magicAttack;
+    private final AttackStrategy meleeAttack;
+    private final AttackStrategy magicAttack;
     private Effect status;
-    private List<Item> inventory;
+    private final Inventory inventory;
 
-    //Overloaded constructor
+    //Overloaded constructor. Alt: To set another hero name and health.
     public Hero(String name, int health) {
         this.name = name;
         this.health = health;
         this.meleeAttack = new HeroMeleeAttack();
         this.magicAttack = new HeroMagicAttack();
         this.status = Effect.NEUTRAL;
-    }
-
-    //Constructor with inventory
-    public Hero(List<Item> inventory) {
-        this.name = "Arthur LightBringer, Palladin Knight";
-        this.health = 100;
-        this.meleeAttack = new HeroMeleeAttack();
-        this.magicAttack = new HeroMagicAttack();
-        this.inventory = inventory;
-        this.status = Effect.NEUTRAL;
+        this.inventory = new Inventory();
     }
 
     //Default constructor
     public Hero() {
-        this.name = "Arthur LightBringer, Palladin Knight";
+        this.name = "Arthur LightBringer";
         this.health = 100;
         this.meleeAttack = new HeroMeleeAttack();
         this.magicAttack = new HeroMagicAttack();
         this.status = Effect.NEUTRAL;
+        this.inventory = new Inventory();
     }
 
     public int meleeAttack() {
@@ -96,6 +87,15 @@ public class Hero implements Character {
 
     public void setHealth(int health) {
         this.health = health;
+    }
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    public String getDescription() {
+        return "Arthur LightBringer, a palladin knight who wields mighty weapons and magical runes." +
+                "He is known for his unwavering bravery and commitment to vanquishing evil!";
     }
 
 }

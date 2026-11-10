@@ -130,8 +130,8 @@ public class GameEngine {
             //      - Implement method in GameMenu that asks
             //        the player if they want to use another item
             //  - Insert method call for case 2. Swap equipment
-            case "2" -> ;
-            case "3" -> hero.getInventory().equip;
+            case "2" -> hero.getInventory().useItems(hero);
+            case "3" -> hero.getInventory().equip();
         }
     }
 
