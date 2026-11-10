@@ -123,15 +123,14 @@ public class GameEngine {
         String choice = gameMenu.printCamp();
 
         switch (choice) {
-            // TODO:
-            //  - Implement handler for case 2. Use items
-            //    Handler should include a do-while loop
-            //    that stops once the user is finished
-            //      - Implement method in GameMenu that asks
-            //        the player if they want to use another item
-            //  - Insert method call for case 2. Swap equipment
-            case "2" -> hero.getInventory().useItems(hero);
-            case "3" -> hero.getInventory().equip();
+            case "2" -> {
+                hero.getInventory().useItems(hero);
+                camp();
+            }
+            case "3" -> {
+                hero.getInventory().equip();
+                camp();
+            }
         }
     }
 
