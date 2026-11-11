@@ -1,8 +1,5 @@
 package com.fangdjupet.character;
 
-import com.fangdjupet.combat.AttackStrategy;
-import com.fangdjupet.combat.HeroMagicAttack;
-import com.fangdjupet.combat.HeroMeleeAttack;
 import com.fangdjupet.common.Effect;
 import com.fangdjupet.inventory.Inventory;
 import com.fangdjupet.item.Item;
