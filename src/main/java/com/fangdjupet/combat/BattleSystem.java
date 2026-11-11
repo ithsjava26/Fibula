@@ -60,7 +60,7 @@ public class BattleSystem {
         game.printYellow("-- Player's turn --");
         game.printYellow("1. Use equipped weapon to attack");
         game.printYellow("2. Use magic runes to attack");
-        game.printYellow("3. Equip Weapon/Armor");
+        game.printYellow("3. Swap equipment");
         game.printYellow("4. Drink health potion");
         game.printYellow("5. Open and see Inventory");
 
@@ -73,7 +73,13 @@ public class BattleSystem {
             }
             case "2" -> {
                 System.out.println();
+                int enemyHealthBeforeAttack = enemy.getCurrentHealth();
                 hero.getInventory().useItems(enemy);
+                int enemyHealthAfterAttack = enemy.getCurrentHealth();
+                //Need to check if runeAttack was successful, else open player's turn menu again.
+                if (enemyHealthBeforeAttack == enemyHealthAfterAttack) {
+                    playerTurn(hero, enemy);
+                }
             }
             case "3" -> {
                 hero.getInventory().equip(hero);
@@ -123,11 +129,6 @@ public class BattleSystem {
                 game.printRed("You are burned, you take 15 passive damage!");
                 System.out.println();
                 hero.takeDamage(15);
-            }
-            case NEUTRAL -> {
-                System.out.println();
-                game.printYellow("No additional effects are acting on you.");
-                System.out.println();
             }
         }
     }
