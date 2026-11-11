@@ -3,6 +3,7 @@ package com.fangdjupet.character;
 import com.fangdjupet.combat.AttackStrategy;
 import com.fangdjupet.combat.RangedAttack;
 import com.fangdjupet.common.Difficulty;
+import com.fangdjupet.menu.GameMenu;
 
 /**
  * Represents an easy enemy, which extends the Enemy class.
@@ -12,6 +13,7 @@ import com.fangdjupet.common.Difficulty;
 
 public class EasyEnemy extends Enemy {
     private final AttackStrategy rangedAttack;
+    private final GameMenu game = new GameMenu();
 
     //Constructor
     public EasyEnemy() {
@@ -21,7 +23,7 @@ public class EasyEnemy extends Enemy {
 
     @Override
     public int attack() {
-        System.out.println(
+        game.printRed(
                 getCharacterName() +
                         " shoots " +
                         rangedAttack.getName()
