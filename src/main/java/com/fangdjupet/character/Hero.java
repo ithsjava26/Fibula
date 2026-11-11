@@ -5,6 +5,10 @@ import com.fangdjupet.combat.HeroMagicAttack;
 import com.fangdjupet.combat.HeroMeleeAttack;
 import com.fangdjupet.common.Effect;
 import com.fangdjupet.inventory.Inventory;
+import com.fangdjupet.item.Item;
+import com.fangdjupet.item.armor.Armor;
+import com.fangdjupet.item.weapon.Weapon;
+import com.fangdjupet.item.weapon.WeaponType;
 import com.fangdjupet.menu.GameMenu;
 
 /**
@@ -25,6 +29,7 @@ public class Hero implements Character {
     private Effect status;
     private final Inventory inventory;
     private final GameMenu game = new GameMenu();
+    private static final int BASE_MAX_HEALTH = 50;
 
     //Overloaded constructor. Alt: To set another hero name and health.
     public Hero(String name, int health) {
@@ -47,8 +52,20 @@ public class Hero implements Character {
     }
 
     public int meleeAttack() {
-        game.printGreen(meleeAttack.getName());
-        return meleeAttack.attack();
+        Weapon weapon = getEquippedWeapon();
+
+        if (weapon == null) {
+            game.printGreen("No weapon equipped, you punch the enemy with fists dealing 5 damage");
+            return 5;
+        }
+
+        WeaponType weaponType = weapon.getWeaponType();
+        switch (weaponType) {
+            case SWORD, AXE -> game.printGreen("You swing your " + weapon.getItemName() + ", dealing " + weapon.getWeaponStrength() + " damage");
+            case DAGGER -> game.printGreen("You throw your " + weapon.getItemName() + ", dealing " + weapon.getWeaponStrength() + " damage");
+            case LONGBOW -> game.printGreen("You shoot your " + weapon.getItemName() + ", dealing " + weapon.getWeaponStrength() + " damage");
+        }
+        return weapon.getWeaponStrength();
     }
 
     public int magicAttack() {
@@ -87,8 +104,40 @@ public class Hero implements Character {
         return status;
     }
 
-    public void setHealth(int health) {
-        this.health = health;
+    public void setHealth(int newHealth) {
+        if(newHealth > getMaxHealth()) {
+            newHealth = getMaxHealth();
+            game.printGreen("You have regained your maximum health!");
+        }
+        this.health = newHealth;
+    }
+
+    public int getMaxHealth() {
+        int maxHealth = BASE_MAX_HEALTH;
+
+        for(Item item : inventory.getCurrentlyEquipped()) {
+
+            if(item instanceof Armor armor) {
+
+                maxHealth += armor.getArmorStrength();
+            }
+        }
+        return maxHealth;
+    }
+
+    public void validateHealth() {
+        if(health > getMaxHealth()) {
+            health = getMaxHealth();
+        }
+    }
+
+    public Weapon getEquippedWeapon() {
+        for(Item item : inventory.getCurrentlyEquipped()) {
+            if(item instanceof Weapon weapon) {
+                return weapon;
+            }
+        }
+        return null;
     }
 
     public Inventory getInventory() {
