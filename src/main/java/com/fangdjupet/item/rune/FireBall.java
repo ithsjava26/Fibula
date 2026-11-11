@@ -18,7 +18,7 @@ public class FireBall implements AttackRune {
 
     public FireBall() {
         this.attackRuneType = AttackRuneType.FIRE_BALL;
-        this.attackRuneStrength = 10;
+        this.attackRuneStrength = 15;
         this.consumableItemCategory = ConsumableItemCategory.ATTACK_RUNE;
         this.itemName = "Fire ball rune";
         this.itemCategory = ItemCategory.CONSUMABLE;
@@ -43,7 +43,7 @@ public class FireBall implements AttackRune {
     @Override
     public void useAttackRune(Enemy enemy) {
         enemy.takeDamage(attackRuneStrength);
-        game.printRed("You use the " + itemName + ", dealing " + attackRuneStrength + " damage!");
+        game.printGreen("You use the " + itemName + ", dealing " + attackRuneStrength + " damage!");
     }
 
     @Override
