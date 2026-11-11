@@ -51,7 +51,7 @@ public class Hero implements Character {
         this.inventory = new Inventory();
     }
 
-    public int meleeAttack() {
+    public int attack() {
         Weapon weapon = getEquippedWeapon();
 
         if (weapon == null) {
@@ -66,11 +66,6 @@ public class Hero implements Character {
             case LONGBOW -> game.printGreen("You shoot your " + weapon.getItemName() + ", dealing " + weapon.getWeaponStrength() + " damage");
         }
         return weapon.getWeaponStrength();
-    }
-
-    public int magicAttack() {
-        game.printGreen(magicAttack.getName());
-        return magicAttack.attack();
     }
 
     @Override
@@ -107,7 +102,7 @@ public class Hero implements Character {
     public void setHealth(int newHealth) {
         if(newHealth > getMaxHealth()) {
             newHealth = getMaxHealth();
-            game.printGreen("You have regained your maximum health!");
+            game.printGreen("You have regained your maximum health:" + newHealth + " HP");
         }
         this.health = newHealth;
     }
