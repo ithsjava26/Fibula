@@ -37,6 +37,8 @@ public class GameEngine {
     }
 
     public void start() {
+        hero.getDescription();
+        gameMenu.printGreen(hero.getDescription());
 
         while (isRunning) {
             Room currentRoom = roomManager.getCurrentRoom();
@@ -129,6 +131,10 @@ public class GameEngine {
             }
             case "3" -> {
                 hero.getInventory().equip(hero);
+                camp();
+            }
+            case "4" -> {
+                hero.getInventory().printAllItemsInInventory();
                 camp();
             }
         }
