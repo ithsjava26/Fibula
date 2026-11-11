@@ -14,7 +14,7 @@ public class Longbow implements Weapon {
 
     public Longbow() {
         this.weaponType = WeaponType.LONGBOW;
-        this.weaponStrength = 9;
+        this.weaponStrength = 10;
         this.equipableItemCategory = EquipableItemCategory.WEAPON;
         this.itemName = "Longbow";
         this.itemCategory = ItemCategory.EQUIPABLE;
