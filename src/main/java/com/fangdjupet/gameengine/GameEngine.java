@@ -28,9 +28,6 @@ public class GameEngine {
                 session.start();
                 break;
             case "2":
-                // Load savefile
-                break;
-            case "3":
                 session.gameMenu.printRed("Exiting current game session..");
                 break;
         }
@@ -38,7 +35,7 @@ public class GameEngine {
 
     public void start() {
         hero.getDescription();
-        gameMenu.printGreen(hero.getDescription());
+        gameMenu.printBlue(hero.getDescription());
 
         while (isRunning) {
             Room currentRoom = roomManager.getCurrentRoom();
