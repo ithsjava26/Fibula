@@ -48,7 +48,7 @@ public class SmallBurnHealingPotion implements HealingPotion {
     @Override
     public void usePotion(Hero hero) {
         hero.setHealth(hero.getCurrentHealth() + healingAmount);
-        IO.println("You drink the small burn healing potion and heal " + healingAmount + " HP.");
+        game.printGreen("You drink the small burn healing potion and heal " + healingAmount + " HP.");
     }
 
     @Override

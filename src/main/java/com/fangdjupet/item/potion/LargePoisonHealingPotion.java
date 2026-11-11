@@ -53,11 +53,11 @@ public class LargePoisonHealingPotion implements HealingPotion {
             hero.setStatus(healCondition);
         }
         hero.setHealth(hero.getCurrentHealth() + healingAmount);
-        IO.println("You drink the large poison healing potion and heal " + healingAmount + " HP.");
+        game.printGreen("You drink the large poison healing potion and heal " + healingAmount + " HP.");
         if (matchingStatus) {
-            IO.println("You remove the poison from your body. You now feel better.");
+            game.printGreen("You remove the poison from your body. You now feel better.");
         } else {
-            IO.println("You have no poison to heal.");
+            game.printRed("You have no poison to heal.");
         }
     }
 
