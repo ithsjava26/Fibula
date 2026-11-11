@@ -129,7 +129,7 @@ public class Inventory {
         }
     }
 
-    public void equip() {
+    public void equip(Hero hero) {
         IO.println();
         game.printYellow("""
                 Enter the number of the equipment you want to equip:
@@ -145,8 +145,14 @@ public class Inventory {
         String choice = IO.readln();
 
         switch (choice) {
-            case "1" -> equipItem("Helmet");
-            case "2" -> equipItem("Chestplate");
+            case "1" -> {
+                equipItem("Helmet");
+                hero.validateHealth();
+            }
+            case "2" -> {
+                equipItem("Chestplate");
+                hero.validateHealth();
+            }
             case "3" -> equipItem("Longbow");
             case "4" -> equipItem("Sword");
             case "5" -> equipItem("Axe");
@@ -209,22 +215,16 @@ public class Inventory {
         game.printYellow("Equipping " + itemToEquip.getItemName());
     }
 
-    public void useItems(Hero hero, Enemy enemy) {
+    public void useItems(Enemy enemy) {
         IO.println();
         game.printYellow("""
-                1. Drink healing potion
-                2. Use attack rune
-                3. Back/Cancel
+                1. See all magic attack runes
                 """);
 
         String choice = IO.readln();
 
         switch (choice) {
-            case "1" -> healingPotionMenu(hero);
-            case "2" -> attackRuneMenu(enemy);
-            case "3" -> {
-                return;
-            }
+            case "1" -> attackRuneMenu(enemy);
             default -> game.printRed("Invalid choice");
         }
     }
@@ -253,7 +253,7 @@ public class Inventory {
                 1. Use Fire ball rune
                 2. Use Stone shower rune
                 3. Use Poison bomb rune
-                4. Use Paralyze rune
+                4. Use Bright supernova rune
                 5. Back/Cancel
                 """);
 
@@ -369,14 +369,14 @@ public class Inventory {
         // Add all equipped armors to list
         for (Item item : currentlyEquipped) {
             if (item instanceof Armor armor) {
-                formattedArmors.add(armor.getItemName() + ", strength: " + armor.getArmorStrength() +
+                formattedArmors.add(armor.getItemName() + ", increases max HP with " + armor.getArmorStrength() + " HP" +
                         " (Currently equipped)");
             }
         }
         // Add all armors in backpack to list
         for (Item item : backpack) {
             if (item instanceof Armor armor) {
-                formattedArmors.add(armor.getItemName() + ", strength: " + armor.getArmorStrength() +
+                formattedArmors.add(armor.getItemName() + ", increases max HP with " + armor.getArmorStrength() + " HP" +
                         " (In backpack)");
             }
         }
