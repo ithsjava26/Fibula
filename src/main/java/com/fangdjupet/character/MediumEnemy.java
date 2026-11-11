@@ -3,6 +3,7 @@ package com.fangdjupet.character;
 import com.fangdjupet.combat.AttackStrategy;
 import com.fangdjupet.combat.MeleeAttack;
 import com.fangdjupet.common.Difficulty;
+import com.fangdjupet.menu.GameMenu;
 
 /**
  * Represents a medium enemy, which extends the Enemy class.
@@ -14,6 +15,7 @@ import com.fangdjupet.common.Difficulty;
 
 public class MediumEnemy extends Enemy {
     private final AttackStrategy meleeAttack;
+    private final GameMenu game = new GameMenu();
 
     //Constructor
     public MediumEnemy() {
@@ -23,7 +25,7 @@ public class MediumEnemy extends Enemy {
 
     @Override
     public int attack() {
-        System.out.println(
+        game.printRed(
                 getCharacterName() +
                         " swings " +
                         meleeAttack.getName()

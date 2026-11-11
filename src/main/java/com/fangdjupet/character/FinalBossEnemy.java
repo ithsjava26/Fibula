@@ -2,6 +2,7 @@ package com.fangdjupet.character;
 
 import com.fangdjupet.combat.*;
 import com.fangdjupet.common.Difficulty;
+import com.fangdjupet.menu.GameMenu;
 
 /**
  * Represents the final boss enemy in the game, which extends the Enemy class.
@@ -15,6 +16,7 @@ public class FinalBossEnemy extends Enemy {
     private final AttackStrategy meleeAttack;
     private final AttackStrategy rangedAttack;
     private final AttackStrategy magicAttack;
+    private final GameMenu game = new GameMenu();
 
     public FinalBossEnemy() {
         super("Ancient Dragon, Malakai the Dread", 150, new MeleeBossAttack(), Difficulty.HARD);
@@ -28,7 +30,7 @@ public class FinalBossEnemy extends Enemy {
 
         if(getCurrentHealth() < 50) {
             super.attackStrategy = magicAttack;
-            System.out.println(
+            game.printRed(
                     getCharacterName() +
                             " conjures " +
                             magicAttack.getName()
@@ -38,7 +40,7 @@ public class FinalBossEnemy extends Enemy {
 
         if(getCurrentHealth() < 100) {
             super.attackStrategy = rangedAttack;
-            System.out.println(
+            game.printRed(
                     getCharacterName() +
                             " creates " +
                             rangedAttack.getName()
@@ -47,7 +49,7 @@ public class FinalBossEnemy extends Enemy {
         }
 
         else {
-            System.out.println(
+            game.printRed(
                     getCharacterName() +
                             " swings " +
                             meleeAttack.getName()

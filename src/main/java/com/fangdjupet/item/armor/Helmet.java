@@ -14,7 +14,7 @@ public class Helmet implements Armor {
 
     public Helmet() {
         this.armorType = ArmorType.HELMET;
-        this.armorStrength = 1;
+        this.armorStrength = 50;
         this.equipableItemCategory = EquipableItemCategory.ARMOR;
         this.itemName = "Helmet";
         this.itemCategory = ItemCategory.EQUIPABLE;

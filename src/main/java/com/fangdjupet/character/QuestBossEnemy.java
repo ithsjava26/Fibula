@@ -2,6 +2,7 @@ package com.fangdjupet.character;
 
 import com.fangdjupet.combat.*;
 import com.fangdjupet.common.Difficulty;
+import com.fangdjupet.menu.GameMenu;
 
 /**
  * Represents the quest boss enemy, at the end of the sidequest portion of the game (extends the Enemy class).
@@ -14,6 +15,7 @@ import com.fangdjupet.common.Difficulty;
 public class QuestBossEnemy extends Enemy {
         private final AttackStrategy meleeAttack;
         private final AttackStrategy rangedAttack;
+        private final GameMenu game = new GameMenu();
 
         public QuestBossEnemy() {
             super("Giant spider, Ungoliath the Black", 100, new MeleeQuestBossAttack(), Difficulty.QUEST);
@@ -26,7 +28,7 @@ public class QuestBossEnemy extends Enemy {
 
             if(getCurrentHealth() < 50) {
                 super.attackStrategy = rangedAttack;
-                System.out.println(
+                game.printRed(
                         getCharacterName() +
                                 " spits " +
                                 rangedAttack.getName()
@@ -35,7 +37,7 @@ public class QuestBossEnemy extends Enemy {
             }
 
             else {
-                System.out.println(
+                game.printRed(
                         getCharacterName() +
                                 " bites " +
                                 meleeAttack.getName()

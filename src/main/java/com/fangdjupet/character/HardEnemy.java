@@ -3,6 +3,7 @@ package com.fangdjupet.character;
 import com.fangdjupet.combat.AttackStrategy;
 import com.fangdjupet.combat.MagicAttack;
 import com.fangdjupet.common.Difficulty;
+import com.fangdjupet.menu.GameMenu;
 
 /**
  * Represents a hard enemy, which extends the Enemy class.
@@ -14,6 +15,7 @@ import com.fangdjupet.common.Difficulty;
 
 public class HardEnemy extends Enemy {
     private final AttackStrategy magicAttack;
+    private final GameMenu game = new GameMenu();
 
     public HardEnemy() {
         super("Wraith Mage", 60, new MagicAttack(), Difficulty.HARD);
@@ -22,7 +24,7 @@ public class HardEnemy extends Enemy {
 
     @Override
     public int attack() {
-        System.out.println(
+        game.printRed(
                 getCharacterName() +
                         " casts " +
                         magicAttack.getName()

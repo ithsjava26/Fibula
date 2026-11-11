@@ -18,7 +18,7 @@ public class PoisonBomb implements AttackRune {
 
     public PoisonBomb() {
         this.attackRuneType = AttackRuneType.POISON_BOMB;
-        this.attackRuneStrength = 19;
+        this.attackRuneStrength = 40;
         this.consumableItemCategory = ConsumableItemCategory.ATTACK_RUNE;
         this.itemName = "Poison bomb rune";
         this.itemCategory = ItemCategory.CONSUMABLE;
@@ -43,7 +43,7 @@ public class PoisonBomb implements AttackRune {
     @Override
     public void useAttackRune(Enemy enemy) {
         enemy.takeDamage(attackRuneStrength);
-        game.printRed("You use the " + itemName + ", dealing " + attackRuneStrength + " damage!");
+        game.printGreen("You use the " + itemName + ", dealing " + attackRuneStrength + " damage!");
     }
 
     @Override

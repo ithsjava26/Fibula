@@ -5,20 +5,24 @@ import com.fangdjupet.common.Difficulty;
 import com.fangdjupet.common.Effect;
 import com.fangdjupet.item.ConsumableItemCategory;
 import com.fangdjupet.item.ItemCategory;
+import com.fangdjupet.menu.GameMenu;
 
 public class SmallPoisonHealingPotion implements HealingPotion {
     private final HealingPotionType healingPotionType;
     private final Effect potionEffect;
+    private final Effect healCondition;
     private int healingAmount;
     private final ConsumableItemCategory consumableItemCategory;
     private final String itemName;
     private final ItemCategory itemCategory;
     private final Difficulty itemDifficultyLevel;
+    private final GameMenu game = new GameMenu();
 
     public SmallPoisonHealingPotion() {
         this.healingPotionType = HealingPotionType.SMALL_POISON_HEALING_POTION;
         this.potionEffect = Effect.POISONED;
-        this.healingAmount = 5;
+        this.healCondition = Effect.NEUTRAL;
+        this.healingAmount = 25;
         this.consumableItemCategory = ConsumableItemCategory.HEALING_POTION;
         this.itemName = "Small Poison Healing Potion";
         this.itemCategory = ItemCategory.CONSUMABLE;
@@ -46,8 +50,17 @@ public class SmallPoisonHealingPotion implements HealingPotion {
 
     @Override
     public void usePotion(Hero hero) {
-        hero.setHealth(hero.getCurrentHealth() + healingAmount);
+        boolean matchingStatus = hero.getStatus() == getPotionEffect();
+        if (matchingStatus) {
+            hero.setStatus(healCondition);
+        }
         game.printGreen("You drink the small poison healing potion and heal " + healingAmount + " HP.");
+        hero.setHealth(hero.getCurrentHealth() + healingAmount);
+        if (matchingStatus) {
+            game.printGreen("You remove the poison from your body. You now feel better.");
+        } else {
+            game.printYellow("You have no poison to heal.");
+        }
     }
 
     @Override
