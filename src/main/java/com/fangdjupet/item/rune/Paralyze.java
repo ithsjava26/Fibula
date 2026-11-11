@@ -18,7 +18,7 @@ public class Paralyze implements AttackRune {
 
     public Paralyze() {
         this.attackRuneType = AttackRuneType.PARALYZE;
-        this.attackRuneStrength = 40;
+        this.attackRuneStrength = 60;
         this.consumableItemCategory = ConsumableItemCategory.ATTACK_RUNE;
         this.itemName = "Bright supernova rune";
         this.itemCategory = ItemCategory.CONSUMABLE;

@@ -18,7 +18,7 @@ public class PoisonBomb implements AttackRune {
 
     public PoisonBomb() {
         this.attackRuneType = AttackRuneType.POISON_BOMB;
-        this.attackRuneStrength = 25;
+        this.attackRuneStrength = 40;
         this.consumableItemCategory = ConsumableItemCategory.ATTACK_RUNE;
         this.itemName = "Poison bomb rune";
         this.itemCategory = ItemCategory.CONSUMABLE;

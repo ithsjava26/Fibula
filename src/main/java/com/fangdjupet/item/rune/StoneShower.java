@@ -18,7 +18,7 @@ public class StoneShower implements AttackRune {
 
     public StoneShower() {
         this.attackRuneType = AttackRuneType.STONE_SHOWER;
-        this.attackRuneStrength = 20;
+        this.attackRuneStrength = 40;
         this.consumableItemCategory = ConsumableItemCategory.ATTACK_RUNE;
         this.itemName = "Stone shower rune";
         this.itemCategory = ItemCategory.CONSUMABLE;

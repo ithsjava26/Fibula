@@ -18,7 +18,7 @@ public class FireBall implements AttackRune {
 
     public FireBall() {
         this.attackRuneType = AttackRuneType.FIRE_BALL;
-        this.attackRuneStrength = 15;
+        this.attackRuneStrength = 30;
         this.consumableItemCategory = ConsumableItemCategory.ATTACK_RUNE;
         this.itemName = "Fire ball rune";
         this.itemCategory = ItemCategory.CONSUMABLE;
