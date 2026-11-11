@@ -3,8 +3,11 @@ package com.fangdjupet.item.potion;
 import com.fangdjupet.character.Hero;
 import com.fangdjupet.common.Effect;
 import com.fangdjupet.item.ConsumableItem;
+import com.fangdjupet.menu.GameMenu;
 
 public interface HealingPotion extends ConsumableItem {
+    GameMenu game = new GameMenu();
+
     HealingPotionType getHealingPotionType();
 
     Effect getPotionEffect();
