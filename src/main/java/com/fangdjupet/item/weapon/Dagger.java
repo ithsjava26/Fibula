@@ -14,9 +14,9 @@ public class Dagger implements Weapon {
 
     public Dagger() {
         this.weaponType = WeaponType.DAGGER;
-        this.weaponStrength = 19;
+        this.weaponStrength = 30;
         this.equipableItemCategory = EquipableItemCategory.WEAPON;
-        this.itemName = "Dagger";
+        this.itemName = "Daggers";
         this.itemCategory = ItemCategory.EQUIPABLE;
         this.difficultyLevel = Difficulty.HARD;
     }

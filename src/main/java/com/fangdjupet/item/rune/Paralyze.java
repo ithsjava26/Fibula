@@ -18,9 +18,9 @@ public class Paralyze implements AttackRune {
 
     public Paralyze() {
         this.attackRuneType = AttackRuneType.PARALYZE;
-        this.attackRuneStrength = 5;
+        this.attackRuneStrength = 60;
         this.consumableItemCategory = ConsumableItemCategory.ATTACK_RUNE;
-        this.itemName = "Paralyze rune";
+        this.itemName = "Bright supernova rune";
         this.itemCategory = ItemCategory.CONSUMABLE;
         this.difficultyLevel = Difficulty.QUEST;
     }
@@ -43,8 +43,8 @@ public class Paralyze implements AttackRune {
     @Override
     public void useAttackRune(Enemy enemy) {
         enemy.takeDamage(attackRuneStrength);
-        game.printRed("You use the " + itemName + ". Suddenly the enemy becomes completely paralyzed, " +
-                "unable to attack on the next move, and also dealing " + attackRuneStrength + " damage!");
+        game.printGreen("You use the " + itemName + ", your most powerful attack. The enemy is engulfed in light, " +
+                "dealing a massive" + attackRuneStrength + " damage!");
     }
 
     @Override

@@ -5,6 +5,7 @@ import com.fangdjupet.common.Difficulty;
 import com.fangdjupet.common.Effect;
 import com.fangdjupet.item.ConsumableItemCategory;
 import com.fangdjupet.item.ItemCategory;
+import com.fangdjupet.menu.GameMenu;
 
 public class LargeCutInjuryHealingPotion implements HealingPotion {
     private final HealingPotionType healingPotionType;
@@ -15,12 +16,13 @@ public class LargeCutInjuryHealingPotion implements HealingPotion {
     private final String itemName;
     private final ItemCategory itemCategory;
     private final Difficulty itemDifficultyLevel;
+    private final GameMenu game = new GameMenu();
 
     public LargeCutInjuryHealingPotion() {
         this.healingPotionType = HealingPotionType.LARGE_CUT_INJURY_HEALING_POTION;
         this.potionEffect = Effect.BLEEDING;
         this.healCondition = Effect.NEUTRAL;
-        this.healingAmount = 5;
+        this.healingAmount = 50;
         this.consumableItemCategory = ConsumableItemCategory.HEALING_POTION;
         this.itemName = "Large Cut Injury Healing Potion";
         this.itemCategory = ItemCategory.CONSUMABLE;
@@ -52,12 +54,12 @@ public class LargeCutInjuryHealingPotion implements HealingPotion {
         if (matchingStatus) {
             hero.setStatus(healCondition);
         }
-        hero.setHealth(hero.getCurrentHealth() + healingAmount);
         game.printGreen("You drink the large cut healing potion and heal " + healingAmount + " HP.");
+        hero.setHealth(hero.getCurrentHealth() + healingAmount);
         if (matchingStatus) {
             game.printGreen("You heal your cut injury. You now feel better.");
         } else {
-            game.printRed("You have no cut injury to heal.");
+            game.printYellow("You have no cut injury to heal.");
         }
     }
 

@@ -14,7 +14,7 @@ public class Chestplate implements Armor {
 
     public Chestplate() {
         this.armorType = ArmorType.CHESTPLATE;
-        this.armorStrength = 3;
+        this.armorStrength = 50;
         this.equipableItemCategory = EquipableItemCategory.ARMOR;
         this.itemName = "Chestplate";
         this.itemCategory = ItemCategory.EQUIPABLE;

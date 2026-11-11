@@ -14,7 +14,7 @@ public class Axe implements Weapon {
 
     public Axe() {
         this.weaponType = WeaponType.AXE;
-        this.weaponStrength = 13;
+        this.weaponStrength = 20;
         this.equipableItemCategory = EquipableItemCategory.WEAPON;
         this.itemName = "Axe";
         this.itemCategory = ItemCategory.EQUIPABLE;

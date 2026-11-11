@@ -14,7 +14,7 @@ public class Sword implements Weapon {
 
     public Sword() {
         this.weaponType = WeaponType.SWORD;
-        this.weaponStrength = 15;
+        this.weaponStrength = 25;
         this.equipableItemCategory = EquipableItemCategory.WEAPON;
         this.itemName = "Sword";
         this.itemCategory = ItemCategory.EQUIPABLE;

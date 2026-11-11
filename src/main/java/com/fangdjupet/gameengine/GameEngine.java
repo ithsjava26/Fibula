@@ -28,15 +28,14 @@ public class GameEngine {
                 session.start();
                 break;
             case "2":
-                // Load savefile
-                break;
-            case "3":
                 session.gameMenu.printRed("Exiting current game session..");
                 break;
         }
     }
 
     public void start() {
+        hero.getDescription();
+        gameMenu.printBlue(hero.getDescription());
 
         while (isRunning) {
             Room currentRoom = roomManager.getCurrentRoom();
@@ -128,7 +127,8 @@ public class GameEngine {
 
             switch (choice) {
                 case "2" -> hero.getInventory().useItems(hero);
-                case "3" -> hero.getInventory().equip();
+                case "3" -> hero.getInventory().equip(hero);
+                case "4" -> hero.getInventory().printAllItemsInInventory();
                 default -> camping = false;
             }
         }
