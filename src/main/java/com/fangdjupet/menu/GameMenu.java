@@ -86,14 +86,16 @@ public class GameMenu {
         }
     }
 
-    public String printCamp() {
+    public void printCampMessage() {
         printBlue("""
                 
                 You find a quiet spot to rest.
                 The fire crackles softly as you catch your breath.
                 
                 """);
+    }
 
+    public String campChoice() {
         while (true) {
             printBlue("""
                     1. Proceed

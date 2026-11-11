@@ -5,10 +5,14 @@ import com.fangdjupet.character.EasyEnemy;
 import com.fangdjupet.character.MediumEnemy;
 import com.fangdjupet.character.HardEnemy;
 import com.fangdjupet.common.Difficulty;
+import com.fangdjupet.menu.GameMenu;
+
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class BattleRoom implements Room {
+    private final GameMenu gameMenu = new GameMenu();
     private final String message;
     private final Difficulty difficulty;
     private List<Enemy> currentEnemies;
@@ -20,7 +24,7 @@ public class BattleRoom implements Room {
 
     @Override
     public void enter() {
-        System.out.println(message);
+        gameMenu.printBlue(message);
 
         switch (difficulty) {
             case BEGINNER:
