@@ -47,7 +47,7 @@ public class SmallPoisonHealingPotion implements HealingPotion {
     @Override
     public void usePotion(Hero hero) {
         hero.setHealth(hero.getCurrentHealth() + healingAmount);
-        IO.println("You drink the small poison healing potion and heal " + healingAmount + " HP.");
+        game.printGreen("You drink the small poison healing potion and heal " + healingAmount + " HP.");
     }
 
     @Override
