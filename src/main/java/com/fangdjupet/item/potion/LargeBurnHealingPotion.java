@@ -22,7 +22,7 @@ public class LargeBurnHealingPotion implements HealingPotion {
         this.healingPotionType = HealingPotionType.LARGE_BURN_HEALING_POTION;
         this.potionEffect = Effect.BURNING;
         this.healCondition = Effect.NEUTRAL;
-        this.healingAmount = 25;
+        this.healingAmount = 50;
         this.consumableItemCategory = ConsumableItemCategory.HEALING_POTION;
         this.itemName = "Large Burn Healing Potion";
         this.itemCategory = ItemCategory.CONSUMABLE;

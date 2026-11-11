@@ -22,7 +22,7 @@ public class LargeCutInjuryHealingPotion implements HealingPotion {
         this.healingPotionType = HealingPotionType.LARGE_CUT_INJURY_HEALING_POTION;
         this.potionEffect = Effect.BLEEDING;
         this.healCondition = Effect.NEUTRAL;
-        this.healingAmount = 25;
+        this.healingAmount = 50;
         this.consumableItemCategory = ConsumableItemCategory.HEALING_POTION;
         this.itemName = "Large Cut Injury Healing Potion";
         this.itemCategory = ItemCategory.CONSUMABLE;

@@ -22,7 +22,7 @@ public class SmallCutInjuryHealingPotion implements HealingPotion {
         this.healingPotionType = HealingPotionType.SMALL_CUT_INJURY_HEALING_POTION;
         this.potionEffect = Effect.BLEEDING;
         this.healCondition = Effect.NEUTRAL;
-        this.healingAmount = 15;
+        this.healingAmount = 25;
         this.consumableItemCategory = ConsumableItemCategory.HEALING_POTION;
         this.itemName = "Small Cut Injury Healing Potion";
         this.itemCategory = ItemCategory.CONSUMABLE;

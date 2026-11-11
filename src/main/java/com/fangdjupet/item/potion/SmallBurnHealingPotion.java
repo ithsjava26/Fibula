@@ -22,7 +22,7 @@ public class SmallBurnHealingPotion implements HealingPotion {
         this.healingPotionType = HealingPotionType.SMALL_BURN_HEALING_POTION;
         this.potionEffect = Effect.BURNING;
         this.healCondition = Effect.NEUTRAL;
-        this.healingAmount = 15;
+        this.healingAmount = 25;
         this.consumableItemCategory = ConsumableItemCategory.HEALING_POTION;
         this.itemName = "Small Burn Healing Potion";
         this.itemCategory = ItemCategory.CONSUMABLE;

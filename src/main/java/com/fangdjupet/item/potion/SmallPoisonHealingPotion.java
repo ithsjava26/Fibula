@@ -22,7 +22,7 @@ public class SmallPoisonHealingPotion implements HealingPotion {
         this.healingPotionType = HealingPotionType.SMALL_POISON_HEALING_POTION;
         this.potionEffect = Effect.POISONED;
         this.healCondition = Effect.NEUTRAL;
-        this.healingAmount = 15;
+        this.healingAmount = 25;
         this.consumableItemCategory = ConsumableItemCategory.HEALING_POTION;
         this.itemName = "Small Poison Healing Potion";
         this.itemCategory = ItemCategory.CONSUMABLE;
