@@ -36,14 +36,13 @@ public class GameMenu {
                 Welcome to Fibula!
                 
                 1. New game
-                2. Load savefile
-                3. Exit
+                2. Exit
                 """);
 
         String choice = IO.readln();
 
         switch (choice) {
-            case "1", "2", "3" -> {
+            case "1", "2" -> {
                 return choice;
             }
             default -> printRed("Invalid choice");
@@ -89,6 +88,7 @@ public class GameMenu {
 
     public String printCamp() {
         printBlue("""
+                
                 You find a quiet spot to rest.
                 The fire crackles softly as you catch your breath.
                 
@@ -98,12 +98,14 @@ public class GameMenu {
             printBlue("""
                     1. Proceed
                     2. Use items
-                    3. Swap equipment""");
+                    3. Swap equipment
+                    4. Open and see inventory
+                    """);
 
             String choice = IO.readln();
 
             switch (choice) {
-                case "1", "2", "3" -> {
+                case "1", "2", "3", "4" -> {
                     return choice;
                 }
                 default -> printRed("Invalid choice");
