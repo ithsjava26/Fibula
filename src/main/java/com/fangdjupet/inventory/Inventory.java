@@ -219,12 +219,16 @@ public class Inventory {
         IO.println();
         game.printYellow("""
                 1. See all magic attack runes
+                2. Back/Cancel
                 """);
 
         String choice = IO.readln();
 
         switch (choice) {
             case "1" -> attackRuneMenu(enemy);
+            case "2" -> {
+                return;
+            }
             default -> game.printRed("Invalid choice");
         }
     }
