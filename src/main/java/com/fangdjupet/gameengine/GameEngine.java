@@ -128,7 +128,7 @@ public class GameEngine {
                 camp();
             }
             case "3" -> {
-                hero.getInventory().equip();
+                hero.getInventory().equip(hero);
                 camp();
             }
         }
