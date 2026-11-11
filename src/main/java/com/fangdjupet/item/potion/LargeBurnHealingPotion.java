@@ -5,6 +5,7 @@ import com.fangdjupet.common.Difficulty;
 import com.fangdjupet.common.Effect;
 import com.fangdjupet.item.ConsumableItemCategory;
 import com.fangdjupet.item.ItemCategory;
+import com.fangdjupet.menu.GameMenu;
 
 public class LargeBurnHealingPotion implements HealingPotion {
     private final HealingPotionType healingPotionType;
@@ -15,12 +16,13 @@ public class LargeBurnHealingPotion implements HealingPotion {
     private final String itemName;
     private final ItemCategory itemCategory;
     private final Difficulty itemDifficultyLevel;
+    private final GameMenu game = new GameMenu();
 
     public LargeBurnHealingPotion() {
         this.healingPotionType = HealingPotionType.LARGE_BURN_HEALING_POTION;
         this.potionEffect = Effect.BURNING;
         this.healCondition = Effect.NEUTRAL;
-        this.healingAmount = 15;
+        this.healingAmount = 25;
         this.consumableItemCategory = ConsumableItemCategory.HEALING_POTION;
         this.itemName = "Large Burn Healing Potion";
         this.itemCategory = ItemCategory.CONSUMABLE;
@@ -52,12 +54,12 @@ public class LargeBurnHealingPotion implements HealingPotion {
         if (matchingStatus) {
             hero.setStatus(healCondition);
         }
+        game.printGreen("You drink the large burn healing potion and heal " + healingAmount + " HP.");
         hero.setHealth(hero.getCurrentHealth() + healingAmount);
-        IO.println("You drink the large burn healing potion and heal " + healingAmount + " HP.");
         if (matchingStatus) {
-            IO.println("You heal your burn injury. You now feel better.");
+            game.printGreen("You heal your burn injury. You now feel better.");
         } else {
-            IO.println("You have no burn injury to heal.");
+            game.printYellow("You have no burn injury to heal.");
         }
     }
 
