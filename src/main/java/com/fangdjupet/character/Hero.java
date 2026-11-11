@@ -95,9 +95,10 @@ public class Hero implements Character {
     public void setHealth(int newHealth) {
         if(newHealth > getMaxHealth()) {
             newHealth = getMaxHealth();
-            game.printGreen("You have regained your maximum health:" + newHealth + " HP");
+            game.printGreen("You have regained your maximum health");
         }
         this.health = newHealth;
+        game.printGreen("Your health is now: " + health + "/" + getMaxHealth() + " HP");
     }
 
     public int getMaxHealth() {
@@ -117,6 +118,7 @@ public class Hero implements Character {
         if(health > getMaxHealth()) {
             health = getMaxHealth();
         }
+        game.printGreen("Your maximum health is now " + getMaxHealth() + " HP");
     }
 
     public Weapon getEquippedWeapon() {
@@ -133,8 +135,13 @@ public class Hero implements Character {
     }
 
     public String getDescription() {
-        return "Arthur LightBringer, a palladin knight who wields mighty weapons and magical runes." +
-                "He is known for his unwavering bravery and commitment to vanquishing evil!";
+        return """
+                
+                A new adventure is beginning!
+                You play as Arthur LightBringer, a palladin knight who wields mighty weapons and magical runes.
+                He is known for his unwavering bravery and commitment to vanquishing evil!
+                Good luck on your journey! May the light be with you!
+                """;
     }
 
 }
