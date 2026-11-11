@@ -120,16 +120,16 @@ public class GameEngine {
         }
     }
     private void camp() {
-        String choice = gameMenu.printCamp();
+        gameMenu.printCampMessage();
+        boolean camping = true;
 
-        switch (choice) {
-            case "2" -> {
-                hero.getInventory().useItems(hero);
-                camp();
-            }
-            case "3" -> {
-                hero.getInventory().equip();
-                camp();
+        while (camping) {
+            String choice = gameMenu.campChoice();
+
+            switch (choice) {
+                case "2" -> hero.getInventory().useItems(hero);
+                case "3" -> hero.getInventory().equip();
+                default -> camping = false;
             }
         }
     }
