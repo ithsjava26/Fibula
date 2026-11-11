@@ -24,19 +24,16 @@ import com.fangdjupet.menu.GameMenu;
 public class Hero implements Character {
     private final String name;
     private int health;
-    private final AttackStrategy meleeAttack;
-    private final AttackStrategy magicAttack;
     private Effect status;
     private final Inventory inventory;
     private final GameMenu game = new GameMenu();
-    private static final int BASE_MAX_HEALTH = 50;
+    private final int baseMaxHealth;
 
     //Overloaded constructor. Alt: To set another hero name and health.
     public Hero(String name, int health) {
         this.name = name;
         this.health = health;
-        this.meleeAttack = new HeroMeleeAttack();
-        this.magicAttack = new HeroMagicAttack();
+        this.baseMaxHealth = health;
         this.status = Effect.NEUTRAL;
         this.inventory = new Inventory();
     }
@@ -44,9 +41,8 @@ public class Hero implements Character {
     //Default constructor
     public Hero() {
         this.name = "Arthur LightBringer";
-        this.health = 100;
-        this.meleeAttack = new HeroMeleeAttack();
-        this.magicAttack = new HeroMagicAttack();
+        this.health = 50;
+        this.baseMaxHealth = 50;
         this.status = Effect.NEUTRAL;
         this.inventory = new Inventory();
     }
@@ -108,7 +104,7 @@ public class Hero implements Character {
     }
 
     public int getMaxHealth() {
-        int maxHealth = BASE_MAX_HEALTH;
+        int maxHealth = baseMaxHealth;
 
         for(Item item : inventory.getCurrentlyEquipped()) {
 
