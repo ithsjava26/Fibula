@@ -34,7 +34,7 @@ public class BattleSystem {
             game.printRed("You are fighting: " + enemy.getCharacterName());
 
             while (hero.isAlive() && enemy.isAlive()) {
-                game.printYellow("Arthur: " + hero.getCurrentHealth() + " HP");
+                game.printYellow(hero.getCharacterName() + ": " + hero.getCurrentHealth() + "/" + hero.getMaxHealth() + " HP");
                 game.printRed(enemy.getCharacterName() + ": " + enemy.getCurrentHealth() + " HP");
 
                 playerTurn(hero, enemy);
@@ -58,26 +58,36 @@ public class BattleSystem {
     private void playerTurn(Hero hero, Enemy enemy) {
         System.out.println();
         game.printYellow("-- Player's turn --");
-        game.printYellow("1. Melee Attack");
-        game.printYellow("2. Magic Attack Runes");
-        game.printYellow("3. Open Inventory");
+        game.printYellow("1. Use equipped weapon to attack");
+        game.printYellow("2. Use magic runes to attack");
+        game.printYellow("3. Equip Weapon/Armor");
+        game.printYellow("4. Drink health potion");
+        game.printYellow("5. Open and see Inventory");
 
         String choice = scanner.nextLine();
         switch (choice) {
             case "1" -> {
                 System.out.println();
-                int meleeDamage = hero.meleeAttack();
-                enemy.takeDamage(meleeDamage);
+                int heroDamage = hero.attack();
+                enemy.takeDamage(heroDamage);
             }
             case "2" -> {
                 System.out.println();
-                int magicDamage = hero.magicAttack();
-                enemy.takeDamage(magicDamage);
+                hero.getInventory().useItems(enemy);
             }
             case "3" -> {
-                openInventory(hero, enemy);
+                hero.getInventory().equip(hero);
                 playerTurn(hero, enemy);
             }
+            case "4" -> {
+                hero.getInventory().useItems(hero);
+                playerTurn(hero, enemy);
+            }
+            case "5" -> {
+                hero.getInventory().printAllItemsInInventory();
+                playerTurn(hero, enemy);
+            }
+
             default -> game.printRed("Invalid choice. Please try again.");
         }
     }
@@ -122,12 +132,6 @@ public class BattleSystem {
         }
     }
 
-    private void openInventory(Hero hero, Enemy enemy) {
-        hero.getInventory().printAllItemsInInventory();
-
-        hero.getInventory().useItems(hero, enemy);
-    }
-
     private void endBattle(Hero hero, List<Enemy> enemies) {
         System.out.println();
         game.printYellow("===== BATTLE OVER =====");
@@ -137,7 +141,7 @@ public class BattleSystem {
             for (Enemy enemy : enemies) {
                 game.printGreen(hero.getCharacterName() + " defeated: " + enemy.getCharacterName());
             }
-            game.printYellow(hero.getCharacterName() + ": " + hero.getCurrentHealth() + " HP remaining");
+            game.printYellow(hero.getCharacterName() + ": " + hero.getCurrentHealth() + "/" + hero.getMaxHealth() + " HP remaining");
         }
         else {
             game.printRed(hero.getCharacterName() + " has been defeated in battle");
