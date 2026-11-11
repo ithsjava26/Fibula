@@ -38,8 +38,8 @@ public class Hero implements Character {
     //Default constructor
     public Hero() {
         this.name = "Arthur LightBringer";
-        this.health = 50;
-        this.baseMaxHealth = 50;
+        this.health = 100;
+        this.baseMaxHealth = 100;
         this.status = Effect.NEUTRAL;
         this.inventory = new Inventory();
     }
