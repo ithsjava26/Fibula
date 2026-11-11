@@ -5,6 +5,7 @@ import com.fangdjupet.combat.HeroMagicAttack;
 import com.fangdjupet.combat.HeroMeleeAttack;
 import com.fangdjupet.common.Effect;
 import com.fangdjupet.inventory.Inventory;
+import com.fangdjupet.menu.GameMenu;
 
 /**
  * Represents a hero in the game that implements the character interface. It does not have a superclass, like
@@ -23,6 +24,7 @@ public class Hero implements Character {
     private final AttackStrategy magicAttack;
     private Effect status;
     private final Inventory inventory;
+    private final GameMenu game = new GameMenu();
 
     //Overloaded constructor. Alt: To set another hero name and health.
     public Hero(String name, int health) {
@@ -45,12 +47,12 @@ public class Hero implements Character {
     }
 
     public int meleeAttack() {
-        System.out.println(meleeAttack.getName());
+        game.printGreen(meleeAttack.getName());
         return meleeAttack.attack();
     }
 
     public int magicAttack() {
-        System.out.println(magicAttack.getName());
+        game.printGreen(magicAttack.getName());
         return magicAttack.attack();
     }
 
