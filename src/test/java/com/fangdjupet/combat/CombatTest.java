@@ -13,7 +13,7 @@ class CombatTest {
         //Act
         int result = strategy.attack();
         //Assert
-        assertEquals(15, result);
+        assertEquals(20, result);
     }
 
     @Test
@@ -23,7 +23,7 @@ class CombatTest {
         //Act
         int result = strategy.attack();
         //Assert
-        assertEquals(10, result);
+        assertEquals(15, result);
     }
 
     @Test

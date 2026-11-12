@@ -94,7 +94,10 @@ public class BattleSystem {
                 playerTurn(hero, enemy);
             }
 
-            default -> game.printRed("Invalid choice. Please try again.");
+            default -> {
+                game.printRed("Invalid choice. Please try again.");
+                playerTurn(hero, enemy);
+            }
         }
     }
 
