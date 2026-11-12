@@ -44,7 +44,7 @@ public class Paralyze implements AttackRune {
     public void useAttackRune(Enemy enemy) {
         enemy.takeDamage(attackRuneStrength);
         game.printGreen("You use the " + itemName + ", your most powerful attack. The enemy is engulfed in light, " +
-                "dealing a massive" + attackRuneStrength + " damage!");
+                "dealing a massive " + attackRuneStrength + " damage!");
     }
 
     @Override
