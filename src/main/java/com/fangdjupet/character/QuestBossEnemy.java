@@ -18,7 +18,7 @@ public class QuestBossEnemy extends Enemy {
         private final GameMenu game = new GameMenu();
 
         public QuestBossEnemy() {
-            super("Giant spider, Ungoliath the Black", 100, new MeleeQuestBossAttack(), Difficulty.QUEST);
+            super("Giant spider, Ungoliath the Black", 150, new MeleeQuestBossAttack(), Difficulty.QUEST);
             this.meleeAttack = new MeleeQuestBossAttack();
             this.rangedAttack = new RangedQuestBossAttack();
         }
@@ -26,7 +26,7 @@ public class QuestBossEnemy extends Enemy {
         @Override
         public int attack() {
 
-            if(getCurrentHealth() < 50) {
+            if(getCurrentHealth() < 70) {
                 super.attackStrategy = rangedAttack;
                 game.printRed(
                         getCharacterName() +

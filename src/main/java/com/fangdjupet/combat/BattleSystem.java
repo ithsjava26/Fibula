@@ -81,7 +81,7 @@ public class BattleSystem {
                     playerTurn(hero, enemy);
                 }
                 //If supernova rune was used (50 damage), enemy is blinded and misses their next attack
-                else if (enemyHealthBeforeAttack - enemyHealthAfterAttack == 50) {
+                else if (enemyHealthBeforeAttack - enemyHealthAfterAttack == 50 && enemy.isAlive()) {
                     System.out.println();
                     game.printGreen("Due to the supernova, the enemy was blinded and missed their attack." +
                             " Player's turn again!");
