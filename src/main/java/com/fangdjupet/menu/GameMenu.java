@@ -72,9 +72,10 @@ public class GameMenu {
                 """);
 
         while (true) {
-            System.out.println("1. Head right. Follow the (potentially) safer path.\n" +
-                    "2. Head left. Face whatever danger lurks below head-on.");
-
+            printBlue("""
+                     1. Head right. Follow the (potentially) safer path.
+                     2. Head left. Face whatever danger lurking below head-on,
+                                   a special reward awaits at the end!""");
             String choice = IO.readln();
 
             switch (choice) {
