@@ -140,7 +140,7 @@ public class Hero implements Character {
                 A new adventure is beginning!
                 You play as Arthur LightBringer, a palladin knight who wields mighty weapons and magical runes.
                 He is known for his unwavering bravery and commitment to vanquishing evil! Your quest is to
-                go deep into the dungeon fibula, defeat everyone on your path and finally defeat the evil dragon
+                go deep into the dungeon Fibula, defeat everyone on your path and finally defeat the evil dragon
                 Malakai the Dread to win the game!
                 Good luck on your journey! May the light be with you!
                 """;
